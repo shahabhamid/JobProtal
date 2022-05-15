@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
 <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
@@ -84,7 +84,7 @@
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-    <form th:action="@{/users/addNew}" method="post">
+    <form th:action="@{/students/addNew}" method="post">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
