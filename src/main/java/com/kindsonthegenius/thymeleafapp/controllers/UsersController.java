@@ -19,18 +19,18 @@ public class UsersController {
 	
 	@Autowired
 	private UsersService usersService;
-	
-	@RequestMapping("/getAll")
+
+	@RequestMapping("/")
 	public String getAll(Model model) {
 		List<Users> users = usersService.getAll();
 		model.addAttribute("users", users);
-		
-		//String username = "Kindson";
-		//model.addAttribute("username", username);
-		
+
+		for(Users u : users){
+			System.out.println(u.toString());
+		}
 		return "users";
 	}
-	
+
 	@RequestMapping("/getOne")
 	@ResponseBody
 	public Optional<Users> getOne(Integer Id) {
@@ -40,18 +40,18 @@ public class UsersController {
 	@PostMapping("/addNew")
 	public String addNew(Users user) {
 		usersService.addNew(user);
-		return "redirect:/users/getAll";
+		return "redirect:/users/";
 	}
 
 	@RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Users user) {
 		usersService.update(user);
-		return "redirect:/users/getAll";		
+		return "redirect:/users/";
 	}
 
 	@RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer Id) {
 		usersService.delete(Id);
-		return "redirect:/users/getAll";		
+		return "redirect:/users/";
 	}
 }

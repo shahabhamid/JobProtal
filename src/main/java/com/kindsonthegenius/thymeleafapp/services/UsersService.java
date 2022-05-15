@@ -19,11 +19,13 @@ public class UsersService {
 	public Optional<Users> getOne(Integer Id) {
 		return usersRepository.findById(Id);
 	}
-	public void addNew(Users student) {
-		usersRepository.save(student);
+	public void addNew(Users user) {
+		System.out.println(("Add New User"));
+		System.out.println(user.toString());
+		usersRepository.save(user);
 	}
-	public void update(Users student) {
-		usersRepository.save(student);
+	public void update(Users user) {
+		usersRepository.save(user);
 	}
 	public void delete(Integer Id) {
 		usersRepository.deleteById(Id);

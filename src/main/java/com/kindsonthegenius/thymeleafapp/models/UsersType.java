@@ -2,36 +2,50 @@ package com.kindsonthegenius.thymeleafapp.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Blob;
 import java.util.Date;
 
 @Entity
+@Table(name = "users_type")
+
 public class UsersType {
 
 	@Id
-	private Integer userTypeId;
-	private String userTypeName;
-
-	public UsersType(Integer userTypeId, String userTypeName) {
-		this.userTypeId = userTypeId;
-		this.userTypeName = userTypeName;
-	}
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_type_id")
+	private Integer user_type_id;
+	private String user_type_name;
 
 	public UsersType() {
 	}
 
-	public Integer getUserTypeId() {
-		return this.userTypeId;
+	@Override
+	public String toString() {
+		return "UsersType{" +
+				"user_type_id=" + user_type_id +
+				", user_type_name='" + user_type_name + '\'' +
+				'}';
 	}
-	public void setUserTypeId(Integer userTypeId) {
-		this.userTypeId = userTypeId;
+
+	public UsersType(Integer user_type_id, String user_type_name) {
+		this.user_type_id = user_type_id;
+		this.user_type_name = user_type_name;
 	}
-	public String getUserTypeName() {
-		return this.userTypeName;
+
+	public Integer getUser_type_id() {
+		return user_type_id;
 	}
-	public void setUserTypeName(String userTypeName) {
-		this.userTypeName = userTypeName;
+
+	public void setUser_type_id(Integer user_type_id) {
+		this.user_type_id = user_type_id;
+	}
+
+	public String getUser_type_name() {
+		return user_type_name;
+	}
+
+	public void setUser_type_name(String user_type_name) {
+		this.user_type_name = user_type_name;
 	}
 }
