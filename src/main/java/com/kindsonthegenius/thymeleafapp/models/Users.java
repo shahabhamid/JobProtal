@@ -15,6 +15,10 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
 	private Integer user_id;
+
+	@OneToOne(mappedBy = "user_id")
+	private JobSeekerProfile jobSeekerProfile;
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_type_id",referencedColumnName = "user_type_id")
 	private UsersType user_type_id;
@@ -24,7 +28,6 @@ public class Users {
 	private String gender;
 	private String is_active;
 	private String contact_number;
-
 
 	public Users(Integer user_id, UsersType user_type_id, String email, String password, String date_of_birth, String gender, String is_active, String contact_number, Blob user_image, Date registration_date) {
 		this.user_id = user_id;

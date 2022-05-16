@@ -1,9 +1,7 @@
 package com.kindsonthegenius.thymeleafapp.models;
 import org.springframework.format.annotation.DateTimeFormat;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -11,40 +9,49 @@ import java.util.Date;
 public class JobSeekerEducation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer user_account_id;
+    private Integer job_seeker_education_id;
     private String certificate_degree_name;
     private String major;
     private String institute_university_name;
-
     @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date starting_date;
     private Date completion_date;
-
     private double percentage;
     private double cgpa;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_account_id",referencedColumnName = "user_account_id")
+    private JobSeekerProfile jobSeekerProfile;
     public JobSeekerEducation() {
 
     }
-    public Integer getUser_account_id() {
-        return user_account_id;
+
+    public JobSeekerEducation(Integer job_seeker_education_id, String certificate_degree_name, String major, String institute_university_name, Date starting_date, Date completion_date, double percentage, double cgpa, JobSeekerProfile jobSeekerProfile) {
+        this.job_seeker_education_id = job_seeker_education_id;
+        this.certificate_degree_name = certificate_degree_name;
+        this.major = major;
+        this.institute_university_name = institute_university_name;
+        this.starting_date = starting_date;
+        this.completion_date = completion_date;
+        this.percentage = percentage;
+        this.cgpa = cgpa;
+        this.jobSeekerProfile = jobSeekerProfile;
     }
 
-    public JobSeekerEducation(Integer id, String certificateDegreeName, String Major, String instituteUniversityName, Date startDate, Date endDate, Double percent, Double gpa) {
-        user_account_id = id;
-        certificate_degree_name = certificateDegreeName;
-        major = Major;
-        institute_university_name = instituteUniversityName;
-        starting_date = startDate;
-        completion_date = endDate;
-        percentage = percent;
-        cgpa = gpa;
+    public Integer getJob_seeker_education_id() {
+        return job_seeker_education_id;
     }
 
+    public void setJob_seeker_education_id(Integer job_seeker_education_id) {
+        this.job_seeker_education_id = job_seeker_education_id;
+    }
 
+    public JobSeekerProfile getJobSeekerProfile() {
+        return jobSeekerProfile;
+    }
 
-    public void setUser_account_id(Integer user_account_id) {
-        this.user_account_id = user_account_id;
+    public void setJobSeekerProfile(JobSeekerProfile jobSeekerProfile) {
+        this.jobSeekerProfile = jobSeekerProfile;
     }
 
     public String getCertificate_degree_name() {

@@ -1,36 +1,36 @@
 package com.kindsonthegenius.thymeleafapp.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 
 
 public class JobSeekerSkillSet {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer user_account_id;
     private Integer skill_set_id;
     private String skill_proficiency;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_account_id",referencedColumnName = "user_account_id")
+    private JobSeekerProfile jobSeekerProfile;
     public JobSeekerSkillSet() {
 
     }
-    public Integer getUser_account_id() {
-        return user_account_id;
-    }
-    public JobSeekerSkillSet(Integer id, Integer skillSetId, String skillProficiency) {
-        user_account_id = id;
-        skill_set_id = skillSetId;
-        skill_proficiency = skillProficiency;
+
+    public JobSeekerSkillSet(Integer skill_set_id, String skill_proficiency, JobSeekerProfile jobSeekerProfile) {
+        this.skill_set_id = skill_set_id;
+        this.skill_proficiency = skill_proficiency;
+        this.jobSeekerProfile = jobSeekerProfile;
     }
 
+    public JobSeekerProfile getJobSeekerProfile() {
+        return jobSeekerProfile;
+    }
 
-
-    public void setUser_account_id(Integer user_account_id) {
-        this.user_account_id = user_account_id;
+    public void setJobSeekerProfile(JobSeekerProfile jobSeekerProfile) {
+        this.jobSeekerProfile = jobSeekerProfile;
     }
 
     public Integer getSkill_set_id() {

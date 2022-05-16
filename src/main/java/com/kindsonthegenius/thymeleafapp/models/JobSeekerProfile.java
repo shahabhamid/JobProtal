@@ -1,29 +1,30 @@
 package com.kindsonthegenius.thymeleafapp.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
 
-public class JobSeekerProfile {
+public class JobSeekerProfile implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer user_account_id;
+
+    @OneToOne
+    @JoinColumn(name = "user_account_id")
+    @MapsId
+    private Users user_id;
     private String first_name;
     private String last_name;
     private Integer current_salary;
     private String salary_type;
     private String currency;
 
+
     public JobSeekerProfile() {
 
     }
 
-    public Integer getuser_account_id() {
-        return user_account_id;
-    }
 
     public JobSeekerProfile(Integer id, String Firstname, String Lastname, Integer Currentsalary, String Salarytype, String currencys) {
         user_account_id = id;

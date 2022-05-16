@@ -13,10 +13,8 @@ public class JobSeekerApply {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer user_account_id;
     private Integer job_post_id;
-
     @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date apply_date;
-
     private String apply_response;
 
     public JobSeekerApply() {

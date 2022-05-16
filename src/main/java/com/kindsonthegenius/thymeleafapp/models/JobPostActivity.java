@@ -16,10 +16,8 @@ public class JobPostActivity {
     private Integer posted_by_id;
     private Integer job_type_id;
     private Integer organization_id;
-
     @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date created_date;
-
     private String description_of_job;
     private Integer job_location_id;
     private Boolean is_active;
@@ -27,7 +25,6 @@ public class JobPostActivity {
     public JobPostActivity() {
 
     }
-
     public JobPostActivity(Integer id, Integer posted_by_id, Integer job_type_id, Integer organization_id, Date created_date, String description_of_job, Integer job_location_id, Boolean is_active) {
         Id = id;
         this.posted_by_id = posted_by_id;

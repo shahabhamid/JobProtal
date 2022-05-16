@@ -2,10 +2,7 @@ package com.kindsonthegenius.thymeleafapp.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -13,9 +10,8 @@ import java.util.Date;
 public class JobSeekerExperience {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer user_account_id;
+    private Integer job_seeker_experience_id;
     private String is_current_job;
-
     @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date start_date;
     private Date end_date;
@@ -27,28 +23,41 @@ public class JobSeekerExperience {
     private String job_location_country;
     private String description_of_job;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_account_id",referencedColumnName = "user_account_id")
+    private JobSeekerProfile jobSeekerProfile;
     public JobSeekerExperience() {
 
     }
-    public JobSeekerExperience(Integer id, String currentJob, Date startingDate, Date endingDate,String jobTitle, String companyName, String jobCity, String jobState, String jobCountry, String jobDescription) {
-        user_account_id = id;
-        is_current_job = currentJob;
-        start_date = startingDate;
-        end_date = endingDate;
-        job_title = jobTitle;
-        company_name = companyName;
-        job_location_city = jobCity;
-        job_location_state = jobState;
-        job_location_country = jobCountry;
-        description_of_job = jobDescription;
+
+    public JobSeekerExperience(Integer job_seeker_experience_id, String is_current_job, Date start_date, Date end_date, String job_title, String company_name, String job_location_city, String job_location_state, String job_location_country, String description_of_job, JobSeekerProfile jobSeekerProfile) {
+        this.job_seeker_experience_id = job_seeker_experience_id;
+        this.is_current_job = is_current_job;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.job_title = job_title;
+        this.company_name = company_name;
+        this.job_location_city = job_location_city;
+        this.job_location_state = job_location_state;
+        this.job_location_country = job_location_country;
+        this.description_of_job = description_of_job;
+        this.jobSeekerProfile = jobSeekerProfile;
     }
 
-    public Integer getUser_account_id() {
-        return user_account_id;
+    public Integer getJob_seeker_experience_id() {
+        return job_seeker_experience_id;
     }
 
-    public void setUser_account_id(Integer user_account_id) {
-        this.user_account_id = user_account_id;
+    public void setJob_seeker_experience_id(Integer job_seeker_experience_id) {
+        this.job_seeker_experience_id = job_seeker_experience_id;
+    }
+
+    public JobSeekerProfile getJobSeekerProfile() {
+        return jobSeekerProfile;
+    }
+
+    public void setJobSeekerProfile(JobSeekerProfile jobSeekerProfile) {
+        this.jobSeekerProfile = jobSeekerProfile;
     }
 
     public String getIs_current_job() {

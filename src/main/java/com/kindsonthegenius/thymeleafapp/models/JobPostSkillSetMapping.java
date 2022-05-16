@@ -14,6 +14,7 @@ public class JobPostSkillSetMapping {
     private Integer job_post_id;
     private String skill_level;
 
+
     public JobPostSkillSetMapping() {
 
     }
