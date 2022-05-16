@@ -25,6 +25,7 @@ public class Users {
 	private String is_active;
 	private String contact_number;
 
+
 	public Users(Integer user_id, UsersType user_type_id, String email, String password, String date_of_birth, String gender, String is_active, String contact_number, Blob user_image, Date registration_date) {
 		this.user_id = user_id;
 		this.user_type_id = user_type_id;

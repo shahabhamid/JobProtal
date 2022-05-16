@@ -2,6 +2,7 @@ package com.kindsonthegenius.thymeleafapp.services;
 
 import com.kindsonthegenius.thymeleafapp.models.Users;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
+import com.kindsonthegenius.thymeleafapp.repositories.UsersTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,16 +14,25 @@ public class UsersService {
 
 	@Autowired
 	private UsersRepository usersRepository;
+	@Autowired
+	private UsersTypeRepository usersTypeRepository;
 	public List<Users> getAll() {
 		return (List<Users>) usersRepository.findAll();
 	}
+//	public List<Users> getUsersByUserType(int userTypeId){
+//		return usersRepository.findByUserTypeId(userTypeId);
+//	}
 	public Optional<Users> getOne(Integer Id) {
 		return usersRepository.findById(Id);
 	}
-	public void addNew(Users user) {
-		System.out.println(("Add New User"));
-		System.out.println(user.toString());
-		usersRepository.save(user);
+	public Users addNew(int userTypeId, Users user) throws Exception {
+
+		return usersTypeRepository.findById(userTypeId).map(userType -> {
+			user.setUser_type_id(userType);
+			return usersRepository.save(user);
+		}).orElseThrow(() -> new Exception("userType not found") );
+
+
 	}
 	public void update(Users user) {
 		usersRepository.save(user);
