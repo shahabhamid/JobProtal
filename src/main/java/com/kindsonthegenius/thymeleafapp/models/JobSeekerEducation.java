@@ -109,4 +109,19 @@ public class JobSeekerEducation {
     public void setCgpa(double cgpa) {
         this.cgpa = cgpa;
     }
+
+    @Override
+    public String toString() {
+        return "JobSeekerEducation{" +
+                "job_seeker_education_id=" + job_seeker_education_id +
+                ", certificate_degree_name='" + certificate_degree_name + '\'' +
+                ", major='" + major + '\'' +
+                ", institute_university_name='" + institute_university_name + '\'' +
+                ", starting_date=" + starting_date +
+                ", completion_date=" + completion_date +
+                ", percentage=" + percentage +
+                ", cgpa=" + cgpa +
+                ", jobSeekerProfile=" + jobSeekerProfile +
+                '}';
+    }
 }

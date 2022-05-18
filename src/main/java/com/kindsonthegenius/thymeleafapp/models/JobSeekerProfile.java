@@ -78,4 +78,17 @@ public class JobSeekerProfile implements Serializable {
     public void setcurrency(String currency) {
         currency = currency;
     }
+
+    @Override
+    public String toString() {
+        return "JobSeekerProfile{" +
+                "user_account_id=" + user_account_id +
+                ", user_id=" + user_id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", current_salary=" + current_salary +
+                ", salary_type='" + salary_type + '\'' +
+                ", currency='" + currency + '\'' +
+                '}';
+    }
 }

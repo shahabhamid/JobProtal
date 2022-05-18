@@ -38,4 +38,12 @@ public class JobTypeMaster {
     public void setJob_type(String job_type) {
         this.job_type = job_type;
     }
+
+    @Override
+    public String toString() {
+        return "JobTypeMaster{" +
+                "Id=" + Id +
+                ", job_type='" + job_type + '\'' +
+                '}';
+    }
 }

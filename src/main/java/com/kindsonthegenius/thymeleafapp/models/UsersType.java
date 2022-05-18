@@ -59,4 +59,5 @@ public class UsersType {
 	public void setUsers(List<Users> users) {
 		this.users = users;
 	}
+
 }

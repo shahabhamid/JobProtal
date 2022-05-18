@@ -54,25 +54,24 @@
 
 <table class="table table-stripped">
 <thead>
-<tr>
-<td>Id</td>
-<td>Name</td>
-<td>Department</td>
-<td>Updated By</td>
-<td>Updated On</td>
-<td>Edit</td>
-<td>Delete</td>
-</tr>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Department</td>
+        <td>Updated By</td>
+        <td>Updated On</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
 </thead>
 
-<tr th:each="student:${users}">
-<td th:text="${student.user_id}">Id</td>
-<td th:text="${student.user_type_id}">Name</td>
-<td th:text="${student.email}">Department</td>
-<td th:text="${student.date_of_birth}">Updated By</td>
-<td><a th:href="@{/students/getOne/(Id=${student.user_id})}"  class="btn btn-warning">Edit</a></td>
-<td><a th:href="@{/students/delete/(Id=${student.user_id})}"   class="btn btn-danger" id="deleteButton">Delete</a></td>
-</tr>
+    <tr th:each="student:${users}">
+        <td th:text="${student.user_id}">Id</td>
+        <td th:text="${student.email}">Department</td>
+        <td th:text="${student.date_of_birth}">Updated By</td>
+        <td><a th:href="@{/students/getOne/(Id=${student.user_id})}" class="btn btn-warning">Edit</a></td>
+        <td><a th:href="@{/students/delete/(Id=${student.user_id})}" class="btn btn-danger" id="deleteButton">Delete</a></td>
+    </tr>
 </table>
 
   </div>
@@ -83,7 +82,7 @@
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-    <form th:action="@{/users/addNew}" th:object="${user_type_id}" method="post">
+    <form th:action="@{/users/addNew}" method="post">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -100,7 +99,7 @@
 
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">User Type ID:</label>
-                        <input type="text" class="form-control" id="user_type_id" th:value="*{user_type_id}" th:field="*{user_type_id}" name="user_type_id">
+                        <input type="text" class="form-control" >
                     </div>
 
                     <div class="form-group">

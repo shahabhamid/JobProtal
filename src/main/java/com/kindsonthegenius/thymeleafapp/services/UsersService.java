@@ -17,11 +17,9 @@ public class UsersService {
 	@Autowired
 	private UsersTypeRepository usersTypeRepository;
 	public List<Users> getAll() {
-		return (List<Users>) usersRepository.findAll();
+		return (List<Users>)  usersRepository.findAll();
 	}
-//	public List<Users> getUsersByUserType(int userTypeId){
-//		return usersRepository.findByUserTypeId(userTypeId);
-//	}
+
 	public Optional<Users> getOne(Integer Id) {
 		return usersRepository.findById(Id);
 	}

@@ -11,7 +11,7 @@ public class JobSeekerExperience {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer job_seeker_experience_id;
-    private String is_current_job;
+    private Boolean is_current_job;
     @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date start_date;
     private Date end_date;
@@ -30,7 +30,7 @@ public class JobSeekerExperience {
 
     }
 
-    public JobSeekerExperience(Integer job_seeker_experience_id, String is_current_job, Date start_date, Date end_date, String job_title, String company_name, String job_location_city, String job_location_state, String job_location_country, String description_of_job, JobSeekerProfile jobSeekerProfile) {
+    public JobSeekerExperience(Integer job_seeker_experience_id, Boolean is_current_job, Date start_date, Date end_date, String job_title, String company_name, String job_location_city, String job_location_state, String job_location_country, String description_of_job, JobSeekerProfile jobSeekerProfile) {
         this.job_seeker_experience_id = job_seeker_experience_id;
         this.is_current_job = is_current_job;
         this.start_date = start_date;
@@ -60,11 +60,11 @@ public class JobSeekerExperience {
         this.jobSeekerProfile = jobSeekerProfile;
     }
 
-    public String getIs_current_job() {
+    public Boolean getIs_current_job() {
         return is_current_job;
     }
 
-    public void setIs_current_job(String is_current_job) {
+    public void setIs_current_job(Boolean is_current_job) {
         this.is_current_job = is_current_job;
     }
 
@@ -130,5 +130,22 @@ public class JobSeekerExperience {
 
     public void setDescription_of_job(String description_of_job) {
         this.description_of_job = description_of_job;
+    }
+
+    @Override
+    public String toString() {
+        return "JobSeekerExperience{" +
+                "job_seeker_experience_id=" + job_seeker_experience_id +
+                ", is_current_job=" + is_current_job +
+                ", start_date=" + start_date +
+                ", end_date=" + end_date +
+                ", job_title='" + job_title + '\'' +
+                ", company_name='" + company_name + '\'' +
+                ", job_location_city='" + job_location_city + '\'' +
+                ", job_location_state='" + job_location_state + '\'' +
+                ", job_location_country='" + job_location_country + '\'' +
+                ", description_of_job='" + description_of_job + '\'' +
+                ", jobSeekerProfile=" + jobSeekerProfile +
+                '}';
     }
 }

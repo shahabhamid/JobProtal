@@ -63,14 +63,14 @@ public class UsersController {
 	///	return users;
 	//}
 	@RequestMapping("/")
-	public String getAll(Model model) {
+	public List<Users> getAll(Model model) {
 		List<Users> users = usersService.getAll();
 		model.addAttribute("users", users);
 
 		for(Users u : users){
 			System.out.println(u.toString());
 		}
-		return "users";
+		return users;
 	}
 
 	@RequestMapping("/getOne")

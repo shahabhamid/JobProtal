@@ -68,4 +68,15 @@ public class Organization {
 	public void setOrganizationLogo(Blob organizationLogo) {
 		OrganizationLogo = organizationLogo;
 	}
+
+	@Override
+	public String toString() {
+		return "Organization{" +
+				"Id=" + Id +
+				", CompanyName='" + CompanyName + '\'' +
+				", BusinessStreamName='" + BusinessStreamName + '\'' +
+				", establishmentDate=" + establishmentDate +
+				", OrganizationLogo=" + OrganizationLogo +
+				'}';
+	}
 }

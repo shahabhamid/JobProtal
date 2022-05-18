@@ -16,7 +16,6 @@ public class JobLocation {
     private String state;
     private String country;
     private Integer zip;
-
     public JobLocation() {
 
     }
@@ -76,5 +75,17 @@ public class JobLocation {
 
     public void setZip(Integer zip) {
         this.zip = zip;
+    }
+
+    @Override
+    public String toString() {
+        return "JobLocation{" +
+                "Id=" + Id +
+                ", street_address='" + street_address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", zip=" + zip +
+                '}';
     }
 }

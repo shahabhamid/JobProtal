@@ -48,4 +48,13 @@ public class JobSeekerSkillSet {
     public void setSkill_proficiency(String skill_proficiency) {
         this.skill_proficiency = skill_proficiency;
     }
+
+    @Override
+    public String toString() {
+        return "JobSeekerSkillSet{" +
+                "skill_set_id=" + skill_set_id +
+                ", skill_proficiency='" + skill_proficiency + '\'' +
+                ", jobSeekerProfile=" + jobSeekerProfile.toString() +
+                '}';
+    }
 }

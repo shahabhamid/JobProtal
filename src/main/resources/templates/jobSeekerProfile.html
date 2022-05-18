@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+<meta charset="ISO-8859-1">
+<title>Candidate Profile</title>
+</head>
+
+<body>
+
+    <div class="row">
+<div class="col-sm-2 col-md-2">
+
+</div>
+        <div class="col-sm-8 col-md-8">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>First Name</label> <small class="req"> *</small>
+                        <input name="Name" type="text" class="form-control" required value={this.state.newTableRow.Name} onChange={this.changeHandler} />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Last Name</label> <small class="req"> *</small>
+                        <input name="Phone" type="text" class="form-control" required value={this.state.newTableRow.Phone} onChange={this.changeHandler} />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Emergency Contact</label> <small class="req"> *</small>
+             ;'lbnb;nm'/,.           <input name="EmergencyContact" type="text" class="form-control" required value={this.state.newTableRow.EmergencyContact} onChange={this.changeHandler} />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Student Email</label> <small class="req"> *</small>
+                        <input name="Email" type="email" class="form-control" required value={this.state.newTableRow.Email} onChange={this.changeHandler} />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+
+
+
+        <tr th:each="jobPost:${jobPost}">
+            <td th:text="${jobPost.Id}">Id</td>
+            <td th:text="${jobPost.organization_id.CompanyName}">Name</td>
+            <td th:text="${jobPost.job_location_id.state}">Department</td>
+            <td th:text="${jobPost.job_location_id.city}">Updated By</td>
+
+        </tr>
+
+
+</div>
+
+</body>
+</html>

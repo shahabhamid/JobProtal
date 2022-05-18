@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+<meta charset="ISO-8859-1">
+<title>Student List</title>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+
+        <tr th:each="jobPost:${jobPost}">
+            <td th:text="${jobPost.Id}">Id</td>
+            <td th:text="${jobPost.organization_id.CompanyName}">Name</td>
+            <td th:text="${jobPost.job_location_id.state}">Department</td>
+            <td th:text="${jobPost.job_location_id.city}">Updated By</td>
+
+        </tr>
+
+    </div>
+</div>
+
+</body>
+</html>

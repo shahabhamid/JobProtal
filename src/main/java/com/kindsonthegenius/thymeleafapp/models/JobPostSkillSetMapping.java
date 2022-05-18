@@ -48,5 +48,14 @@ public class JobPostSkillSetMapping {
     public void setSkill_level(String skill_level) {
         this.skill_level = skill_level;
     }
+
+    @Override
+    public String toString() {
+        return "JobPostSkillSetMapping{" +
+                "skill_set_id=" + skill_set_id +
+                ", job_post_id=" + job_post_id +
+                ", skill_level='" + skill_level + '\'' +
+                '}';
+    }
 }
 

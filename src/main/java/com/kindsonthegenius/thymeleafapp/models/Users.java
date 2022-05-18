@@ -24,12 +24,16 @@ public class Users {
 	private UsersType user_type_id;
 	private String email;
 	private String password;
-	private String date_of_birth;
+	@DateTimeFormat(pattern="dd-MM-yyyy")
+	private Date date_of_birth;
 	private String gender;
-	private String is_active;
+	private Boolean is_active;
 	private String contact_number;
+	private Blob user_image;
+	@DateTimeFormat(pattern="dd-MM-yyyy")
+	private Date registration_date;
 
-	public Users(Integer user_id, UsersType user_type_id, String email, String password, String date_of_birth, String gender, String is_active, String contact_number, Blob user_image, Date registration_date) {
+	public Users(Integer user_id, UsersType user_type_id, String email, String password, Date date_of_birth, String gender, Boolean is_active, String contact_number, Blob user_image, Date registration_date) {
 		this.user_id = user_id;
 		this.user_type_id = user_type_id;
 		this.email = email;
@@ -74,11 +78,11 @@ public class Users {
 		this.password = password;
 	}
 
-	public String getDate_of_birth() {
+	public Date getDate_of_birth() {
 		return date_of_birth;
 	}
 
-	public void setDate_of_birth(String date_of_birth) {
+	public void setDate_of_birth(Date date_of_birth) {
 		this.date_of_birth = date_of_birth;
 	}
 
@@ -90,11 +94,11 @@ public class Users {
 		this.gender = gender;
 	}
 
-	public String getIs_active() {
+	public Boolean getIs_active() {
 		return is_active;
 	}
 
-	public void setIs_active(String is_active) {
+	public void setIs_active(Boolean is_active) {
 		this.is_active = is_active;
 	}
 
@@ -122,7 +126,6 @@ public class Users {
 		this.registration_date = registration_date;
 	}
 
-	private Blob user_image;
 
 	@Override
 	public String toString() {
@@ -140,8 +143,7 @@ public class Users {
 				'}';
 	}
 
-	@DateTimeFormat(pattern="dd-MM-yyyy")
-	private Date registration_date;
+
 
 	public Users() {
 	}
