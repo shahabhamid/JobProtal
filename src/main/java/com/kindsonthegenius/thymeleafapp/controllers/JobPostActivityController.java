@@ -24,14 +24,13 @@ public class JobPostActivityController {
 	private JobPostActivityService usersService;
 
 	@RequestMapping("/")
-	public List<JobPostActivity> getAll(Model model) {
+	public String getAll(Model model) {
 		List<JobPostActivity> users = usersService.getAll();
 		model.addAttribute("jobPost",users);
 		for(JobPostActivity u : users){
 			System.out.println(u.toString());
 		}
-
-		return users;
+		return "Dashboard";
 	}
 
 }

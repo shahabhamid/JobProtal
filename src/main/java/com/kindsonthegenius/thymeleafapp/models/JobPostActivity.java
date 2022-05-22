@@ -27,18 +27,30 @@ public class JobPostActivity {
     private Date created_date;
     private String description_of_job;
 
+    private String job_title;
+
     public JobPostActivity() {
 
     }
-    public JobPostActivity(Integer id, Users posted_by_id, JobTypeMaster job_type_id, Organization organization_id, Date created_date, String description_of_job, JobLocation job_location_id, Boolean is_active) {
+
+    public String getJob_title() {
+        return job_title;
+    }
+
+    public void setJob_title(String job_title) {
+        this.job_title = job_title;
+    }
+
+    public JobPostActivity(Integer id, Users posted_by_id, JobTypeMaster job_type_id, Organization organization_id, JobLocation job_location_id, Boolean is_active, Date created_date, String description_of_job, String job_title) {
         Id = id;
         this.posted_by_id = posted_by_id;
         this.job_type_id = job_type_id;
         this.organization_id = organization_id;
-        this.created_date = created_date;
-        this.description_of_job = description_of_job;
         this.job_location_id = job_location_id;
         this.is_active = is_active;
+        this.created_date = created_date;
+        this.description_of_job = description_of_job;
+        this.job_title = job_title;
     }
 
     public Integer getId() {

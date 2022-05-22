@@ -23,37 +23,7 @@ public class UsersController {
 
 	@Autowired
 	private UsersTypeRepository userTypeRepository;
-/*
-	@PutMapping("/userTypes/{userTypeId}/users/{userId}")
-	public User updateUser(@PathVariable(value = "userTypeId") Long userTypeId,
-							   @PathVariable(value = "userId") Long userId, @Valid @RequestBody User userRequest)
-			throws ResourceNotFoundException {
-		if (!userTypeRepository.existsById(userTypeId)) {
-			throw new ResourceNotFoundException("userTypeId not found");
-		}
 
-		return userRepository.findById(userId).map(user - > {
-				user.setTitle(userRequest.getTitle());
-		return userRepository.save(user);
-        }).orElseThrow(() -> new ResourceNotFoundException("user id not found"));
-	}
-
-	@DeleteMapping("/userTypes/{userTypeId}/users/{userId}")
-	public ResponseEntity < ? > deleteUser(@PathVariable(value = "userTypeId") int userTypeId,
-											 @PathVariable(value = "userId") int userId) throws ResourceNotFoundException {
-		return userRepository.findByIdAndUserTypeId(userId, userTypeId).map(user - > {
-				userRepository.delete(user);
-		return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException(
-				"User not found with id " + userId + " and userTypeId " + userTypeId));
-	}
-}
-*/
-	
-	
-	
-	
-	
 	@Autowired
 	private UsersService usersService;
 
