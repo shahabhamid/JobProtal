@@ -2,11 +2,11 @@ package com.kindsonthegenius.thymeleafapp.controllers;
 
 
 import com.kindsonthegenius.thymeleafapp.models.Organization;
-import com.kindsonthegenius.thymeleafapp.models.Users;
+
 import com.kindsonthegenius.thymeleafapp.repositories.OrganizationRepository;
 
 import com.kindsonthegenius.thymeleafapp.services.OrganizationService;
-import com.kindsonthegenius.thymeleafapp.services.UsersService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +41,6 @@ public class OrganizationController {
 
     @PostMapping("/addNew")
     public String addNew(Organization organization) throws Exception {
-        System.out.println(organization.toString());
         organizationService.addNew(organization);
         return "redirect:/organization/";
     }

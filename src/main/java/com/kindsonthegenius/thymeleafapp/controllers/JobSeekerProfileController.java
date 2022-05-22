@@ -39,7 +39,6 @@ public class JobSeekerProfileController {
 
 	@PostMapping("/addNew")
 	public String addNew(@Valid @RequestBody JobSeekerProfile user) throws Exception {
-		System.out.println(user.toString());
 		profileRepo.addNew(user);
 		return "redirect:/jobSeekerProfile/";
 	}
