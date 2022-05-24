@@ -29,7 +29,7 @@ public class UsersController {
 	private UsersService usersService;
 
 	@GetMapping("/userTypes/{userTypeId}/users")
-	//public List < Users > getUsersByUserType(@PathVariable(value = "userTypeId") int userTypeId) {
+	//static List < Users > getUsersByUserType(@PathVariable(value = "userTypeId") int userTypeId) {
 	//	List<Users> users = usersService.getUsersByUserType(userTypeId);
 	///	return users;
 	//}

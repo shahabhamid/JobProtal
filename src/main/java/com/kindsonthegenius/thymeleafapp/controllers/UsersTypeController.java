@@ -22,13 +22,13 @@ public class UsersTypeController {
 /*
 
 	@GetMapping("")
-	public List <UsersType> getInstructors() {
+	static List <UsersType> getInstructors() {
 		List<UsersType> users = usersService.getAll();
 		return "users";return userTypeRepository.findAll();
 	}
 
 	@GetMapping("/instructors/{id}")
-	public ResponseEntity < Instructor > getInstructorById(
+	static ResponseEntity < Instructor > getInstructorById(
 			@PathVariable(value = "id") Long instructorId) throws ResourceNotFoundException {
 		Instructor user = userTypeRepository.findById(instructorId)
 				.orElseThrow(() -> new ResourceNotFoundException("Instructor not found :: " + instructorId));
@@ -36,12 +36,12 @@ public class UsersTypeController {
 	}
 
 	@PostMapping("/instructors")
-	public Instructor createUser(@Valid @RequestBody Instructor instructor) {
+	static Instructor createUser(@Valid @RequestBody Instructor instructor) {
 		return userTypeRepository.save(instructor);
 	}
 
 	@PutMapping("/instructors/{id}")
-	public ResponseEntity < Instructor > updateUser(
+	static ResponseEntity < Instructor > updateUser(
 			@PathVariable(value = "id") Long instructorId,
 			@Valid @RequestBody Instructor userDetails) throws ResourceNotFoundException {
 		Instructor user = userTypeRepository.findById(instructorId)
@@ -54,7 +54,7 @@ public class UsersTypeController {
 	}
 
 	@DeleteMapping("/instructors/{id}")
-	public Map < String, Boolean > deleteUser(
+	static Map < String, Boolean > deleteUser(
 			@PathVariable(value = "id") Long instructorId) throws ResourceNotFoundException {
 		Instructor instructor = userTypeRepository.findById(instructorId)
 				.orElseThrow(() -> new ResourceNotFoundException("Instructor not found :: " + instructorId));
@@ -68,7 +68,7 @@ public class UsersTypeController {
 	*//*
 
 	@RequestMapping("/")
-	public String getAll(Model model) {
+	static String getAll(Model model) {
 		List<Users> users = usersService.getAll();
 		model.addAttribute("users", users);
 
@@ -80,24 +80,24 @@ public class UsersTypeController {
 
 	@RequestMapping("/getOne")
 	@ResponseBody
-	public Optional<Users> getOne(Integer Id) {
+	static Optional<Users> getOne(Integer Id) {
 		return usersService.getOne(Id);
 	}
 	
 	@PostMapping("/addNew")
-	public String addNew(Users user) {
+	static String addNew(Users user) {
 		usersTypeService.addNew(user);
 		return "redirect:/users/";
 	}
 
 	@RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
-	public String update(Users user) {
+	static String update(Users user) {
 		usersService.update(user);
 		return "redirect:/users/";
 	}
 
 	@RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
-	public String delete(Integer Id) {
+	static String delete(Integer Id) {
 		usersService.delete(Id);
 		return "redirect:/users/";
 	}*/

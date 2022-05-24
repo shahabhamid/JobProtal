@@ -49,21 +49,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
-                .ignoring()
-                .antMatchers("/resources/**","/webjars/**");
+            .ignoring()
+            .antMatchers("/resources/**","/webjars/**");
+
+        web.ignoring().antMatchers("/resources/static/css/**");
 
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login","/register","/","/webjars/**", "/resources/public/**","/favicon.ico","/*.js","/*.js.map")
-
+                .antMatchers("/","/login","/register","/webjars/**","/resources/**","/assets/**","/css/**","/*.css","/*.js","/*.js.map")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                    .defaultSuccessUrl("/jobPost/")
                     .loginPage("/login")
-                    .defaultSuccessUrl("/users/")
                     .failureUrl("/login?error=true");
 
     }

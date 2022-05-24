@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="ISO-8859-1">
-<title>Thymeleaf Tutorial</title>
+    <meta charset="UTF-8">
+    <title>Login HotDev Jobs</title>
+    <link rel="stylesheet" type="text/css" media="all" href="/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}">
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" >
+    <link rel="stylesheet" type="text/css" media="all" href="/css/styles.css" th:href="@{/css/styles.css}" />
+    <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+    <meta charset="ISO-8859-1">
 </head>
 <body>
-<h2>Everything works so far!</h2>
+    <nav class="main_div">
+        <div class="logo_left">
+            <label class="logo">
+                hotdevjobs
+            </label>
+            <label class = "logo_com">
+                .com
+            </label>
+        </div>
+        <div class="logo_right">
+            <label class="Candidate_login_btn">
+                <a href="/login">
+                Job Candidate Login/Register
+            </a>
+            </label>
+            <label class="Recruiter_login_btn">
+                <a href="/login">
+                    Recruiter Login/Register
+                </a>
+            </label>
+        </div>
+    </nav>
+
+    <div class="searchBox">
+        <div class="inner">
+            <input type="text" name="jobSearch" placeholder="Search for a job">
+            <input type="text" name="locSearch" placeholder="Enter a location">
+            <button><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+<footer>
+    <label class="copy-right">Copyright © 2022 hotdevjobs.com</label>
+</footer>
 </body>
 </html>
