@@ -1,0 +1,101 @@
+* {
+box-sizing: border-box;
+font-family: sans-serif;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: linear-gradient(to right, rgba(0,34,68,0.8), rgba(0,34,68,0.8)),url('pic1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.main_div
+{
+    display: flex;
+    justify-content: space-between;
+}
+nav .logo_left {
+    padding-top: 2rem;
+    font-size: 1rem;
+    color: white;
+    margin-left: 30px;
+}
+nav .logo_left .logo_com{
+     margin-left: 5px;
+     padding: 5px;
+     border-radius: 0.45rem;
+     background-color: #FB4F14;
+}
+nav .logo_right
+{
+    padding-top: 1.8rem;
+    display: flex;
+    font-size: 1rem;
+    color: white;
+    margin-right: 50px;
+}
+nav .logo_right .Candidate_login_btn
+{
+    padding: 10px;
+    border-radius: 0.45rem;
+    background-color: #FB4F14;
+    margin-right: 0.5rem;
+}
+nav .logo_right .Recruiter_login_btn
+{
+    padding: 10px;
+    border-radius: 0.45rem;
+    background-color: #002244;
+}
+.searchBox {
+    position: absolute;
+    top: calc(50% - 30px);
+    left: 10%;
+    height: 60px;
+    width: 80%;
+}
+
+.searchBox .inner {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+}
+
+.searchBox input
+{
+     border: 2px solid red;
+    padding-left: 1rem;
+    border-right: 1px solid black;
+    font-size: 1rem;
+    width: 50%;
+    height: 60px;
+    border-right: 1px solid gray;
+    border: 0;
+}
+
+.searchBox input:focus {
+    outline: none;
+    border: none;
+}
+
+.searchBox button {
+    padding: 5px;
+    border: none;
+    background-color: #fff;
+}
+
+.searchBox button > i{
+    width: 50px;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #FB4F14;
+    color: white;
+    font-size: 14px;
+}
