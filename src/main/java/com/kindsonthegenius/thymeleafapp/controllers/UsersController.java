@@ -5,6 +5,7 @@ import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersTypeRepository;
 import com.kindsonthegenius.thymeleafapp.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -67,4 +68,19 @@ public class UsersController {
 		usersService.delete(Id);
 		return "redirect:/users/";
 	}
+	@PostMapping("/signup")
+	public String signup(Users user) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
+		userRepository.save(user);
+
+		return "register_success";
+	}
+	@RequestMapping("/signupPage")
+	public String showSignupPage(Model model) {
+		model.addAttribute("user", new Users());
+		return "Signup";
+	}
+
 }

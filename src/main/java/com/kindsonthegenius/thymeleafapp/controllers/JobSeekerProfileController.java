@@ -1,7 +1,9 @@
 package com.kindsonthegenius.thymeleafapp.controllers;
 
 import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
+import com.kindsonthegenius.thymeleafapp.models.SkillSetsMaster;
 import com.kindsonthegenius.thymeleafapp.models.Users;
+import com.kindsonthegenius.thymeleafapp.repositories.SkillSetsMasterRepository;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersTypeRepository;
 import com.kindsonthegenius.thymeleafapp.services.JobSeekerProfileService;
@@ -22,6 +24,9 @@ public class JobSeekerProfileController {
 
 	@Autowired
 	private JobSeekerProfileService profileRepo;
+
+	@Autowired
+	private SkillSetsMasterRepository skillSetsMaster;
 	
 
 	@RequestMapping("/")
@@ -31,17 +36,25 @@ public class JobSeekerProfileController {
 		return "jobSeekerProfile";
 	}
 
+	@GetMapping("/new")
+	public String add(Model model){
+		List<SkillSetsMaster> allSkills =(List<SkillSetsMaster> ) skillSetsMaster.findAll();
+		model.addAttribute("profile",new JobSeekerProfile());
+		model.addAttribute("allSkills",allSkills);
+		return "jobSeekerProfile";
+	}
+
 	@RequestMapping("/getOne")
 	@ResponseBody
 	public Optional<JobSeekerProfile> getOne(Integer Id) {
 		return profileRepo.getOne(Id);
 	}
 
-	@PostMapping("/addNew")
-	public String addNew(@Valid @RequestBody JobSeekerProfile user) throws Exception {
-		System.out.println(user.toString());
-		profileRepo.addNew(user);
-		return "redirect:/jobSeekerProfile/";
+	@PostMapping("/jobSeekerProfile/save")
+	public String addNew(@Valid @RequestBody JobSeekerProfile profile) throws Exception {
+		System.out.println(profile.toString());
+		profileRepo.addNew(profile);
+		return "redirect:/jobSeekerProfile/new";
 	}
 
 }

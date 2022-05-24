@@ -16,6 +16,7 @@
 
         <tr th:each="jobPost:${jobPost}">
             <td th:text="${jobPost.Id}">Id</td>
+            <td th:text="${jobPost.description_of_job}">Id</td>
             <td th:text="${jobPost.organization_id.CompanyName}">Name</td>
             <td th:text="${jobPost.job_location_id.state}">Department</td>
             <td th:text="${jobPost.job_location_id.city}">Updated By</td>

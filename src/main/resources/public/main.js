@@ -3,6 +3,19 @@
  */
 
 $('document').ready(function() {
+
+function matchPassword() {
+console.log($(".pwd"))
+console.log($(".pwd").val())
+  if($(".pwd").val() != $(".pwd2").val())
+  {
+    alert("Passwords did not match");
+  } else {
+    alert("Registration Complete");
+  }
+}
+
+
 	
 	$('.table .btn-warning').on('click',function(event){
 		

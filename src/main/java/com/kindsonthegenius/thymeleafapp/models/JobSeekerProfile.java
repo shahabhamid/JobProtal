@@ -2,6 +2,7 @@ package com.kindsonthegenius.thymeleafapp.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,12 @@ public class JobSeekerProfile implements Serializable {
     private Users user_id;
     private String first_name;
     private String last_name;
+    private String city;
+    private String state;
+    private String country;
+    private Blob resume;
+    private Blob profile_photo;
+    
     private Integer current_salary;
     private String salary_type;
     private String currency;

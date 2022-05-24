@@ -8,11 +8,11 @@
 		<version>2.1.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.kindsonthegenius</groupId>
-	<artifactId>thymeleaf-app</artifactId>
+	<groupId>com.shahab</groupId>
+	<artifactId>job-portal-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>thymeleaf-app</name>
-	<description>Thymeleaf Application Tutorial</description>
+	<name>job-portal-app</name>
+	<description>Job Portal App</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -67,9 +67,13 @@
 		    <artifactId>jquery</artifactId>
 		    <version>3.4.1</version>
 		</dependency>
-		
-		
-		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<build>

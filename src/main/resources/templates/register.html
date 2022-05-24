@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" >
+<link rel="stylesheet" type="text/css" media="all" href="/css/styles.css" th:href="@{/css/styles.css}" />
+<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+<meta charset="ISO-8859-1">
+<title>Sign Up</title>
+</head>
+
+<body>
+
+<section class="content">
+    <div class="row">
+
+        <div class="offset-md-2 col-md-8">
+
+            <div class="box ">
+
+                <div class="box-header ">
+
+                    <h2 class="mb-2">Create User Account</h2>
+
+                    <form th:action="@{/register}" th:object="${user}" method="post">
+                        <div class="box-body bozero mx2p">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input placeholder="Email" name="email" field="{email}" type="email" class="form-control" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input min="8" placeholder="Password" name="password" field="{password}" type="password" class="form-control pwd" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input min="8" placeholder="Confirm Password" name="password" field="{password}" type="password" class="form-control pwd2" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-info pull-right">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
