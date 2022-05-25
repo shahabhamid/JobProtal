@@ -11,7 +11,7 @@
     <title>Login</title>
 </head>
 
-<body>
+<body class="background">
 
 <nav class="main_div">
     <div class="logo_left">
@@ -24,43 +24,25 @@
     </div>
 </nav>
 
-<section class="content">
-    <div class="row">
 
-        <div class="offset-md-2 col-md-8">
-
-            <div class="box ">
-
-                <div class="box-header ">
-
-                    <h2 class="mb-2">Login</h2>
-
-                    <form th:action="@{/login}" th:object="${user}" method="post">
-                        <div class="box-body bozero mx2p">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input placeholder="Email" name="username" field="{email}" type="email" class="form-control" required />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='row'>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input placeholder="Password" name="password" field="{password}" type="password" class="form-control" required/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-info pull-right">Login</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="login-form">
+    <form th:action="@{/login}" th:object="${user}" method="post">
+        <h2 class="text-center">Log in</h2>
+        <div class="form-group">
+            <input placeholder="Email" name="username" field="{email}" type="email" class="form-control" required />
         </div>
-    </div>
-</section>
+        <div class="form-group">
+            <input placeholder="Password" name="password" field="{password}" type="password" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+        <div class="clearfix">
+            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+            <a href="#" class="float-right">Forgot Password?</a>
+        </div>
+    </form>
+    <p class="text-center">Are you a new User? <a th:href="@{|/register?role=${role}|}"> Create an Account</a></p>
+</div>
 </body>
 </html>

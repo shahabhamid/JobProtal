@@ -11,7 +11,7 @@
     <script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
     <meta charset="ISO-8859-1">
 </head>
-<body>
+<body class="background">
     <nav class="main_div">
         <div class="logo_left">
             <label class="logo">
@@ -23,14 +23,21 @@
         </div>
         <div class="logo_right">
             <label class="Candidate_login_btn">
-                <a href="/login">
-                Job Candidate Login/Register
+                <a th:href="@{/login(role='1')}">
+                Job Candidate Login
             </a>
+                <a th:href="@{/register(role='1')}">
+                    /Register
+                </a>
             </label>
             <label class="Recruiter_login_btn">
-                <a href="/login">
-                    Recruiter Login/Register
+                <a th:href="@{/login(role='2')}">
+                    Recruiter Login
                 </a>
+                <a th:href="@{/register(role='2')}">
+                    /Register
+                </a>
+
             </label>
         </div>
     </nav>

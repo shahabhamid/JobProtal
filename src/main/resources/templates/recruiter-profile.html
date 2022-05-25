@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" media="all" href="/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}">
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" >
+    <link rel="stylesheet" type="text/css" media="all" href="/css/styles.css" th:href="@{/css/styles.css}" />
+    <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+    <meta charset="ISO-8859-1">
+    <title>Profile Setup</title>
+</head>
+
+<body>
+
+<nav class="main_div">
+    <div class="logo_left">
+        <label class="logo">
+            hotdevjobs
+        </label>
+        <label class = "logo_com">
+            .com
+        </label>
+    </div>
+</nav>
+
+<section class="content">
+    <div class="row">
+
+        <div class="offset-md-2 col-md-8">
+
+            <div class="box ">
+
+                <div class="box-header ">
+
+                    <h2 class="mb-2">Recruiter: Set up your profile</h2>
+
+                    <form th:action="@{/recruiter-profile/addNew}" th:object="${profile}" method="post">
+                        <div class="box-body bozero mx2p">
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input placeholder="First Name" name="first_name" field="{first_name}" type="text" class="form-control"  />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input placeholder="Last Name" name="last_name" field="{last_name}" type="text" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input placeholder="City" name="city" field="{city}" type="text" class="form-control"  />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input placeholder="State" name="state" field="{state}" type="text" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input placeholder="Country" name="country" field="{country}" type="text" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input placeholder="Company" name="company" field="{company}" type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-info pull-right">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

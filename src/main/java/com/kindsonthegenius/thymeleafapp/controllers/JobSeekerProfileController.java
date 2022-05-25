@@ -2,12 +2,8 @@ package com.kindsonthegenius.thymeleafapp.controllers;
 
 import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
 import com.kindsonthegenius.thymeleafapp.models.SkillSetsMaster;
-import com.kindsonthegenius.thymeleafapp.models.Users;
 import com.kindsonthegenius.thymeleafapp.repositories.SkillSetsMasterRepository;
-import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
-import com.kindsonthegenius.thymeleafapp.repositories.UsersTypeRepository;
 import com.kindsonthegenius.thymeleafapp.services.JobSeekerProfileService;
-import com.kindsonthegenius.thymeleafapp.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +29,7 @@ public class JobSeekerProfileController {
 	public String getAll(Model model) {
 		List<JobSeekerProfile> jobSeekerProfile = profileRepo.getAll();
 		model.addAttribute("jobSeekerProfile", jobSeekerProfile);
-		return "jobSeekerProfile";
+		return "job-seeker-profile";
 	}
 
 	@GetMapping("/new")
@@ -41,7 +37,7 @@ public class JobSeekerProfileController {
 		List<SkillSetsMaster> allSkills =(List<SkillSetsMaster> ) skillSetsMaster.findAll();
 		model.addAttribute("profile",new JobSeekerProfile());
 		model.addAttribute("allSkills",allSkills);
-		return "jobSeekerProfile";
+		return "job-seeker-profile";
 	}
 
 	@RequestMapping("/getOne")
@@ -50,11 +46,11 @@ public class JobSeekerProfileController {
 		return profileRepo.getOne(Id);
 	}
 
-	@PostMapping("/jobSeekerProfile/save")
+	@PostMapping("/job-seeker-profile/save")
 	public String addNew(@Valid @RequestBody JobSeekerProfile profile) throws Exception {
 		System.out.println(profile.toString());
 		profileRepo.addNew(profile);
-		return "redirect:/jobSeekerProfile/new";
+		return "redirect:/job-seeker-profile/new";
 	}
 
 }
