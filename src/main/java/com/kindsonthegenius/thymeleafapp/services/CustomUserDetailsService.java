@@ -19,11 +19,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        UserDetails userDetail = User.withUsername(user.getEmail())
+
+        return User.withUsername(user.getEmail())
                 .password(user.getPassword())
                 .authorities("USER").build();
-
-        return userDetail;
     }
 
 }

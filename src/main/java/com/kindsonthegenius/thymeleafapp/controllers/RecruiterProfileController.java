@@ -30,7 +30,22 @@ public class RecruiterProfileController {
     private UsersRepository usersRepository;
 
     @RequestMapping("/")
-    public String recruiter_profile() {
+    public String recruiter_profile(Model model) {
+
+        RecruiterProfile recruiterProfile;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            Users user = usersRepository.findByEmail(currentUserName);
+
+            Optional<RecruiterProfile> recruiterProfiles = recruiterProfileService.getOne(user.getUser_id());
+            if(recruiterProfiles.isPresent()) {
+                recruiterProfile = recruiterProfiles.get();
+                System.out.println(recruiterProfiles.get().toString());
+                model.addAttribute("profile",recruiterProfile);
+            }
+
+        }
         return "recruiter-profile";
     }
 
@@ -43,17 +58,16 @@ public class RecruiterProfileController {
     @PostMapping("/addNew")
     public String addNew(RecruiterProfile recruiterProfile, Model model) {
 
-        model.addAttribute("profile",recruiterProfile);
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserName = authentication.getName();
             Users user = usersRepository.findByEmail(currentUserName);
             recruiterProfile.setUser_id(user);
+            System.out.println(recruiterProfile.toString());
         }
-        System.out.println(("Add New Job Seeker Profile : "));
-
+        model.addAttribute("profile",recruiterProfile);
         recruiterProfileService.addNew(recruiterProfile);
+
         return "redirect:/recruiter-profile/";
     }
 

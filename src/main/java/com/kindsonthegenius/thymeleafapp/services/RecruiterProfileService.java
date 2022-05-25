@@ -3,9 +3,6 @@ package com.kindsonthegenius.thymeleafapp.services;
 import com.kindsonthegenius.thymeleafapp.models.RecruiterProfile;
 import com.kindsonthegenius.thymeleafapp.repositories.RecruiterProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +22,6 @@ public class RecruiterProfileService {
 		return recruiterRepository.findById(Id);
 	}
 	public void addNew(RecruiterProfile RecruiterProfile) {
-
 		recruiterRepository.save(RecruiterProfile);
 	}
 	public void update(RecruiterProfile RecruiterProfile) {
