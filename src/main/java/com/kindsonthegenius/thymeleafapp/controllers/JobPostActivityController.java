@@ -18,9 +18,11 @@ public class JobPostActivityController {
 
 	@RequestMapping("/")
 	public String getAll(Model model) {
-		List<JobPostActivity> users = usersService.getAll();
-		model.addAttribute("job-post",users);
-
+		List<JobPostActivity> jobPost = usersService.getAll();
+		model.addAttribute("jobPost",jobPost);
+		for(JobPostActivity j : jobPost){
+			System.out.println(j.toString());
+		}
 		return "job-post";
 	}
 

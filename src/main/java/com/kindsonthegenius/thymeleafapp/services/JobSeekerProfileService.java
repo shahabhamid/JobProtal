@@ -2,7 +2,6 @@ package com.kindsonthegenius.thymeleafapp.services;
 
 import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
 import com.kindsonthegenius.thymeleafapp.repositories.JobSeekerProfileRepository;
-import com.kindsonthegenius.thymeleafapp.repositories.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

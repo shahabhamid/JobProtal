@@ -65,10 +65,9 @@ public class RecruiterProfileController {
             Users user = usersRepository.findByEmail(currentUserName);
             recruiterProfile.setUser_id(user);
             recruiterProfile.setUser_account_id(user.getUser_id());
-            System.out.println(recruiterProfile.toString());
         }
-        model.addAttribute("profile",recruiterProfile);
         System.out.println(recruiterProfile.toString());
+        model.addAttribute("profile",recruiterProfile);
         recruiterProfileService.addNew(recruiterProfile);
 
         return "redirect:/recruiter-profile/";

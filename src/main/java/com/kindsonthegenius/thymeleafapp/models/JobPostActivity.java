@@ -14,12 +14,6 @@ public class JobPostActivity {
     @JoinColumn(name = "posted_by_id",referencedColumnName = "user_id")
     private Users posted_by_id;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "job_type_id",referencedColumnName = "Id")
-    private JobTypeMaster job_type_id;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "organization_id",referencedColumnName = "Id")
-    private Organization organization_id;
-    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_location_id",referencedColumnName = "Id")
     private JobLocation job_location_id;
     private Boolean is_active;
@@ -27,10 +21,67 @@ public class JobPostActivity {
     private Date created_date;
     private String description_of_job;
 
+    private String job_type;
+    private String remote;
+    private Date posted_date;
+
     private String job_title;
 
     public JobPostActivity() {
 
+    }
+
+    public JobPostActivity(Integer id, Users posted_by_id, JobLocation job_location_id, Boolean is_active, Date created_date, String description_of_job, String job_type, String remote, Date posted_date, String job_title) {
+        Id = id;
+        this.posted_by_id = posted_by_id;
+        this.job_location_id = job_location_id;
+        this.is_active = is_active;
+        this.created_date = created_date;
+        this.description_of_job = description_of_job;
+        this.job_type = job_type;
+        this.remote = remote;
+        this.posted_date = posted_date;
+        this.job_title = job_title;
+    }
+
+    @Override
+    public String toString() {
+        return "JobPostActivity{" +
+                "Id=" + Id +
+                ", posted_by_id=" + posted_by_id +
+                ", job_location_id=" + job_location_id.toString() +
+                ", is_active=" + is_active +
+                ", created_date=" + created_date +
+                ", description_of_job='" + description_of_job + '\'' +
+                ", job_type='" + job_type + '\'' +
+                ", remote='" + remote + '\'' +
+                ", posted_date=" + posted_date +
+                ", job_title='" + job_title + '\'' +
+                '}';
+    }
+
+    public String getJob_type() {
+        return job_type;
+    }
+
+    public void setJob_type(String job_type) {
+        this.job_type = job_type;
+    }
+
+    public String getRemote() {
+        return remote;
+    }
+
+    public void setRemote(String remote) {
+        this.remote = remote;
+    }
+
+    public Date getPosted_date() {
+        return posted_date;
+    }
+
+    public void setPosted_date(Date posted_date) {
+        this.posted_date = posted_date;
     }
 
     public String getJob_title() {
@@ -41,17 +92,6 @@ public class JobPostActivity {
         this.job_title = job_title;
     }
 
-    public JobPostActivity(Integer id, Users posted_by_id, JobTypeMaster job_type_id, Organization organization_id, JobLocation job_location_id, Boolean is_active, Date created_date, String description_of_job, String job_title) {
-        Id = id;
-        this.posted_by_id = posted_by_id;
-        this.job_type_id = job_type_id;
-        this.organization_id = organization_id;
-        this.job_location_id = job_location_id;
-        this.is_active = is_active;
-        this.created_date = created_date;
-        this.description_of_job = description_of_job;
-        this.job_title = job_title;
-    }
 
     public Integer getId() {
         return Id;
@@ -69,21 +109,6 @@ public class JobPostActivity {
         this.posted_by_id = posted_by_id;
     }
 
-    public JobTypeMaster getJob_type_id() {
-        return job_type_id;
-    }
-
-    public void setJob_type_id(JobTypeMaster job_type_id) {
-        this.job_type_id = job_type_id;
-    }
-
-    public Organization getOrganization_id() {
-        return organization_id;
-    }
-
-    public void setOrganization_id(Organization organization_id) {
-        this.organization_id = organization_id;
-    }
 
     public Date getCreated_date() {
         return created_date;
@@ -117,17 +142,4 @@ public class JobPostActivity {
         this.is_active = is_active;
     }
 
-    @Override
-    public String toString() {
-        return "JobPostActivity{" +
-                "Id=" + Id +
-                ", posted_by_id=" + posted_by_id.toString() +
-                ", job_type_id=" + job_type_id.toString() +
-                ", organization_id=" + organization_id.toString() +
-                ", job_location_id=" + job_location_id.toString() +
-                ", is_active=" + is_active +
-                ", created_date=" + created_date +
-                ", description_of_job='" + description_of_job + '\'' +
-                '}';
-    }
 }
