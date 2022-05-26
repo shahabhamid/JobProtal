@@ -23,14 +23,8 @@ public class UsersService {
 	public Optional<Users> getOne(Integer Id) {
 		return usersRepository.findById(Id);
 	}
-	public Users addNew(int userTypeId, Users user) throws Exception {
-
-		return usersTypeRepository.findById(userTypeId).map(userType -> {
-			user.setUser_type_id(userType);
-			return usersRepository.save(user);
-		}).orElseThrow(() -> new Exception("userType not found") );
-
-
+	public Users addNew(Users user) throws Exception {
+		return usersRepository.save(user);
 	}
 	public void update(Users user) {
 		usersRepository.save(user);

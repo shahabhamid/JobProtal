@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/jobSeekerProfile")
+@RequestMapping("/job-seeker-profile")
 public class JobSeekerProfileController {
 
 
@@ -35,6 +35,12 @@ public class JobSeekerProfileController {
 	@GetMapping("/new")
 	public String add(Model model){
 		List<SkillSetsMaster> allSkills =(List<SkillSetsMaster> ) skillSetsMaster.findAll();
+		try{
+			for(SkillSetsMaster l :allSkills){
+				System.out.println(l.toString());
+			}
+		}catch (Exception e){e.printStackTrace();}
+
 		model.addAttribute("profile",new JobSeekerProfile());
 		model.addAttribute("allSkills",allSkills);
 		return "job-seeker-profile";
@@ -46,8 +52,8 @@ public class JobSeekerProfileController {
 		return profileRepo.getOne(Id);
 	}
 
-	@PostMapping("/job-seeker-profile/save")
-	public String addNew(@Valid @RequestBody JobSeekerProfile profile) throws Exception {
+	@PostMapping("/save")
+	public String addNew(@Valid @RequestBody JobSeekerProfile profile)  {
 		System.out.println(profile.toString());
 		profileRepo.addNew(profile);
 		return "redirect:/job-seeker-profile/new";

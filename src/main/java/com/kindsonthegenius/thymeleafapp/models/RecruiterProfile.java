@@ -18,13 +18,15 @@ public class RecruiterProfile implements Serializable {
     private String city;
     private String state;
     private String country;
+    private String company;
     private Blob profile_photo;
 
     public RecruiterProfile() {
 
     }
 
-    public RecruiterProfile(Integer user_account_id, Users user_id, String first_name, String last_name, String city, String state, String country, Blob profile_photo) {
+
+     public RecruiterProfile(Integer user_account_id, Users user_id, String first_name, String last_name, String city, String state, String country, String company, Blob profile_photo) {
         this.user_account_id = user_account_id;
         this.user_id = user_id;
         this.first_name = first_name;
@@ -32,6 +34,7 @@ public class RecruiterProfile implements Serializable {
         this.city = city;
         this.state = state;
         this.country = country;
+        this.company = company;
         this.profile_photo = profile_photo;
     }
 
@@ -45,6 +48,7 @@ public class RecruiterProfile implements Serializable {
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +
+                ", company='" + company + '\'' +
                 ", profile_photo=" + profile_photo +
                 '}';
     }

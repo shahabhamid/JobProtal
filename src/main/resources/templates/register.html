@@ -23,27 +23,29 @@
 
                     <h2 class="mb-2">Create User Account</h2>
 
-                    <form th:action="@{/register}" th:object="${user}" method="post">
+                    <form th:action="@{/register/new}" th:object="${user}" method="post">
                         <div class="box-body bozero mx2p">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input placeholder="Email" name="email" field="{email}" type="email" class="form-control" required />
+                                        <input placeholder="Email" name="email" th:field="*{email}" type="email" class="form-control" required />
                                     </div>
                                 </div>
                             </div>
                             <div class='row'>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input min="8" placeholder="Password" name="password" field="{password}" type="password" class="form-control pwd" required/>
+                                        <input min="8" placeholder="Password" name="password" th:field="*{password}" type="password" class="form-control pwd" required/>
                                     </div>
                                 </div>
                             </div>
                             <div class='row'>
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input min="8" placeholder="Confirm Password" name="confirm_password" field="{confirm_password}" type="password" class="form-control pwd2" required/>
-                                    </div>
+                                    <select required class="form-control" th:field="*{user_type_id}">
+                                        <th:block th:each="userType :${getAllTypes}">
+                                            <option th:text="${userType.user_type_name}" th:value="${userType.user_type_id}"></option>
+                                        </th:block>
+                                    </select>
                                 </div>
                             </div>
                         </div>

@@ -32,7 +32,7 @@ public class RecruiterProfileController {
     @RequestMapping("/")
     public String recruiter_profile(Model model) {
 
-        RecruiterProfile recruiterProfile;
+        RecruiterProfile recruiterProfile = new RecruiterProfile();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserName = authentication.getName();
@@ -42,8 +42,9 @@ public class RecruiterProfileController {
             if(recruiterProfiles.isPresent()) {
                 recruiterProfile = recruiterProfiles.get();
                 System.out.println(recruiterProfiles.get().toString());
-                model.addAttribute("profile",recruiterProfile);
+
             }
+            model.addAttribute("profile",recruiterProfile);
 
         }
         return "recruiter-profile";
@@ -63,9 +64,11 @@ public class RecruiterProfileController {
             String currentUserName = authentication.getName();
             Users user = usersRepository.findByEmail(currentUserName);
             recruiterProfile.setUser_id(user);
+            recruiterProfile.setUser_account_id(user.getUser_id());
             System.out.println(recruiterProfile.toString());
         }
         model.addAttribute("profile",recruiterProfile);
+        System.out.println(recruiterProfile.toString());
         recruiterProfileService.addNew(recruiterProfile);
 
         return "redirect:/recruiter-profile/";

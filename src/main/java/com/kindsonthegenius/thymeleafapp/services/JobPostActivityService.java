@@ -21,8 +21,6 @@ public class JobPostActivityService {
 		return jobPostActivityRepository.findById(Id);
 	}
 	public void addNew(JobPostActivity jobPostActivity) {
-		System.out.println(("Add New Job Post Skill Set Mapping : "));
-		System.out.println(jobPostActivity.toString());
 		jobPostActivityRepository.save(jobPostActivity);
 	}
 	public void update(JobPostActivity jobPostActivity) {

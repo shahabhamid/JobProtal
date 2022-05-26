@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th ="https://www.thymeleaf.org/">
 <head>
-<link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
-<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
-<meta charset="ISO-8859-1">
-<title>Student List</title>
+    <meta charset="UTF-8">
+    <title>Candidate Dashboard</title>
 </head>
-
 <body>
+    <div style="margin-left: 10rem">
+        <h1>
+            Candidate Dashboard
+        </h1>
+        <input type="text"
+               placeholder=" Search for a Job "
+               name="search" style="width: 30rem; height: 1.5rem; margin-bottom: 1rem">
+        <hr>
+    </div>
+    <div style="margin-left: 10rem">
+        <h2 style="margin-bottom: 2rem">
+            Search Results
+        </h2>
+        <div class="row">
 
-<div class="container">
-    <div class="row">
 
-        <tr th:each="jobPost:${jobPost}">
-            <td th:text="${jobPost.Id}">Id</td>
-            <td th:text="${jobPost.description_of_job}">Id</td>
-            <td th:text="${jobPost.organization_id.CompanyName}">Name</td>
-            <td th:text="${jobPost.job_location_id.state}">Department</td>
-            <td th:text="${jobPost.job_location_id.city}">Updated By</td>
+                    <th:block th:each="jobPost:${jobPost}">
+                        <li th:text = "${jobPost.job_title}" style="list-style-type: none; color: red"> Title</li>
+                        <li th:text="${jobPost.job_location_id.city+', '+ jobPost.job_location_id.state}" style="list-style-type: none; "> City, State</li>
+                        <li th:text="${jobPost.organization_id.CompanyName}" style="list-style-type: none;margin-bottom: 1rem"> Company Name</li>
+                    </th:block>
 
-        </tr>
+        </div>
 
     </div>
-</div>
-
 </body>
 </html>
