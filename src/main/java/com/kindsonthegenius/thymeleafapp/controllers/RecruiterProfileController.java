@@ -29,6 +29,22 @@ public class RecruiterProfileController {
     @Autowired
     private UsersRepository usersRepository;
 
+    public RecruiterProfileService getRecruiterProfileService() {
+        return recruiterProfileService;
+    }
+
+    public void setRecruiterProfileService(RecruiterProfileService recruiterProfileService) {
+        this.recruiterProfileService = recruiterProfileService;
+    }
+
+    public UsersRepository getUsersRepository() {
+        return usersRepository;
+    }
+
+    public void setUsersRepository(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
+    }
+
     @RequestMapping("/")
     public String recruiter_profile(Model model) {
 

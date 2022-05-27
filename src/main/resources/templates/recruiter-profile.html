@@ -11,77 +11,93 @@
     <title>Profile Setup</title>
 </head>
 
-<body class="background">
-
-<nav class="main_div">
-    <div class="logo_left">
-        <label class="logo">
-            hotdevjobs
-        </label>
-        <label class = "logo_com">
-            .com
-        </label>
-    </div>
-</nav>
-
-<div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" src="#" width="90">
-                    <span class="font-weight-bold">John Doe</span>
-                <span class="text-black-50">john_doe12@bbb.com</span>
-                <span>United States</span>
+<body class="background ">
+<div class="container mt-5">
+<form th:action="@{/recruiter-profile/addNew}" th:object="${profile}" method="post">
+    <div class="row gutters">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                            </div>
+                            <h5 class="user-name">Yuki Hayashi</h5>
+                            <h6 class="user-email">yuki@Maxwell.com</h6>
+                        </div>
+                        <div class="about">
+                            <h5>About</h5>
+                            <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-5 border-right"></div>
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h6 class="text-right">Edit your profile</h6>
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Personal Details</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input placeholder="First Name" id="firstName" th:field="*{first_name}"  name="first_name"  type="text" class="form-control"  />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input placeholder="Last Name" id="lastName" name="last_name" th:field="*{last_name}" type="text" class="form-control"  />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Company</label>
+                                <input placeholder="Company" name="company" th:field="*{company}" type="text" class="form-control"  />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input placeholder="Country" name="country" th:field="*{country}" type="text" class="form-control"  />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>State</label>
+                                <input placeholder="State" name="state" type="text" th:field="*{state}" class="form-control"  />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input placeholder="City" name="city" th:field="*{city}" type="text" class="form-control"  />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                <button type="cancel" id="submit1" name="submit" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" id="submit2" name="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <form th:action="@{/recruiter-profile/addNew}" th:object="${profile}" method="post">
-                    <div class="row mt-2">
-                        <div class="col-md-6">
-                            <label class="labels">Name</label>
-                            <input placeholder="First Name" name="first_name" th:field="*{first_name}" type="text" class="form-control"  />
-                        </div>
-                        <div class="col-md-6">
-                            <label class="labels">Last Name</label>
-                            <input placeholder="Last Name" name="last_name" th:field="*{last_name}" type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <label class="labels">Headline</label>
-                            <!--<input placeholder="Last Name" name="last_name" th:field="*{last_name}" type="text" class="form-control" />-->
-                        </div>
-                        <div class="col-md-12">
-                            <label class="labels">Company</label>
-                            <input placeholder="Company" name="company" th:field="*{company}" type="text" class="form-control"  />
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <label class="labels">Country</label>
-                            <input placeholder="Country" name="country" th:field="*{country}" type="text" class="form-control"  />
-                        </div>
-                        <div class="col-md-6">
-                            <label class="labels">State/Region</label>
-                            <input placeholder="State" name="state" th:field="*{state}" type="text" class="form-control"  />
-                        </div>
-                        <div class="col-md-12">
-                            <label class="labels">City</label>
-                            <input placeholder="City" name="city" th:field="*{city}" type="text" class="form-control"  />
-                        </div>
-                    </div>
-                    <div class="mt-5 text-center">
-                        <button class="btn btn-primary profile-button" type="button">Save Profile</button>
-                    </div>
-                </form>
             </div>
+        </div>
     </div>
+</form>
 </div>
+
 
 </body>
 </html>

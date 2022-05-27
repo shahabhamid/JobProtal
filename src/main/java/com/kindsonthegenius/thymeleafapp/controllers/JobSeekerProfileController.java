@@ -27,8 +27,8 @@ public class JobSeekerProfileController {
 
 	@RequestMapping("/")
 	public String getAll(Model model) {
-		List<JobSeekerProfile> jobSeekerProfile = profileRepo.getAll();
-		model.addAttribute("jobSeekerProfile", jobSeekerProfile);
+	//	List<JobSeekerProfile> jobSeekerProfile = profileRepo.getAll();
+	//	model.addAttribute("jobSeekerProfile", jobSeekerProfile.get(0));
 		return "job-seeker-profile";
 	}
 

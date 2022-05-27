@@ -23,20 +23,20 @@
 
                     <h2 class="mb-2">Candidate Profile</h2>
 
-                    <form th:action="@{/job-seeker-profile/save}" th:object="${profile}" method="post">
+                    <form th:action="@{/job-seeker-profile/save}" method="post">
                         <div class="box-body bozero mx2p">
                             <h4 >Basic Info</h4>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>First Name</label> <small class="req"> *</small>
-                                        <input name="first_name" field="{first_name}" type="text" class="form-control" required />
+                                        <input name="first_name"  type="text" class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Last Name</label> <small class="req"> *</small>
-                                        <input name="last_name" field="*{last_name}" type="text" class="form-control" required/>
+                                        <input name="last_name"  type="text" class="form-control" required/>
                                     </div>
                                 </div>
 
@@ -45,23 +45,23 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>City</label>
-                                        <input name="city" field="{city}" type="text" class="form-control"/>
+                                        <input name="city"  type="text" class="form-control"/>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>State</label> <small class="req"> *</small>
-                                        <input name="state" field="{state}"  class="form-control" required  />
+                                        <input name="state"   class="form-control" required  />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Country</label>
-                                        <input name="country" field="{country}"  type="text" class="form-control"  />
+                                        <input name="country"  type="text" class="form-control"  />
                                     </div>
                                 </div>
                             </div>
-                            <h4 class="mt-2">Work Classification</h4>
+                            <h4 class="mt-2">Work Experience</h4>
                             <div class="row">
                                 <div class='col-md-4'>
                                     <div class="form-group">
@@ -72,7 +72,6 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class='col-md-4'>
                                     <div class="form-group">
                                         <label >Seeking Employment</label> <small class="req"> *</small>
@@ -86,6 +85,69 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Is you Current Job: </label> <small class="req"> *</small>
+                                        <input type="checkbox" id="box1"  name="box1" value="True" class="form-control" required  />
+                                        <label for="box1"> True</label><br>
+                                        <input type="checkbox" id="box2"   name="box2" value="False" class="form-control" required  />
+                                        <label for="box2"> False</label><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="startDate">Start Date :</label> <small class="req"> *</small>
+                                                <input type="date" id="startDate" name="start_date" class="form-control" required  />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="endDate">End Date :</label> <small class="req"> *</small>
+                                                    <input type="date" id="endDate" name="end_date"  class="form-control" required  />
+                                                </div>
+                                         </div>
+                                        <div class="col-md-4">
+                                             <div class="form-group">
+                                                  <label>Title</label> <small class="req"> *</small>
+                                                  <input name="job_title"   class="form-control" required  />
+                                             </div>
+                                        </div>
+                            </div>
+                            <div class="row">
+                                         <div class='col-md-4'>
+                                             <div class="form-group">
+                                                 <label>Company</label> <small class="req"> *</small>
+                                                 <input placeholder="Company" name="company_name" type="text" class="form-control" />
+                                             </div>
+                                         </div>
+                                         <div class='col-md-4'>
+                                             <div class="form-group">
+                                                 <label>City </label> <small class="req"> *</small>
+                                                 <input placeholder="City" name="job_location_city" type="text" class="form-control" />
+                                             </div>
+                                         </div>
+                                         <div class='col-md-4'>
+                                             <div class="form-group">
+                                                 <label>State </label> <small class="req"> *</small>
+                                                 <input placeholder="State" name="job_location_state" type="text" class="form-control" />
+                                             </div>
+                                         </div>
+                            </div>
+                            <div class="row">
+                                    <div class='col-md-4'>
+                                        <div class="form-group">
+                                            <label>Country </label> <small class="req"> *</small>
+                                            <input placeholder="Country" name="job_location_country" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class='col-md-4'>
+                                        <div class="form-group">
+                                          <label>Description </label> <small class="req"> *</small>
+                                          <input placeholder="Description" name="description_of_job" type="text" class="form-control" />
+                                        </div>
+                                    </div>
                             </div>
                             <h4 class="mt-2">Skills</h4>
                             <div class="row">
@@ -93,7 +155,7 @@
                                     <div class="form-group">
                                         <label>Skill Name</label>
                                    <!--     <input name="skill-name" type="text" class="form-control"/>-->
-                                        <select required class="form-control" field="{skill_set_name}">
+                                        <select required class="form-control" >
                                           <th:block th:each="skill :${allSkills}">
                                               <option th:text="${skill.skill_set_name}" th:value="${skill.Id}"></option>
                                           </th:block>
