@@ -33,8 +33,7 @@ public class RecruiterProfile implements Serializable {
         this.company = company;
     }
 
-    public RecruiterProfile(Integer user_account_id, Users user_id, String first_name, String last_name, String city, String state, String country, String company, Blob profile_photo) {
-        this.user_account_id = user_account_id;
+    public RecruiterProfile(Users user_id, String first_name, String last_name, String city, String state, String country, String company, Blob profile_photo) {
         this.user_id = user_id;
         this.first_name = first_name;
         this.last_name = last_name;

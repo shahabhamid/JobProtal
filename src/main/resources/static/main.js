@@ -4,6 +4,8 @@
 
 $('document').ready(function() {
 
+console.log($('#content'));
+
 function matchPassword() {
 console.log($(".pwd"))
 console.log($(".pwd").val())

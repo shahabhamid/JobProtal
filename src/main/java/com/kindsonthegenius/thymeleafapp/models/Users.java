@@ -93,6 +93,14 @@ public class Users {
 		this.registration_date = registration_date;
 	}
 
+	public JobSeekerProfile getJobSeekerProfile() {
+		return jobSeekerProfile;
+	}
+
+	public void setJobSeekerProfile(JobSeekerProfile jobSeekerProfile) {
+		this.jobSeekerProfile = jobSeekerProfile;
+	}
+
 	@Override
 	public String toString() {
 		return "Users{" +
