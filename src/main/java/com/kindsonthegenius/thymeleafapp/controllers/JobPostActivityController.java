@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -29,7 +30,7 @@ public class JobPostActivityController {
 	}
 
 	@PostMapping("/addNew")
-	public String addNew(JobPostActivity jobPostActivity, JobLocation location, JobCompany company, Model model) {
+	public String addNew(JobPostActivity jobPostActivity, @RequestAttribute ("JobLocation") JobLocation location,@RequestAttribute ("JobCompany") JobCompany company, Model model) {
 
 
 		model.addAttribute("jobPostActivity",jobPostActivity);

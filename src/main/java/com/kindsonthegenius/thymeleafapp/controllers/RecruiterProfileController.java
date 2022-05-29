@@ -1,4 +1,7 @@
 package com.kindsonthegenius.thymeleafapp.controllers;
+import com.kindsonthegenius.thymeleafapp.repositories.RecruiterProfileRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kindsonthegenius.thymeleafapp.models.RecruiterProfile;
 import com.kindsonthegenius.thymeleafapp.models.Users;
@@ -10,11 +13,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.sql.Blob;
 import java.util.Optional;
 
 
@@ -26,6 +28,7 @@ public class RecruiterProfileController {
     @Autowired
     private RecruiterProfileService recruiterProfileService;
 
+    private RecruiterProfileRepository  recruiterProfileRepository;
     @Autowired
     private UsersRepository usersRepository;
 
@@ -66,6 +69,7 @@ public class RecruiterProfileController {
         return "recruiter-profile";
     }
 
+
     @RequestMapping("/getOne")
     @ResponseBody
     public Optional<RecruiterProfile> getOne(Integer Id) {
@@ -73,7 +77,10 @@ public class RecruiterProfileController {
     }
 
     @PostMapping("/addNew")
-    public String addNew(RecruiterProfile recruiterProfile, Model model) {
+    public String addNew(RecruiterProfile recruiterProfile,  Model model)
+            throws IOException
+    {
+
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -84,7 +91,6 @@ public class RecruiterProfileController {
         }
 
         model.addAttribute("profile",recruiterProfile);
-        System.out.println(recruiterProfile.toString());
         recruiterProfileService.addNew(recruiterProfile);
 
         return "redirect:/recruiter-profile/";

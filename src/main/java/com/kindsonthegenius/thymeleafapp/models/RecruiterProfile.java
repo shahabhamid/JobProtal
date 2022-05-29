@@ -19,7 +19,7 @@ public class RecruiterProfile implements Serializable {
     private String state;
     private String country;
     private String company;
-    private Blob profile_photo;
+    private byte[] profile_photo;
 
     public RecruiterProfile() {
 
@@ -33,7 +33,7 @@ public class RecruiterProfile implements Serializable {
         this.company = company;
     }
 
-    public RecruiterProfile(Users user_id, String first_name, String last_name, String city, String state, String country, String company, Blob profile_photo) {
+    public RecruiterProfile(Users user_id, String first_name, String last_name, String city, String state, String country, String company) {
         this.user_id = user_id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -41,7 +41,6 @@ public class RecruiterProfile implements Serializable {
         this.state = state;
         this.country = country;
         this.company = company;
-        this.profile_photo = profile_photo;
     }
 
     @Override
@@ -115,11 +114,11 @@ public class RecruiterProfile implements Serializable {
         this.country = country;
     }
 
-    public Blob getProfile_photo() {
+    public byte[] getProfile_photo() {
         return profile_photo;
     }
 
-    public void setProfile_photo(Blob profile_photo) {
+    public void setProfile_photo(byte[] profile_photo) {
         this.profile_photo = profile_photo;
     }
 }

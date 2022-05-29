@@ -72,7 +72,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-10 mx-auto">
-                <form id="job-main-form" th:object="${post}" method="post" class="job-add-form">
+                <form id="job-main-form"  method="post" class="job-add-form">
                     <div class="row">
                         <div class="col-lg-12">
                             <h3>Job details</h3>
@@ -82,30 +82,30 @@
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <label for="title">Job Title</label>
-                            <input id="title" type="text" class="form-control">
+                            <input id="title" type="text" th:field="${post.job_title}" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="type">Employment Type</label>
-                            <select id="type"  class="form-control">
-                                <option>Full-time</option>
-                                <option>Part-time</option>
-                                <option>Freelance</option>
-                                <option>Internship</option>
+                            <select id="type" th:field="${post.job_type}" class="form-control">
+                                <option th:value="Full-time" >Full-time</option>
+                                <option th:value="Part-time" >Part-time</option>
+                                <option th:value="Freelance" >Freelance</option>
+                                <option th:value="Internship" >Internship</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="remote">Remote</label>
-                            <select id="remote"  class="form-control">
-                                <option>Remote Only</option>
-                                <option>Office Only</option>
-                                <option>Partial Remote</option>
+                            <select id="remote" th:field="${post.remote}" class="form-control">
+                                <option th:value="Remote-Only">Remote-Only</option>
+                                <option th:value="Office-Only">Office-Only</option>
+                                <option th:value="Partial-Remote"> Partial-Remote</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="salary">Salary</label>
-                            <input id="salary" type="text" class="form-control">
+                            <input id="salary" th:field="${post.salary}" type="text" class="form-control">
 
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                         <div class="col-md-12 form-group">
                             <label for="content">Job Description:</label>
                                 <textarea type="text" rows="4" id="content" placeholder="Content" class="form-control"
-                                      th:field="*{description_of_job}" autocomplete="off"></textarea>
+                                      th:field="${post.description_of_job}" autocomplete="off"></textarea>
                              </div>
                     </div>
 
@@ -129,22 +129,22 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" >
                         <div class="col-md-6 form-group">
                             <label for="city">City</label>
-                            <input id="city" type="text"  class="form-control">
+                            <input th:field="${location.city}" id="city" type="text"  class="form-control">
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="state">State</label>
-                            <input id="state" type="text"  class="form-control">
+                            <input id="state" th:field="${location.state}" type="text"  class="form-control">
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="zip">ZIP</label>
-                            <input id="zip" type="text"  class="form-control">
+                            <input id="zip" th:field="${location.zip}" type="text"  class="form-control">
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="country">Country</label>
-                            <input id="country" type="text"  class="form-control">
+                            <input id="country" th:field="${location.country}" type="text"  class="form-control">
                         </div>
                     </div>
 
@@ -163,23 +163,23 @@
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <label for="company_name">Company name</label>
-                            <input id="company_name" type="text" class="form-control">
+                            <input id="company_name" th:field="${company.name}" type="text" class="form-control">
                              </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <label for="company_description">Company Description</label>
-                            <textarea id="company_description" rows="3" class="form-control"></textarea>
+                            <textarea id="company_description"  th:field="${company.description}" rows="3" class="form-control"></textarea>
                           </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 form-group">
                             <label for="company_website">Website</label>
-                            <input id="company_website" type="url" class="form-control">
+                            <input id="company_website"  th:field="${company.website}" type="url" class="form-control">
                         </div>
                         <div class="col-lg-6 form-group">
                             <label for="company_logo">Logo</label>
-                            <input id="company_logo" type="file" class="form-control">
+                            <input id="company_logo"  th:field="${company.logo}" type="file" class="form-control">
                         </div>
                     </div>
 

@@ -34,7 +34,7 @@ public class UsersService {
 		Users u = usersRepository.save(user);
 
 		if(user.getUser_type_id().getUser_type_id()==1){
-			recruiterProfile.addNew(new RecruiterProfile(user,"","","","","","",null));
+			recruiterProfile.addNew(new RecruiterProfile(user,"","","","","",""));
 		}else{
 			seekerProfileService.addNew((new JobSeekerProfile(user.getUser_id(),"","",0,"","")));
 		}
