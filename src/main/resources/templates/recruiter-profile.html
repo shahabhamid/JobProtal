@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <link rel="stylesheet" type="text/css" media="all" href="/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}">
-    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" >
-    <link rel="stylesheet" type="text/css" media="all" href="/css/styles.css" th:href="@{/css/styles.css}" />
-    <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript"  th:src="@{/main.js}"></script>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/font-awesome.min.css}" />
+    <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/styles.css}" />
     <meta charset="ISO-8859-1">
     <title>Profile Setup</title>
 </head>
@@ -96,7 +94,10 @@
     </div>
 </form>
 </div>
-
-
 </body>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+
 </html>
