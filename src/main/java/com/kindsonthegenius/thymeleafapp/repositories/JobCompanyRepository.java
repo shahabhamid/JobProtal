@@ -1,10 +1,10 @@
 package com.kindsonthegenius.thymeleafapp.repositories;
 
-import com.kindsonthegenius.thymeleafapp.models.JobPostSkillSetMapping;
+import com.kindsonthegenius.thymeleafapp.models.JobCompany;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface JobPostSkillSetMappingRepository extends CrudRepository<JobPostSkillSetMapping, Integer> {
+public interface JobCompanyRepository extends CrudRepository<JobCompany, Integer> {
 
 }

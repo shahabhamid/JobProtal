@@ -13,22 +13,22 @@ font-family: sans-serif;
 }
 .main_div
 {
+    color: white;
     display: flex;
     justify-content: space-between;
 }
-nav .logo_left {
-    padding-top: 2rem;
+.logo_left {
     font-size: 1rem;
     color: white;
     margin-left: 30px;
 }
-nav .logo_left .logo_com{
+ .logo_com{
      margin-left: 5px;
      padding: 5px;
      border-radius: 0.45rem;
      background-color: #FB4F14;
 }
-nav .logo_right
+.logo_right
 {
     padding-top: 1.8rem;
     display: flex;
@@ -36,14 +36,14 @@ nav .logo_right
     color: white;
     margin-right: 50px;
 }
-nav .logo_right .Candidate_login_btn
+.logo_right .Candidate_login_btn
 {
     padding: 10px;
     border-radius: 0.45rem;
     background-color: #FB4F14;
     margin-right: 0.5rem;
 }
-nav .logo_right .Recruiter_login_btn
+.logo_right .Recruiter_login_btn
 {
     padding: 10px;
     border-radius: 0.45rem;

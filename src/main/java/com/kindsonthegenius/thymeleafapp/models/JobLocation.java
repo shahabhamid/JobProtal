@@ -11,7 +11,6 @@ public class JobLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
-    private String street_address;
     private String city;
     private String state;
     private String country;
@@ -20,9 +19,8 @@ public class JobLocation {
 
     }
 
-    public JobLocation(Integer id, String street_address, String city, String state, String country, Integer zip) {
+    public JobLocation(Integer id, String city, String state, String country, Integer zip) {
         Id = id;
-        this.street_address = street_address;
         this.city = city;
         this.state = state;
         this.country = country;
@@ -35,14 +33,6 @@ public class JobLocation {
 
     public void setId(Integer id) {
         Id = id;
-    }
-
-    public String getStreet_address() {
-        return street_address;
-    }
-
-    public void setStreet_address(String street_address) {
-        this.street_address = street_address;
     }
 
     public String getCity() {
@@ -81,7 +71,6 @@ public class JobLocation {
     public String toString() {
         return "JobLocation{" +
                 "Id=" + Id +
-                ", street_address='" + street_address + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +

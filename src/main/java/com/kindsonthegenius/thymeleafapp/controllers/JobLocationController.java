@@ -16,7 +16,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/jobLocation")
 
-public class jobLocationController {
+public class JobLocationController {
 
     @Autowired
     private JobLocationRepository jobLocationRepository;

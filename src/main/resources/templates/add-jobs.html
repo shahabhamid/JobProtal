@@ -22,45 +22,26 @@
                 <div class="header_bottom_border">
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-2">
-                            <div class="logo">
-                                <a href="index.html">
-                                    <img src="img/logo.png" alt="" />
-                                </a>
+                            <div class="logo_left">
+                                <label><a href="/">hotdevjobs</a><span class="logo_com"> .com</span></label>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
                             <div class="main-menu d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">home</a></li>
-                                        <li><a href="jobs.html">Browse Job</a></li>
-                                        <li>
-                                            <a href="#">pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="candidate.html">Candidates </a></li>
-                                                <li><a href="job_details.html">job details </a></li>
-                                                <li><a href="elements.html">elements</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#">blog <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="blog.html">blog</a></li>
-                                                <li><a href="single-blog.html">single-blog</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="/">home</a></li>
+                                        <li><a href="/add-jobs/">Post New job</a></li>
+                                        <li><a href="/add-post/">View Your Jobs</a></li>
+                                        <li><a href="/recruiter-profile/">Edit Account</a></li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="Appointment">
-                                <div class="phone_num d-none d-xl-block">
-                                    <a href="#">Log in</a>
-                                </div>
                                 <div class="d-none d-lg-block">
-                                    <a class="boxed-btn3" href="#">Post a Job</a>
+                                    <a class="boxed-btn3" href="#">Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -105,55 +86,69 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12 form-group">
-
-                            <label for="content">Job Description:</label>
-                            <textarea type="text" rows="4" id="content" placeholder="Content" class="form-control"
-                                      th:field="*{description_of_job}" autocomplete="off"></textarea>
-                             </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 form-group">
-                            <label for="location">Location</label>
-                            <input id="location" type="text" placeholder="e.g. Rio de Janeiro" class="form-control">
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <label for="type">Type</label>
+                        <div class="col-md-4 form-group">
+                            <label for="type">Employment Type</label>
                             <select id="type"  class="form-control">
                                 <option>Full-time</option>
                                 <option>Part-time</option>
+                                <option>Freelance</option>
                                 <option>Internship</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12 form-group">
-                            <label for="category">Category</label>
-                            <select id="category" class="form-control">
-                                <option>Web design  </option>
-                                <option>Human Resources</option>
-                                <option>Support</option>
-                                <option>Logistics</option>
+                        <div class="col-md-4 form-group">
+                            <label for="remote">Remote</label>
+                            <select id="remote"  class="form-control">
+                                <option>Remote Only</option>
+                                <option>Office Only</option>
+                                <option>Partial Remote</option>
                             </select>
                         </div>
+                        <div class="col-md-4 form-group">
+                            <label for="salary">Salary</label>
+                            <input id="salary" type="text" class="form-control">
+
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-4 form-group">
-                            <label for="post_type">Type of the post</label>
-                            <select id="post_type" data-placeholder="Choose type of the post" class="form-control select2">
-                                <option>Featured ($100) </option>
-                                <option>Standard ($30)</option>
-                            </select>
-                        </div>
-                        <div class="col-xl-4 form-group">
-                            <label for="apply_url">Apply URL <span class="note">(users will apply on your website)</span></label>
-                            <input id="apply_url" type="url" class="form-control">
-                        </div>
-                        <div class="col-xl-4 form-group">
-                            <label for="validity">Validity of the post</label>
-                            <input id="validity" type="date" class="form-control">
+                        <div class="col-md-12 form-group">
+                            <label for="content">Job Description:</label>
+                                <textarea type="text" rows="4" id="content" placeholder="Content" class="form-control"
+                                      th:field="*{description_of_job}" autocomplete="off"></textarea>
+                             </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <hr class="margin-bottom--big">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4>Location</h4>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="city">City</label>
+                            <input id="city" type="text"  class="form-control">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="state">State</label>
+                            <input id="state" type="text"  class="form-control">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="zip">ZIP</label>
+                            <input id="zip" type="text"  class="form-control">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="country">Country</label>
+                            <input id="country" type="text"  class="form-control">
+                        </div>
+                    </div>
+
+
                     <div class="row">
                         <div class="col-lg-12">
                             <hr class="margin-bottom--big">
@@ -178,34 +173,20 @@
                           </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 form-group">
+                        <div class="col-lg-6 form-group">
                             <label for="company_website">Website</label>
                             <input id="company_website" type="url" class="form-control">
                         </div>
-                        <div class="col-lg-4 form-group">
+                        <div class="col-lg-6 form-group">
                             <label for="company_logo">Logo</label>
                             <input id="company_logo" type="file" class="form-control">
                         </div>
-                        <div class="col-lg-4 form-group">
-                            <label for="company_twitter">Twitter</label>
-                            <input id="company_twitter" placeholder="@getbootstrap" class="form-control">
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <hr>
-                            <div class="checkbox text-center">
-                                <label>
-                                    <input type="checkbox"> I agree with the <a href="#">Terms and conditions</a>.
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <hr>
                             <button type="submit" class="btn btn-outline-white-primary"> <i class="fa fa-magic"></i> Save and publish</button>
-                            <button type="submit" class="btn btn-outline-white-secondary"> <i class="fa fa-save"></i> Save draft</button>
                         </div>
                     </div>
                 </form>

@@ -15,7 +15,7 @@ import java.util.Optional;
 @RequestMapping("/jobSeekerApply")
 
 
-public class jobSeekerApplyController {
+public class JobSeekerApplyController {
 
     @Autowired
     private JobSeekerApplyRepository jobSeekerApplyRepository;

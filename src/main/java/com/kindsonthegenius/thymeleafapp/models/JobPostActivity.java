@@ -16,22 +16,25 @@ public class JobPostActivity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_location_id",referencedColumnName = "Id")
     private JobLocation job_location_id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "job_company_id",referencedColumnName = "Id")
+    private JobLocation job_company_id;
     private Boolean is_active;
     @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date created_date;
     private String description_of_job;
-
     private String job_type;
+    private String salary;
     private String remote;
     private Date posted_date;
-
     private String job_title;
 
     public JobPostActivity() {
 
     }
 
-    public JobPostActivity(Integer id, Users posted_by_id, JobLocation job_location_id, Boolean is_active, Date created_date, String description_of_job, String job_type, String remote, Date posted_date, String job_title) {
+    public JobPostActivity(Integer id, Users posted_by_id, JobLocation job_location_id, Boolean is_active, Date created_date, String description_of_job, String job_type, String salary, String remote, Date posted_date, String job_title) {
         Id = id;
         this.posted_by_id = posted_by_id;
         this.job_location_id = job_location_id;
@@ -39,6 +42,7 @@ public class JobPostActivity {
         this.created_date = created_date;
         this.description_of_job = description_of_job;
         this.job_type = job_type;
+        this.salary = salary;
         this.remote = remote;
         this.posted_date = posted_date;
         this.job_title = job_title;
@@ -49,11 +53,12 @@ public class JobPostActivity {
         return "JobPostActivity{" +
                 "Id=" + Id +
                 ", posted_by_id=" + posted_by_id +
-                ", job_location_id=" + job_location_id.toString() +
+                ", job_location_id=" + job_location_id +
                 ", is_active=" + is_active +
                 ", created_date=" + created_date +
                 ", description_of_job='" + description_of_job + '\'' +
                 ", job_type='" + job_type + '\'' +
+                ", salary='" + salary + '\'' +
                 ", remote='" + remote + '\'' +
                 ", posted_date=" + posted_date +
                 ", job_title='" + job_title + '\'' +
@@ -140,6 +145,20 @@ public class JobPostActivity {
 
     public void setIs_active(Boolean is_active) {
         this.is_active = is_active;
+    }
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+    public JobLocation getJob_company_id() {
+        return job_company_id;
+    }
+
+    public void setJob_company_id(JobLocation job_company_id) {
+        this.job_company_id = job_company_id;
     }
 
 }
