@@ -19,7 +19,7 @@ public class JobPostActivity {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_company_id",referencedColumnName = "Id")
-    private JobLocation job_company_id;
+    private JobCompany job_company_id;
     private Boolean is_active;
     @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date created_date;
@@ -53,7 +53,7 @@ public class JobPostActivity {
         return "JobPostActivity{" +
                 "Id=" + Id +
                 ", posted_by_id=" + posted_by_id +
-                ", job_location_id=" + job_location_id +
+                ", job_location_id=" + job_location_id.toString() +
                 ", is_active=" + is_active +
                 ", created_date=" + created_date +
                 ", description_of_job='" + description_of_job + '\'' +
@@ -153,11 +153,11 @@ public class JobPostActivity {
     public void setSalary(String salary) {
         this.salary = salary;
     }
-    public JobLocation getJob_company_id() {
+    public JobCompany getJob_company_id() {
         return job_company_id;
     }
 
-    public void setJob_company_id(JobLocation job_company_id) {
+    public void setJob_company_id(JobCompany job_company_id) {
         this.job_company_id = job_company_id;
     }
 

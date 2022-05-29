@@ -14,9 +14,13 @@ public class JobCompany {
     private String name;
     private String description;
     private String website;
-    private Blob logo;
+    private String logo;
 
-    public JobCompany(Integer id, String name, String description, String website, Blob logo) {
+    public JobCompany()
+    {
+
+    }
+    public JobCompany(Integer id, String name, String description, String website, String logo) {
         Id = id;
         this.name = name;
         this.description = description;
@@ -67,11 +71,11 @@ public class JobCompany {
         this.website = website;
     }
 
-    public Blob getLogo() {
+    public String getLogo() {
         return logo;
     }
 
-    public void setLogo(Blob logo) {
+    public void setLogo(String logo) {
         this.logo = logo;
     }
 }

@@ -7,6 +7,7 @@ import com.kindsonthegenius.thymeleafapp.services.JobPostActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,21 +26,17 @@ public class JobPostActivityController {
 	}
 	@RequestMapping("/add")
 	public String addJobs(Model model) {
-		model.addAttribute("post", new JobPostActivity());
+		model.addAttribute("jobPostActivity", new JobPostActivity());
+
+
 		return "add-jobs";
 	}
-
 	@PostMapping("/addNew")
-	public String addNew(JobPostActivity jobPostActivity, @RequestAttribute ("JobLocation") JobLocation location,@RequestAttribute ("JobCompany") JobCompany company, Model model) {
-
-
+	public String addNew(JobPostActivity jobPostActivity,Model model) {
 		model.addAttribute("jobPostActivity",jobPostActivity);
-		model.addAttribute("location",location);
-		model.addAttribute("company",company);
+		System.out.println(jobPostActivity);
 
-		System.out.println(location.toString());
-		System.out.println(company.toString());
-		System.out.println(jobPostActivity.toString());
+
 
 		return "redirect:/recruiter-profile/";
 

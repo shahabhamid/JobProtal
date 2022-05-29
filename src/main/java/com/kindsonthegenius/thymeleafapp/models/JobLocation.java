@@ -14,12 +14,12 @@ public class JobLocation {
     private String city;
     private String state;
     private String country;
-    private Integer zip;
+    private String zip;
     public JobLocation() {
 
     }
 
-    public JobLocation(Integer id, String city, String state, String country, Integer zip) {
+    public JobLocation(Integer id, String city, String state, String country, String zip) {
         Id = id;
         this.city = city;
         this.state = state;
@@ -59,11 +59,11 @@ public class JobLocation {
         this.country = country;
     }
 
-    public Integer getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(Integer zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 
