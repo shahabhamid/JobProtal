@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class JobPostActivityController {
 
 	@Autowired
-	private JobPostActivityService usersService;
+	private JobPostActivityService jobPostActivityService;
 
 	@RequestMapping("/")
 	public String displayJobs(Model model) {
@@ -25,10 +25,9 @@ public class JobPostActivityController {
 		return "job-post";
 	}
 	@RequestMapping("/add")
-	public String addJobs(Model model) {
-		model.addAttribute("jobPostActivity", new JobPostActivity());
+	public String addJobs(JobPostActivity jobPostActivity,Model model) {
 
-
+		model.addAttribute("jobPostActivity", jobPostActivity);
 		return "add-jobs";
 	}
 	@PostMapping("/addNew")
@@ -36,7 +35,7 @@ public class JobPostActivityController {
 		model.addAttribute("jobPostActivity",jobPostActivity);
 		System.out.println(jobPostActivity);
 
-
+		jobPostActivityService.addNew(jobPostActivity);
 
 		return "redirect:/recruiter-profile/";
 
