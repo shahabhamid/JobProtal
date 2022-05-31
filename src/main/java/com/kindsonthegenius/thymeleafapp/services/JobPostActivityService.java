@@ -20,8 +20,8 @@ public class JobPostActivityService {
 	public Optional<JobPostActivity> getOne(Integer Id) {
 		return jobPostActivityRepository.findById(Id);
 	}
-	public void addNew(JobPostActivity jobPostActivity) {
-		jobPostActivityRepository.save(jobPostActivity);
+	public JobPostActivity addNew(JobPostActivity jobPostActivity) {
+		return jobPostActivityRepository.save(jobPostActivity);
 	}
 	public void update(JobPostActivity jobPostActivity) {
 		jobPostActivityRepository.save(jobPostActivity);

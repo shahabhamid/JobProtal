@@ -4,6 +4,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
     private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
@@ -24,6 +27,19 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         registry
                 .addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/","/resources/static/css/","/resources/static/js/","/resources/static/summernote/","/resources/static/fonts/");
+
+        exposeDirectory("user-photos", registry);
+        exposeDirectory("company-photos", registry);
+    }
+
+
+    private void exposeDirectory(String dirName, ResourceHandlerRegistry registry) {
+        Path uploadDir = Paths.get(dirName);
+        String uploadPath = uploadDir.toFile().getAbsolutePath();
+
+        if (dirName.startsWith("../")) dirName = dirName.replace("../", "");
+
+        registry.addResourceHandler("/" + dirName + "/**").addResourceLocations("file:/"+ uploadPath + "/");
     }
 
 }

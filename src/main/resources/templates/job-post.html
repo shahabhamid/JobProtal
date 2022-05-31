@@ -197,34 +197,32 @@
                       class="single_jobs white-bg d-flex justify-content-between"
                     >
                       <div class="jobs_left d-flex align-items-center">
-                        <div class="thumb"></div>
+                        <div class="thumb">
+
+                          <img height="50px" width="50px" th:src="@{${jobPost.job_company_id.photosImagePath}}" >
+                        </div>
                         <div class="jobs_content">
-                          <a href="job_details.html"
+                          <a th:href="@{/jobSeekerApply/{id}(id=${jobPost.Id})}" href="job_details.html"
                             ><h4 th:text="${jobPost.job_title}">
                               Software Engineer
                             </h4></a
                           >
-                          <div class="links_locat d-flex align-items-center">
-                            <div class="location">
-                              <p
+                          <div class="align-items-center">
+                            <div>
+                              <p style="margin-bottom:0px;"
                                 th:text="${jobPost.job_location_id.city+', '+ jobPost.job_location_id.state}"
-                              >
-                                <i class="fa fa-map-marker"></i> California, USA
+                              >California, USA
+                              </p>
+                              <p style="margin : 0;padding-top:0;" th:text="${jobPost.job_type}">Part-time
                               </p>
                             </div>
-                            <div class="location">
-                              <p th:text="${jobPost.job_type}">
-                                <i class="fa fa-clock-o"></i> Part-time
-                              </p>
-                            </div>
+
+
                           </div>
                         </div>
                       </div>
                       <div class="jobs_right">
                         <div class="apply_now">
-                          <a class="heart_mark" href="#">
-                            <i class="fa fa-heart"></i>
-                          </a>
                           <a href="job_details.html" class="boxed-btn3"
                             >Apply Now</a
                           >

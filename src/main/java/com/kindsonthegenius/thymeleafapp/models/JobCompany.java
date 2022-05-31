@@ -3,7 +3,7 @@ package com.kindsonthegenius.thymeleafapp.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import java.sql.Blob;
+import javax.persistence.Transient;
 
 @Entity
 public class JobCompany {
@@ -77,5 +77,12 @@ public class JobCompany {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (logo == null || Id == null) return null;
+
+        return "/company-photos/" + Id + "/" + logo;
     }
 }

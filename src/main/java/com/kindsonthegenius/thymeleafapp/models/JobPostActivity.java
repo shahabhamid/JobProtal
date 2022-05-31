@@ -1,5 +1,6 @@
 package com.kindsonthegenius.thymeleafapp.models;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -21,12 +22,13 @@ public class JobPostActivity {
     @JoinColumn(name = "job_company_id",referencedColumnName = "Id")
     private JobCompany job_company_id;
     private Boolean is_active;
-    @DateTimeFormat(pattern="dd-MM-yyyy")
-    private Date created_date;
+
+    @Length(max = 10000)
     private String description_of_job;
     private String job_type;
     private String salary;
     private String remote;
+    @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date posted_date;
     private String job_title;
 
@@ -34,12 +36,11 @@ public class JobPostActivity {
 
     }
 
-    public JobPostActivity(Integer id, Users posted_by_id, JobLocation job_location_id, Boolean is_active, Date created_date, String description_of_job, String job_type, String salary, String remote, Date posted_date, String job_title) {
+    public JobPostActivity(Integer id, Users posted_by_id, JobLocation job_location_id, Boolean is_active, String description_of_job, String job_type, String salary, String remote, Date posted_date, String job_title) {
         Id = id;
         this.posted_by_id = posted_by_id;
         this.job_location_id = job_location_id;
         this.is_active = is_active;
-        this.created_date = created_date;
         this.description_of_job = description_of_job;
         this.job_type = job_type;
         this.salary = salary;
@@ -54,8 +55,8 @@ public class JobPostActivity {
                 "Id=" + Id +
                 ", posted_by_id=" + posted_by_id +
                 ", job_location_id=" + job_location_id.toString() +
+                ", job_company_id=" + job_company_id.toString() +
                 ", is_active=" + is_active +
-                ", created_date=" + created_date +
                 ", description_of_job='" + description_of_job + '\'' +
                 ", job_type='" + job_type + '\'' +
                 ", salary='" + salary + '\'' +
@@ -114,15 +115,6 @@ public class JobPostActivity {
         this.posted_by_id = posted_by_id;
     }
 
-
-    public Date getCreated_date() {
-        return created_date;
-    }
-
-    public void setCreated_date(Date created_date) {
-        this.created_date = created_date;
-    }
-
     public String getDescription_of_job() {
         return description_of_job;
     }
@@ -160,5 +152,6 @@ public class JobPostActivity {
     public void setJob_company_id(JobCompany job_company_id) {
         this.job_company_id = job_company_id;
     }
+
 
 }

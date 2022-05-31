@@ -23,6 +23,8 @@ public class UsersService {
 	private RecruiterProfileService recruiterProfile;
 	@Autowired
 	private JobSeekerProfileService seekerProfileService;
+
+
 	public List<Users> getAll() {
 		return (List<Users>)  usersRepository.findAll();
 	}
@@ -34,7 +36,7 @@ public class UsersService {
 		Users u = usersRepository.save(user);
 
 		if(user.getUser_type_id().getUser_type_id()==1){
-			recruiterProfile.addNew(new RecruiterProfile(user,"","","","","",""));
+			recruiterProfile.addNew(new RecruiterProfile(user,"","","","","","",""));
 		}else{
 			seekerProfileService.addNew((new JobSeekerProfile(user.getUser_id(),"","",0,"","")));
 		}

@@ -1,8 +1,6 @@
 package com.kindsonthegenius.thymeleafapp.controllers;
-import com.kindsonthegenius.thymeleafapp.repositories.RecruiterProfileRepository;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.kindsonthegenius.thymeleafapp.Utilities.FileUploadUtil;
 import com.kindsonthegenius.thymeleafapp.models.RecruiterProfile;
 import com.kindsonthegenius.thymeleafapp.models.Users;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
@@ -13,10 +11,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.sql.Blob;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -28,7 +28,6 @@ public class RecruiterProfileController {
     @Autowired
     private RecruiterProfileService recruiterProfileService;
 
-    private RecruiterProfileRepository  recruiterProfileRepository;
     @Autowired
     private UsersRepository usersRepository;
 
@@ -69,7 +68,6 @@ public class RecruiterProfileController {
         return "recruiter-profile";
     }
 
-
     @RequestMapping("/getOne")
     @ResponseBody
     public Optional<RecruiterProfile> getOne(Integer Id) {
@@ -77,10 +75,7 @@ public class RecruiterProfileController {
     }
 
     @PostMapping("/addNew")
-    public String addNew(RecruiterProfile recruiterProfile,  Model model)
-            throws IOException
-    {
-
+    public String addNew(RecruiterProfile recruiterProfile, @RequestParam("image") MultipartFile multipartFile , Model model) throws  IOException {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -91,12 +86,16 @@ public class RecruiterProfileController {
         }
 
         model.addAttribute("profile",recruiterProfile);
-        recruiterProfileService.addNew(recruiterProfile);
+        String fileName = StringUtils.cleanPath((Objects.requireNonNull(multipartFile.getOriginalFilename())));
+        recruiterProfile.setProfile_photo(fileName);
+
+        RecruiterProfile savedUser = recruiterProfileService.addNew(recruiterProfile);
+
+        String uploadDir = "user-photos/" + savedUser.getUser_account_id();
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
         return "redirect:/recruiter-profile/";
     }
-
-
     @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
     public String update(RecruiterProfile recruiterProfile) {
         recruiterProfileService.update(recruiterProfile);

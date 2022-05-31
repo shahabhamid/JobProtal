@@ -2,7 +2,6 @@ package com.kindsonthegenius.thymeleafapp.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Blob;
 
 @Entity
 
@@ -19,7 +18,8 @@ public class RecruiterProfile implements Serializable {
     private String state;
     private String country;
     private String company;
-    private byte[] profile_photo;
+    @Column(nullable = true, length = 64)
+    private String profile_photo;
 
     public RecruiterProfile() {
 
@@ -33,7 +33,7 @@ public class RecruiterProfile implements Serializable {
         this.company = company;
     }
 
-    public RecruiterProfile(Users user_id, String first_name, String last_name, String city, String state, String country, String company) {
+    public RecruiterProfile(Users user_id, String first_name, String last_name, String city, String state, String country, String company, String profile_photo) {
         this.user_id = user_id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -41,6 +41,7 @@ public class RecruiterProfile implements Serializable {
         this.state = state;
         this.country = country;
         this.company = company;
+        this.profile_photo = profile_photo;
     }
 
     @Override
@@ -114,11 +115,18 @@ public class RecruiterProfile implements Serializable {
         this.country = country;
     }
 
-    public byte[] getProfile_photo() {
+    public String getProfile_photo() {
         return profile_photo;
     }
 
-    public void setProfile_photo(byte[] profile_photo) {
+    public void setProfile_photo(String profile_photo) {
         this.profile_photo = profile_photo;
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (profile_photo == null || user_account_id == null) return null;
+
+        return "/user-photos/" + user_account_id + "/" + profile_photo;
     }
 }

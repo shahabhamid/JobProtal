@@ -1,20 +1,20 @@
 package com.kindsonthegenius.thymeleafapp.controllers;
+
+import com.kindsonthegenius.thymeleafapp.models.JobPostActivity;
 import com.kindsonthegenius.thymeleafapp.models.JobSeekerApply;
 import com.kindsonthegenius.thymeleafapp.repositories.JobSeekerApplyRepository;
+import com.kindsonthegenius.thymeleafapp.services.JobPostActivityService;
 import com.kindsonthegenius.thymeleafapp.services.JobSeekerApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 
 @Controller
 @RequestMapping("/jobSeekerApply")
-
-
 public class JobSeekerApplyController {
 
     @Autowired
@@ -22,12 +22,14 @@ public class JobSeekerApplyController {
 
     @Autowired
     private JobSeekerApplyService jobSeekerApplyService ;
+    @Autowired
+    private JobPostActivityService jobPostActivityService ;
 
-    @RequestMapping("/")
-    public List<JobSeekerApply> getAll(Model model) {
-        List<JobSeekerApply> jobSeekerApply = jobSeekerApplyService.getAll();
-        model.addAttribute("jobSeekerApply", jobSeekerApply);
-        return jobSeekerApply;
+    @RequestMapping("/{id}")
+    public String Display(@PathVariable(value = "id") int id,Model model) {
+        Optional<JobPostActivity> jobDetails = jobPostActivityService.getOne(id);
+        model.addAttribute("jobDetails", jobDetails.get());
+        return "job-details";
     }
     @RequestMapping("/getOne")
     @ResponseBody

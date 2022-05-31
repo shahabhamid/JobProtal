@@ -1,12 +1,9 @@
 package com.kindsonthegenius.thymeleafapp.services;
 
-import antlr.StringUtils;
 import com.kindsonthegenius.thymeleafapp.models.RecruiterProfile;
 import com.kindsonthegenius.thymeleafapp.repositories.RecruiterProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,8 +21,8 @@ public class RecruiterProfileService {
 	public Optional<RecruiterProfile> getOne(Integer Id) {
 		return recruiterRepository.findById(Id);
 	}
-	public void addNew(RecruiterProfile RecruiterProfile) {
-		recruiterRepository.save(RecruiterProfile);
+	public RecruiterProfile addNew(RecruiterProfile RecruiterProfile) {
+		return recruiterRepository.save(RecruiterProfile);
 	}
 	public void update(RecruiterProfile RecruiterProfile) {
 		recruiterRepository.save(RecruiterProfile);
