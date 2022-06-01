@@ -29,14 +29,8 @@ public class JobSeekerProfile implements Serializable {
 
     }
 
-
-    public JobSeekerProfile(Integer id, String Firstname, String Lastname, Integer Currentsalary, String Salarytype, String currencys) {
-        user_account_id = id;
-        first_name = Firstname;
-        last_name = Lastname;
-        current_salary = Currentsalary;
-        salary_type = Salarytype;
-        currency = currencys;
+    public JobSeekerProfile(Users user_id) {
+        this.user_id = user_id;
     }
 
     public void setuser_account_id(Integer user_account_id) {

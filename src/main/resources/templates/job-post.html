@@ -64,7 +64,7 @@
         <div class="row">
           <div class="col-xl-12">
             <div class="bradcam_text">
-              <h3>4536+ Jobs Available</h3>
+              <h3>Jobs Listing</h3>
             </div>
           </div>
         </div>
@@ -79,89 +79,80 @@
           <div class="col-lg-3">
             <div class="job_filter white-bg">
               <div class="form_inner white-bg">
-                <h3>Filter</h3>
+                <strong>Filter</strong>
+                <hr>
                 <form action="#">
+
                   <div class="row">
+
                     <div class="col-lg-12">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search keyword" />
+                      <strong>Employment Type</strong>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="part-time">
+                        <label class="form-check-label" for="part-time">
+                          Part-Time
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="full-time" >
+                        <label class="form-check-label" for="full-time">
+                          Full-Time
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="freelance" >
+                        <label class="form-check-label" for="freelance">
+                          Freelance
+                        </label>
                       </div>
                     </div>
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <select class="form-control">
-                          <option data-display="Location">Location</option>
-                          <option value="1">Rangpur</option>
-                          <option value="2">Dhaka</option>
-                        </select>
+
+                    <div class="col-lg-12 mt-5">
+                      <strong>Remote</strong>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="remote-only">
+                        <label class="form-check-label" for="remote-only">
+                          Remote-Only
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="Office-Only" >
+                        <label class="form-check-label" for="Office-Only">
+                          Office-Only
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="partial-remote">
+                        <label class="form-check-label" for="partial-remote">
+                          Partial-Remote
+                        </label>
                       </div>
                     </div>
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <select class="form-control">
-                          <option data-display="Category">Category</option>
-                          <option value="1">Category 1</option>
-                          <option value="2">Category 2</option>
-                        </select>
+
+                    <div class="col-lg-12 mt-5 mb-5 ">
+                      <strong>Date Posted</strong>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="today">
+                        <label class="form-check-label" for="today">
+                          Today
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="7days" >
+                        <label class="form-check-label" for="7days">
+                          Last 7 Days
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="30days">
+                        <label class="form-check-label" for="30days">
+                          Last 30 Days
+                        </label>
                       </div>
                     </div>
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <select class="form-control">
-                          <option data-display="Experience">Experience</option>
-                          <option value="1">Experience 1</option>
-                          <option value="2">Experience 2</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <select class="form-control">
-                          <option data-display="Job type">Job type</option>
-                          <option value="1">full time 1</option>
-                          <option value="2">part time 2</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <select class="form-control">
-                          <option data-display="Qualification">
-                            Qualification
-                          </option>
-                          <option value="1">Qualification 1</option>
-                          <option value="2">Qualification 2</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <select class="form-control">
-                          <option data-display="Gender">Gender</option>
-                          <option value="1">male</option>
-                          <option value="2">female</option>
-                        </select>
-                      </div>
-                    </div>
+
                   </div>
                 </form>
-              </div>
-              <div class="range_wrap">
-                <label for="amount">Price range:</label>
-                <div id="slider-range"></div>
-                <p>
-                  <input
-                    type="text"
-                    id="amount"
-                    readonly
-                    style="
-                      border: 0;
-                      color: #7a838b;
-                      font-size: 14px;
-                      font-weight: 400;
-                    "
-                  />
-                </p>
               </div>
               <div class="reset_btn">
                 <button class="boxed-btn3 w-100" type="submit">Reset</button>
@@ -172,18 +163,11 @@
             <div class="recent_joblist_wrap">
               <div class="recent_joblist white-bg">
                 <div class="row align-items-center">
-                  <div class="col-md-6">
-                    <h4>Job Listing</h4>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" placeholder="Search keyword" />
                   </div>
-                  <div class="col-md-6">
-                    <div class="serch_cat d-flex justify-content-end form-group">
-                      <select class="form-control">
-                        <option data-display="Most Recent">Most Recent</option>
-                        <option value="1">Marketer</option>
-                        <option value="2">Wordpress</option>
-                        <option value="4">Designer</option>
-                      </select>
-                    </div>
+                  <div class="col-md-3">
+                    <button class="boxed-btn3 " type="submit">Search</button>
                   </div>
                 </div>
               </div>
@@ -202,7 +186,7 @@
                           <img height="50px" width="50px" th:src="@{${jobPost.job_company_id.photosImagePath}}" >
                         </div>
                         <div class="jobs_content">
-                          <a th:href="@{/jobSeekerApply/{id}(id=${jobPost.Id})}" href="job_details.html"
+                          <a th:href="@{/job-details-apply/{id}(id=${jobPost.Id})}"
                             ><h4 th:text="${jobPost.job_title}">
                               Software Engineer
                             </h4></a
@@ -223,7 +207,7 @@
                       </div>
                       <div class="jobs_right">
                         <div class="apply_now">
-                          <a href="job_details.html" class="boxed-btn3"
+                          <a  th:href="@{/job-details-apply/{id}(id=${jobPost.Id})}" class="boxed-btn3"
                             >Apply Now</a
                           >
                         </div>

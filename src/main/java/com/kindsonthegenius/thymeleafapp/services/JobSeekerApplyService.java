@@ -21,8 +21,6 @@ public class JobSeekerApplyService {
 		return jobSeekerApplyRepository.findById(Id);
 	}
 	public void addNew(JobSeekerApply jobSeekerApply) {
-		System.out.println(("Add New Job Location : "));
-		System.out.println(jobSeekerApply.toString());
 		jobSeekerApplyRepository.save(jobSeekerApply);
 	}
 	public void update(JobSeekerApply jobSeekerApply) {

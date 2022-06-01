@@ -36,9 +36,7 @@ public class JobPostActivityController {
 	public String displayJobs(Model model) {
 		List<JobPostActivity> jobPost = jobPostActivityService.getAll();
 		model.addAttribute("jobPost",jobPost);
-		for(JobPostActivity j : jobPost){
-			System.out.println(j.toString());
-		}
+
 		return "job-post";
 	}
 

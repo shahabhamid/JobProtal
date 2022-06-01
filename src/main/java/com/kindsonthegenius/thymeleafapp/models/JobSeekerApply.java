@@ -19,18 +19,18 @@ public class JobSeekerApply implements Serializable {
     private JobPostActivity job_post_id;
     @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date apply_date;
-    private String apply_response;
+    private String cover_letter;
 
     public JobSeekerApply() {
 
     }
 
-    public JobSeekerApply(Integer user_account, JobSeekerProfile user_id, JobPostActivity job_post_id, Date apply_date, String apply_response) {
+    public JobSeekerApply(Integer user_account, JobSeekerProfile user_id, JobPostActivity job_post_id, Date apply_date, String cover_letter) {
         this.user_account = user_account;
         this.user_id = user_id;
         this.job_post_id = job_post_id;
         this.apply_date = apply_date;
-        this.apply_response = apply_response;
+        this.cover_letter = cover_letter;
     }
 
     public Integer getUser_account_id() {
@@ -65,12 +65,12 @@ public class JobSeekerApply implements Serializable {
         this.apply_date = apply_date;
     }
 
-    public String getApply_response() {
-        return apply_response;
+    public String getCover_letter() {
+        return cover_letter;
     }
 
-    public void setApply_response(String apply_response) {
-        this.apply_response = apply_response;
+    public void setCover_letter(String cover_letter) {
+        this.cover_letter = cover_letter;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class JobSeekerApply implements Serializable {
                 ", user_id=" + user_id +
                 ", job_post_id=" + job_post_id +
                 ", apply_date=" + apply_date +
-                ", apply_response='" + apply_response + '\'' +
+                ", apply_response='" + cover_letter + '\'' +
                 '}';
     }
 }
