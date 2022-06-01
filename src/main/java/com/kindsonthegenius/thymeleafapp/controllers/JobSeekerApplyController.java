@@ -67,6 +67,7 @@ public class JobSeekerApplyController {
             }else {
                throw new Exception("User Not Present");
             }
+            System.out.println(jobSeekerApply.toString());
             jobSeekerApplyService.addNew(jobSeekerApply);
         }
 

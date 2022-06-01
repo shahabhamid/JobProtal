@@ -4,13 +4,14 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class JobPostActivity {
+public class JobPostActivity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer Id;
+    private Integer job_post_id;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "posted_by_id",referencedColumnName = "user_id")
     private Users posted_by_id;
@@ -37,7 +38,7 @@ public class JobPostActivity {
     }
 
     public JobPostActivity(Integer id, Users posted_by_id, JobLocation job_location_id, Boolean is_active, String description_of_job, String job_type, String salary, String remote, Date posted_date, String job_title) {
-        Id = id;
+        job_post_id = id;
         this.posted_by_id = posted_by_id;
         this.job_location_id = job_location_id;
         this.is_active = is_active;
@@ -52,7 +53,7 @@ public class JobPostActivity {
     @Override
     public String toString() {
         return "JobPostActivity{" +
-                "Id=" + Id +
+                "Id=" + job_post_id +
                 ", posted_by_id=" + posted_by_id +
                 ", job_location_id=" + job_location_id.toString() +
                 ", job_company_id=" + job_company_id.toString() +
@@ -100,11 +101,11 @@ public class JobPostActivity {
 
 
     public Integer getId() {
-        return Id;
+        return job_post_id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        job_post_id = id;
     }
 
     public Users getPosted_by_id() {

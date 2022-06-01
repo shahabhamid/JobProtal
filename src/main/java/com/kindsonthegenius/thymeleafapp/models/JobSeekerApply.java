@@ -1,4 +1,5 @@
 package com.kindsonthegenius.thymeleafapp.models;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -6,16 +7,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@Table(uniqueConstraints={
+        @UniqueConstraint(columnNames = {"user_account_id", "job_post_id"})
+})
 public class JobSeekerApply implements Serializable {
     @Id
-    private Integer user_account;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_account_id",referencedColumnName = "user_account_id")
-    @MapsId
     private JobSeekerProfile user_id;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "job_post_id",referencedColumnName = "Id")
+    @JoinColumn(name = "job_post_id",referencedColumnName = "job_post_id")
     private JobPostActivity job_post_id;
     @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date apply_date;
@@ -26,20 +30,14 @@ public class JobSeekerApply implements Serializable {
     }
 
     public JobSeekerApply(Integer user_account, JobSeekerProfile user_id, JobPostActivity job_post_id, Date apply_date, String cover_letter) {
-        this.user_account = user_account;
+        this.id = user_account;
         this.user_id = user_id;
         this.job_post_id = job_post_id;
         this.apply_date = apply_date;
         this.cover_letter = cover_letter;
     }
 
-    public Integer getUser_account_id() {
-        return user_account;
-    }
 
-    public void setUser_account_id(Integer user_account) {
-        this.user_account = user_account;
-    }
 
     public JobSeekerProfile getUser_id() {
         return user_id;
@@ -73,10 +71,18 @@ public class JobSeekerApply implements Serializable {
         this.cover_letter = cover_letter;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "JobSeekerApply{" +
-                "user_account=" + user_account +
+                "user_account=" + id +
                 ", user_id=" + user_id +
                 ", job_post_id=" + job_post_id +
                 ", apply_date=" + apply_date +

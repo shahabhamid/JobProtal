@@ -1,7 +1,29 @@
 * {
 box-sizing: border-box;
-font-family: sans-serif;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+body{
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+}
+a:focus,
+.button:focus, button:focus {
+  text-decoration: none;
+  outline: none;
+}
+a:focus {
+    text-decoration: none;
+  }
+  a:focus,
+a:hover,
+.portfolio-cat a:hover,
+.footer -menu li a:hover {
+  text-decoration: none;
+}
+
 .background {
     width: 100vw;
     height: 100vh;
@@ -117,137 +139,60 @@ color:white;
     text-align:center;
 }
 /*          login           */
+.hidden-overflow{
+    overflow: hidden;
+}
+.girl_background{
 
-.login-form {
-    width: 340px;
-    margin: 50px auto;
-  	font-size: 15px;
+    height: 100vh;
+  overflow: hidden;
+    background-image: linear-gradient(to right, rgba(0,34,68,0.5), rgba(0,34,68,0.5)),url('../assets/woman.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+
 }
-.login-form form {
-    margin-bottom: 15px;
-    background: #f7f7f7;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    padding: 30px;
-}
-.login-form h2 {
-    margin: 0 0 15px;
-}
-.form-control, .btn {
-    min-height: 38px;
-    border-radius: 2px;
-}
-.btn {
-    font-size: 15px;
-    font-weight: bold;
-}
-.box {
-    position: relative;
-    border-radius: 3px;
-    background: #ffffff;
-    border-top: 4px solid transparent;
-    margin-bottom: 10px;
+.login-form{
+    height: 100%;
     width: 100%;
-    box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.login-form > form{
+    width: 80%;
+    height: 50%;
+}
+.login-form > form input
+{
+    padding:15px 10px;
+    line-height:140%;
+    color: #FB4F14;
 }
 
-.box>h2 {
-    font-family: Poppins-Medium, sans-serif;
-    padding: 15px 20px;
-    font-size: 24px;
+#check:checked::before{
+    color: #FB4F14;
+    border:  #FB4F14;
 }
 
-.box.box-primary {
-    border-top-color:#2A2A2A;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
-}
 
-.bozero {
-    border-top: 0 !important;
-}
-.form-group .req {
-    color: #fc2d42;
-}
-
-.box-header {
-    color: #444;
-    display: block;
-    padding: 15px 10px 10px 15px;
-    font-family: Poppins-Regular, sans-serif;
-    position: relative;
-}
-
-.box-header.with-border {
-    border-bottom: 1px solid #f4f4f4;
-}
-
-.box-header h3.box-title i {
-    display: none;
-}
-
-.box-header h3.box-title {
-    font-size: 18px;
-    font-family: Poppins-SemiBold, sans-serif;
-}
-
-.box-header>.box-tools {
-    position: absolute;
-    right: 10px;
-    top: 5px;
-}
-
-.account-settings .user-profile {
-    margin: 0 0 1rem 0;
-    padding-bottom: 1rem;
-    text-align: center;
-}
-.account-settings .user-profile .user-avatar {
-    margin: 0 0 1rem 0;
-}
-.account-settings .user-profile .user-avatar img {
-    width: 90px;
-    height: 90px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    border-radius: 100px;
-}
-.account-settings .user-profile h5.user-name {
-    margin: 0 0 0.5rem 0;
-}
-.account-settings .user-profile h6.user-email {
-    margin: 0;
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: #9fa8b9;
-}
-.account-settings .about {
-    margin: 5px 0 0 0;
-    text-align: center;
-}
-.account-settings .about h5 {
-    margin: 0 0 15px 0;
-    color: #007ae1;
-}
-.account-settings .about p {
-    font-size: 0.825rem;
-}
-.form-control {
-    border: 1px solid #cfd1d8;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    font-size: .825rem;
-    background: #ffffff;
-    color: #2e323c;
-}
-
-.card {
-    background: #ffffff;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
+.myBtn{
+    background-color: #FB4F14;
+    border: none;
     border-radius: 5px;
-    border: 0;
-    margin-bottom: 1rem;
+    color: white;
+    width: 100%;
+    padding: 2%;
+    font-weight: bolder;
+    font-size: large;
+
 }
-div.form-check{
-margin-top: 5px;
+a.color-text,a.color-text:hover{
+    color: #FB4F14;
 }
+
+
+
+

@@ -1,51 +1,102 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/font-awesome.min.css}" />
-    <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/style.css}" />
-    <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/styles.css}" />
-   <meta charset="ISO-8859-1">
+  <head>
+    <link rel="stylesheet" href="../static/css/styles.css" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+      th:href="@{/css/style.css}"
+    />
+    <!-- <link
+      th:rel="stylesheet"
+      th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+      th:href="@{/css/font-awesome.min.css}"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+      th:href="@{/css/styles.css}"
+    />-->
+    <meta charset="ISO-8859-1" />
     <title>Login</title>
-</head>
+  </head>
 
-<body class="background">
+  <body>
+    <div class="row">
+      <div class="col-5 girl_background">
+        <div class="logo_left mt-3 pt-4 ml-5 pl-5">
+          <h2 class="logo">hotdevjobs <span class="logo_com">.com</span></h2>
+        </div>
+      </div>
+      <div class="col-7">
+        <div class="login-form">
+          <form th:action="@{/login}" th:object="${user}" method="post">
+            <h1 class="text-center bold font-weight-bold mb-4">Login</h1>
+            <div class="form-group">
+              <input
+                placeholder="Email"
+                name="username"
+                field="{email}"
+                type="email"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                placeholder="Password"
+                name="password"
+                field="{password}"
+                type="password"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="clearfix mb-4">
+              <label class="float-left form-check-label"
+                ><input type="checkbox" /> Remember me</label
+              >
+              <a href="#" class="color-text float-right">Forgot Password?</a>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="myBtn">Log in</button>
+            </div>
 
-<nav class="main_div">
-    <div class="logo_left">
-        <label class="logo">
-            hotdevjobs
-        </label>
-        <label class = "logo_com">
-            .com
-        </label>
+            <p class="text-center">
+              Are you a new User?
+              <a
+                class="color-text"
+                href="#"
+                th:href="@{|/register?role=${role}|}"
+              >
+                Register Now</a
+              >
+            </p>
+          </form>
+        </div>
+      </div>
     </div>
-</nav>
-
-
-<div class="login-form">
-    <form th:action="@{/login}" th:object="${user}" method="post">
-        <h2 class="text-center">Log in</h2>
-        <div class="form-group">
-            <input placeholder="Email" name="username" field="{email}" type="email" class="form-control" required />
-        </div>
-        <div class="form-group">
-            <input placeholder="Password" name="password" field="{password}" type="password" class="form-control" required/>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
-        </div>
-        <div class="clearfix">
-            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-            <a href="#" class="float-right">Forgot Password?</a>
-        </div>
-    </form>
-    <p class="text-center">Are you a new User? <a th:href="@{|/register?role=${role}|}"> Create an Account</a></p>
-</div>
-</body>
-<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/main.js}"></script>
-
+  </body>
+  <script
+    type="text/javascript"
+    th:src="@{/webjars/jquery/jquery.min.js}"
+  ></script>
+  <script
+    type="text/javascript"
+    th:src="@{/webjars/popper.js/umd/popper.min.js}"
+  ></script>
+  <script
+    type="text/javascript"
+    th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"
+  ></script>
+  <script type="text/javascript" th:src="@{/js/main.js}"></script>
 </html>
