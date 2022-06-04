@@ -1,8 +1,13 @@
 package com.kindsonthegenius.thymeleafapp.services;
 
 import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
+import com.kindsonthegenius.thymeleafapp.models.Users;
 import com.kindsonthegenius.thymeleafapp.repositories.JobSeekerProfileRepository;
+import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +18,10 @@ public class JobSeekerProfileService {
 
 	@Autowired
 	private JobSeekerProfileRepository jobSeekerProfileRepository;
+
+	@Autowired
+	private UsersRepository usersRepository;
+
 	public List<JobSeekerProfile> getAll() {
 		return (List<JobSeekerProfile>) jobSeekerProfileRepository.findAll();
 	}
@@ -20,8 +29,6 @@ public class JobSeekerProfileService {
 		return jobSeekerProfileRepository.findById(Id);
 	}
 	public void addNew(JobSeekerProfile jobSeekerProfile) {
-		System.out.println(("Add New Job Seeker Profile : "));
-		System.out.println(jobSeekerProfile.toString());
 		jobSeekerProfileRepository.save(jobSeekerProfile);
 	}
 	public void update(JobSeekerProfile jobSeekerProfile) {
@@ -31,4 +38,13 @@ public class JobSeekerProfileService {
 		jobSeekerProfileRepository.deleteById(Id);
 	}
 
+	public JobSeekerProfile getCurrentSeekerProfile(){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			String currentUserName = authentication.getName();
+			Users user  =  usersRepository.findByEmail(currentUserName);
+			Optional<JobSeekerProfile> jobSeekerProfile = getOne(user.getUser_id());
+			return jobSeekerProfile.orElse(null);
+		}else return null;
+	}
 }

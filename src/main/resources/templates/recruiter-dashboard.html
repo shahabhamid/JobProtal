@@ -40,27 +40,22 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav m-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="#"
-              >Search for Jobs <span class="sr-only">(current)</span></a
-            >
+            <a class="nav-link" th:href="@{/recruiter-dashboard/add}">Post New Job</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">View Saved Jobs</a>
+            <a class="nav-link" th:href="@{/recruiter-profile/}">View Your Jobs</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Edit Account</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Edit Profile</a>
+            <a class="nav-link" th:href="@{/recruiter-profile/}">Edit Account</a>
           </li>
         </ul>
         <img
           class="rounded-circle mr-3"
           height="50px"
           width="50x"
-          src="https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg"
+          th:src="@{${user.photosImagePath}}"
         />
-        <label class="nav-item nav-link px-2 mr-3">SHahab Hamid</label>
+        <label th:text="${user.first_name+' '+user.last_name}" class="nav-item nav-link px-2 mr-3">SHahab Hamid</label>
         <button class="myBtn-light mr-5">Logout</button>
       </div>
     </header>
@@ -184,22 +179,18 @@
 
       <article >
         <div class="box">
-          <h1 class="px-3 mb-4">Candidate Dashboard</h1>
-          <div class="inner">
-            <input class="radius-left" type="text" placeholder="Search for a job"/>
-            <input class="" type="text" placeholder="Search for a job"/>
-            <button class="radius-right"><i class="fa fa-search"></i></button>
-          </div>
+          <h1 class="primary-title">Recruiter Dashboard</h1>
         </div>
 
 
         <div class="box mt-3">
-          <label class="large-label px-3 mb-3">Search Results</label>
+          <label class="large-label px-3 mb-3">My Jobs</label>
           <th:block th:each="jobPost:${jobPost}">
           <div class="job-row">
               <div class="row ">
                 <div class="col-md-4">
                   <label th:text="${jobPost.job_title}" class="job-title text-left">Job Title</label>
+
                 </div >
                 <div class="col-md-4 text-center">
                   <label th:text="${jobPost.job_location_id.city+', '+ jobPost.job_location_id.state}"> City  State</label>

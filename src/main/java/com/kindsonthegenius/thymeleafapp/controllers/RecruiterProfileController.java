@@ -31,10 +31,6 @@ public class RecruiterProfileController {
     @Autowired
     private UsersRepository usersRepository;
 
-    public RecruiterProfileService getRecruiterProfileService() {
-        return recruiterProfileService;
-    }
-
     public void setRecruiterProfileService(RecruiterProfileService recruiterProfileService) {
         this.recruiterProfileService = recruiterProfileService;
     }
