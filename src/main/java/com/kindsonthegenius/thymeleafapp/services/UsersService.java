@@ -6,6 +6,9 @@ import com.kindsonthegenius.thymeleafapp.models.Users;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +50,15 @@ public class UsersService {
 	}
 	public void delete(Integer Id) {
 		usersRepository.deleteById(Id);
+	}
+
+	public Users getCurrentUser(){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			String currentUserName = authentication.getName();
+			return  usersRepository.findByEmail(currentUserName);
+		}
+		return null;
 	}
 
 }

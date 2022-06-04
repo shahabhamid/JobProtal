@@ -2,13 +2,14 @@ package com.kindsonthegenius.thymeleafapp.controllers;
 
 import com.kindsonthegenius.thymeleafapp.Utilities.FileUploadUtil;
 import com.kindsonthegenius.thymeleafapp.models.JobPostActivity;
+import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
+import com.kindsonthegenius.thymeleafapp.models.RecruiterProfile;
 import com.kindsonthegenius.thymeleafapp.models.Users;
-import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
 import com.kindsonthegenius.thymeleafapp.services.JobPostActivityService;
+import com.kindsonthegenius.thymeleafapp.services.JobSeekerProfileService;
+import com.kindsonthegenius.thymeleafapp.services.RecruiterProfileService;
+import com.kindsonthegenius.thymeleafapp.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -23,39 +24,54 @@ import java.util.List;
 import java.util.Objects;
 
 @Controller
-@RequestMapping("/job-post")
 public class JobPostActivityController {
 
 	@Autowired
 	private JobPostActivityService jobPostActivityService;
 
 	@Autowired
-	UsersRepository usersRepository;
+	JobSeekerProfileService jobSeekerProfileService;
+	@Autowired
+	RecruiterProfileService recruiterProfileService;
+	@Autowired
+	UsersService usersService;
 
-	@RequestMapping("/")
-	public String displayJobs(Model model) {
+	@RequestMapping("job-seeker-dashboard/")
+	public String displayAllJobs(Model model) {
 		List<JobPostActivity> jobPost = jobPostActivityService.getAll();
 		model.addAttribute("jobPost",jobPost);
-
-		return "job-post";
+		JobSeekerProfile user = jobSeekerProfileService.getCurrentSeekerProfile();
+		if(user!=null){
+			model.addAttribute("user",user);
+		}
+		return "job-seeker-dashboard";
+	}
+	@RequestMapping("recruiter-dashboard/")
+	public String displayRecruiterJobs(Model model) {
+		List<JobPostActivity> jobPost = jobPostActivityService.getAll();
+		model.addAttribute("jobPost",jobPost);
+		RecruiterProfile user = recruiterProfileService.getCurrentRecruiterProfile();
+		if(user!=null){
+			model.addAttribute("user",user);
+			System.out.println(user);
+		}
+		return "recruiter-dashboard";
 	}
 
-	@RequestMapping("/add")
+	@RequestMapping("recruiter-dashboard/add")
 	public String addJobs(Model model) {
 		model.addAttribute("jobPostActivity", new JobPostActivity());
 
-
 		return "add-jobs";
 	}
-	@PostMapping("/addNew")
+	@PostMapping("recruiter-dashboard/addNew")
 	public String addNew(JobPostActivity jobPostActivity, @RequestParam("image") MultipartFile multipartFile , Model model) throws IOException {
 
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (!(authentication instanceof AnonymousAuthenticationToken)) {
-			String currentUserName = authentication.getName();
-			Users user = usersRepository.findByEmail(currentUserName);
+		Users user = usersService.getCurrentUser();
+		if(user!=null){
 			jobPostActivity.setPosted_by_id(user);
 		}
+
 		jobPostActivity.setPosted_date(new Date());
 		model.addAttribute("jobPostActivity",jobPostActivity);
 		String fileName = StringUtils.cleanPath((Objects.requireNonNull(multipartFile.getOriginalFilename())));
@@ -63,7 +79,7 @@ public class JobPostActivityController {
 		JobPostActivity saved = jobPostActivityService.addNew(jobPostActivity);
 		String uploadDir = "company-photos/" + saved.getJob_company_id().getId();
 		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-		return "redirect:/job-post/";
+		return "redirect:/recruiter-dashboard/";
 
 	}
 
