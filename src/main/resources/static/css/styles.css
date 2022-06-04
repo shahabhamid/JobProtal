@@ -8,7 +8,7 @@ body{
     font-style: normal;
     padding: 0;
     margin: 0;
-    background-color:#F5F5F5;
+
 
 }
 a:focus,
@@ -188,9 +188,8 @@ article{
    -webkit-flex: 6;
    -ms-flex: 6;
    flex: 6;
-   background-color: #f1f1f1;
    padding: 10px;
-
+  background-color:#F5F5F5;
 }
 div.box{
     border-radius:25px;
