@@ -2118,6 +2118,8 @@ h3 {
   }
 }
 
+
+
 /* line 66, ../../Arafath/CL/December/235. Job board/HTML/scss/_accordion_area.scss */
 .accordion_area .faq_ask h3 {
   font-size: 44px;
@@ -2507,6 +2509,12 @@ h3 {
   border-color: transparent;
   border: 1px solid #FB4F14;
 }
+
+.top-margin
+{
+    margin-top:30%;
+}
+
 
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_bradcam.scss */
 .bradcam_bg_1 {
@@ -4421,7 +4429,7 @@ h3 {
 /* Contact Success and error Area css
 ============================================================================================ */
 /* line 97, ../../Arafath/CL/December/235. Job board/HTML/scss/_contact.scss */
-.modal-message .modal-dialog {
+.modal-message .modal-dias {
   position: absolute;
   top: 36%;
   left: 50%;

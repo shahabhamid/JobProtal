@@ -258,7 +258,7 @@ label.large-label{
     
 
 }
-.login-form{
+.myForm{
     height: 100%;
     width: 100%;
     display: flex;
@@ -266,15 +266,19 @@ label.large-label{
     justify-content: center;
 
 }
-.login-form > form{
+.myForm > form{
     width: 80%;
     height: 50%;
 }
-.login-form > form input
+.myForm > form input
 {
     padding:15px 10px;
     line-height:140%;
-    color: #FB4F14;
+
+}
+.base_button{
+background-color: #FB4F14;
+border: none;
 }
 
 #check:checked::before{
