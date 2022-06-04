@@ -14,7 +14,8 @@
 <!--    e.preventDefault();-->
 <!--    $('#skill-repeat').parent('div.parent').append($('.parent').children('div:first').html());-->
 <!--});-->
-function add_Skills() {
+function add_Skills(e) {
+e.preventDefault();
  console.log("Hello ")
 }
 </script>
@@ -112,7 +113,7 @@ function add_Skills() {
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-left mt-2">
-                            <button id="addSkill" onclick="add_Skills()" class="btn btn-default">Add Skill</button>
+                            <button type="button" onclick="add_Skills" class="btn btn-default">Add Skill</button>
                         </div>
                     </div>
 

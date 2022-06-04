@@ -169,7 +169,26 @@ color:white;
 {
     padding:15px 10px;
     line-height:140%;
+    border: 0.5px solid #002244;
+}
+.basic_select
+{
+   padding:15px 10px;
+   line-height:140%;
+}
+.top-margin
+{
+    margin-top:25%;
+}
 
+.heading_font
+{
+ font-family: 'Montserrat';
+}
+.font_sub_heading_color
+{
+    color:#002244;
+    text-transform: uppercase;
 }
 .base_button{
 background-color: #FB4F14;
