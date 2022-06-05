@@ -1,14 +1,12 @@
 package com.kindsonthegenius.thymeleafapp.controllers;
 
-import com.kindsonthegenius.thymeleafapp.models.JobPostActivity;
-import com.kindsonthegenius.thymeleafapp.models.JobSeekerApply;
-import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
-import com.kindsonthegenius.thymeleafapp.models.Users;
+import com.kindsonthegenius.thymeleafapp.models.*;
 import com.kindsonthegenius.thymeleafapp.repositories.JobSeekerApplyRepository;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
 import com.kindsonthegenius.thymeleafapp.services.JobPostActivityService;
 import com.kindsonthegenius.thymeleafapp.services.JobSeekerApplyService;
 import com.kindsonthegenius.thymeleafapp.services.JobSeekerProfileService;
+import com.kindsonthegenius.thymeleafapp.services.RecruiterProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -35,6 +33,8 @@ public class JobSeekerApplyController {
 
     @Autowired
     JobSeekerProfileService jobSeekerProfileService;
+    @Autowired
+    RecruiterProfileService recruiterProfileService;
 
     @RequestMapping("job-details-apply/{id}")
     public String Display(@PathVariable(value = "id") int id,Model model) {
@@ -42,6 +42,11 @@ public class JobSeekerApplyController {
         JobSeekerApply jobSeekerApply = new JobSeekerApply();
         model.addAttribute("jobDetails", jobDetails.get());
         model.addAttribute("applyJob", jobSeekerApply);
+        RecruiterProfile user = recruiterProfileService.getCurrentRecruiterProfile();
+        if(user!=null){
+            model.addAttribute("user",user);
+            System.out.println(user);
+        }
         return "job-details";
     }
     @RequestMapping("/getOne")

@@ -178,8 +178,11 @@ section.section{
 .sidenav {
     -webkit-flex: 1;
     -ms-flex: 1;
-    flex: 1;
-
+     flex: 1;
+     display: inline-block;
+     vertical-align: top;
+     height: 100%;
+     overflow: auto;
     background-color: #002244;
     padding-top: 20px;
     color: white;
@@ -300,6 +303,13 @@ label.large-label{
 {
    padding:15px 10px;
    line-height:140%;
+}
+.job_Spec_box
+{
+    padding:5px;
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
 }
 .top-margin
 {

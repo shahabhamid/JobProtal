@@ -33,6 +33,8 @@ public class JobPostActivityController {
 	JobSeekerProfileService jobSeekerProfileService;
 	@Autowired
 	RecruiterProfileService recruiterProfileService;
+
+
 	@Autowired
 	UsersService usersService;
 
