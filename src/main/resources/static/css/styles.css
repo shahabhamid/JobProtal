@@ -178,7 +178,8 @@ ul.navbar-nav li.nav-item.active a{
 section.section{
      display: -webkit-flex;
      display: flex;
-     height:100vh
+    height:calc(100vh-80px);
+    overflow: auto;
 }
 
 .sidenav {
@@ -196,6 +197,30 @@ section.section{
   label.color-dull{
       color: #365A7E;
   }
+  .saveBtn
+  {
+        background: #191D34;
+        color: #fff;
+        display: inline-block;
+        padding: 13px 29px 13px 29px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        border: 0;
+        border: 1px solid transparent;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        text-align: center;
+        color: #fff !important;
+        text-transform: capitalize;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+        cursor: pointer;se;
+      cursor: pointer;
+  }
 
 div.sidenav form .form-check{
   margin: 5px;
@@ -206,6 +231,8 @@ article{
    -webkit-flex: 6;
    -ms-flex: 6;
    flex: 6;
+    height:calc(100vh-80px);
+    overflow: auto;
    padding: 10px;
   background-color:#F5F5F5;
 }
@@ -251,9 +278,6 @@ label.large-label{
     margin: 0;
     padding:5px;
 }
-
-.form-group select.form-control{
-    height:54px !important;
 }
 
 
@@ -276,11 +300,9 @@ label.large-label{
     height: 100vh;
     overflow: hidden;
     background-image: linear-gradient(to right, rgba(0,34,68,0.5), rgba(0,34,68,0.5)),url('../assets/woman.jpg');
-    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 .man_background{
 
