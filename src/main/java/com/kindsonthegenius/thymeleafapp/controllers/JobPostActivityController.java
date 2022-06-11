@@ -2,8 +2,6 @@ package com.kindsonthegenius.thymeleafapp.controllers;
 
 import com.kindsonthegenius.thymeleafapp.Utilities.FileUploadUtil;
 import com.kindsonthegenius.thymeleafapp.models.JobPostActivity;
-import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
-import com.kindsonthegenius.thymeleafapp.models.RecruiterProfile;
 import com.kindsonthegenius.thymeleafapp.models.Users;
 import com.kindsonthegenius.thymeleafapp.services.JobPostActivityService;
 import com.kindsonthegenius.thymeleafapp.services.JobSeekerProfileService;
@@ -28,45 +26,28 @@ public class JobPostActivityController {
 
 	@Autowired
 	private JobPostActivityService jobPostActivityService;
-
 	@Autowired
 	JobSeekerProfileService jobSeekerProfileService;
 	@Autowired
 	RecruiterProfileService recruiterProfileService;
-
-
 	@Autowired
 	UsersService usersService;
 
-	@RequestMapping("job-seeker-dashboard/")
+	@RequestMapping("dashboard/")
 	public String displayAllJobs(Model model) {
 		List<JobPostActivity> jobPost = jobPostActivityService.getAll();
 		model.addAttribute("jobPost",jobPost);
-		JobSeekerProfile user = jobSeekerProfileService.getCurrentSeekerProfile();
-		if(user!=null){
-			model.addAttribute("user",user);
-		}
-		return "job-seeker-dashboard";
-	}
-	@RequestMapping("recruiter-dashboard/")
-	public String displayRecruiterJobs(Model model) {
-		List<JobPostActivity> jobPost = jobPostActivityService.getAll();
-		model.addAttribute("jobPost",jobPost);
-		RecruiterProfile user = recruiterProfileService.getCurrentRecruiterProfile();
-		if(user!=null){
-			model.addAttribute("user",user);
-			System.out.println(user);
-		}
-		return "recruiter-dashboard";
-	}
+		model.addAttribute("user",usersService.getCurrentUserProfile());
 
-	@RequestMapping("recruiter-dashboard/add")
+		return "dashboard";
+	}
+	@RequestMapping("dashboard/add")
 	public String addJobs(Model model) {
 		model.addAttribute("jobPostActivity", new JobPostActivity());
 
 		return "add-jobs";
 	}
-	@PostMapping("recruiter-dashboard/addNew")
+	@PostMapping("dashboard/addNew")
 	public String addNew(JobPostActivity jobPostActivity, @RequestParam("image") MultipartFile multipartFile , Model model) throws IOException {
 
 		Users user = usersService.getCurrentUser();

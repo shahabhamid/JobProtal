@@ -12,6 +12,15 @@ public class JobPostActivity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer job_post_id;
+
+    public Integer getJob_post_id() {
+        return job_post_id;
+    }
+
+    public void setJob_post_id(Integer job_post_id) {
+        this.job_post_id = job_post_id;
+    }
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "posted_by_id",referencedColumnName = "user_id")
     private Users posted_by_id;

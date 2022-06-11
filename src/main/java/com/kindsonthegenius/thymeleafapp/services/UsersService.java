@@ -8,6 +8,7 @@ import com.kindsonthegenius.thymeleafapp.repositories.UsersTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +58,23 @@ public class UsersService {
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
 			String currentUserName = authentication.getName();
 			return  usersRepository.findByEmail(currentUserName);
+		}
+		return null;
+	}
+	public Object getCurrentUserProfile(){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken) ) {
+			if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))){
+				RecruiterProfile user = recruiterProfile.getCurrentRecruiterProfile();
+				if(user!=null){
+					return user;
+				}
+			}else{
+				JobSeekerProfile user = seekerProfileService.getCurrentSeekerProfile();
+				if(user!=null){
+					return user;
+				}
+			}
 		}
 		return null;
 	}

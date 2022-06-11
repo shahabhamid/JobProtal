@@ -78,7 +78,7 @@
                     <h4 th:text="${jobDetails.job_title}" class="mt-3">Software Engineer</h4></a>
                     <div class="mt-1">
                         <p th:text="${jobDetails.job_location_id.city+', '+ jobDetails.job_location_id.state}" class="m-0" >  California, USA</p>
-                        <p th:text="${user.company}" >Coipmany</p>
+                        <p th:text="${jobDetails.job_company_id.name}" >Coipmany</p>
                     </div>
             </div>
         </div>

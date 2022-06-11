@@ -1,14 +1,19 @@
 package com.kindsonthegenius.thymeleafapp.Utilities;
 
 import com.kindsonthegenius.thymeleafapp.models.Users;
+import com.kindsonthegenius.thymeleafapp.models.UsersType;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
 
     private Users user;
+
 
     public CustomUserDetails(Users user) {
         this.user = user;
@@ -16,7 +21,11 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        UsersType roles = user.getUser_type_id();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(roles.getUser_type_name()));
+
+        return authorities;
     }
 
     @Override

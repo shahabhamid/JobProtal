@@ -92,23 +92,5 @@ public class RecruiterProfileController {
 
         return "redirect:/recruiter-profile/";
     }
-    @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String update(RecruiterProfile recruiterProfile) {
-        recruiterProfileService.update(recruiterProfile);
-        return "redirect:/students/getAll";
-    }
-
-
-    @RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
-    public String delete(Integer Id) {
-        recruiterProfileService.delete(Id);
-        return "redirect:/students/getAll";
-    }
-
-
-
-
-
-
-
+    
 }

@@ -3,10 +3,7 @@ package com.kindsonthegenius.thymeleafapp.controllers;
 import com.kindsonthegenius.thymeleafapp.models.*;
 import com.kindsonthegenius.thymeleafapp.repositories.JobSeekerApplyRepository;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
-import com.kindsonthegenius.thymeleafapp.services.JobPostActivityService;
-import com.kindsonthegenius.thymeleafapp.services.JobSeekerApplyService;
-import com.kindsonthegenius.thymeleafapp.services.JobSeekerProfileService;
-import com.kindsonthegenius.thymeleafapp.services.RecruiterProfileService;
+import com.kindsonthegenius.thymeleafapp.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,18 +20,17 @@ import java.util.Optional;
 public class JobSeekerApplyController {
 
     @Autowired
-    private JobSeekerApplyRepository jobSeekerApplyRepository;
+    JobSeekerApplyRepository jobSeekerApplyRepository;
     @Autowired
-    private JobSeekerApplyService jobSeekerApplyService ;
+    JobSeekerApplyService jobSeekerApplyService ;
     @Autowired
-    private JobPostActivityService jobPostActivityService ;
+    JobPostActivityService jobPostActivityService ;
     @Autowired
     UsersRepository usersRepository;
-
     @Autowired
     JobSeekerProfileService jobSeekerProfileService;
     @Autowired
-    RecruiterProfileService recruiterProfileService;
+    UsersService usersService;
 
     @RequestMapping("job-details-apply/{id}")
     public String Display(@PathVariable(value = "id") int id,Model model) {
@@ -42,11 +38,7 @@ public class JobSeekerApplyController {
         JobSeekerApply jobSeekerApply = new JobSeekerApply();
         model.addAttribute("jobDetails", jobDetails.get());
         model.addAttribute("applyJob", jobSeekerApply);
-        RecruiterProfile user = recruiterProfileService.getCurrentRecruiterProfile();
-        if(user!=null){
-            model.addAttribute("user",user);
-            System.out.println(user);
-        }
+        model.addAttribute("user",usersService.getCurrentUserProfile());
         return "job-details";
     }
     @RequestMapping("/getOne")
@@ -57,7 +49,7 @@ public class JobSeekerApplyController {
 
     @PostMapping("job-details/apply/{id}")
     public String apply(@PathVariable("id") int id,JobSeekerApply jobSeekerApply) throws Exception {
-        System.out.println(id);
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserName = authentication.getName();
@@ -72,7 +64,6 @@ public class JobSeekerApplyController {
             }else {
                throw new Exception("User Not Present");
             }
-            System.out.println(jobSeekerApply.toString());
             jobSeekerApplyService.addNew(jobSeekerApply);
         }
 

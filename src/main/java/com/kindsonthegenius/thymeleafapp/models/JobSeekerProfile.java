@@ -173,6 +173,13 @@ public class JobSeekerProfile implements Serializable {
         this.currency = currency;
     }
 
+    @Transient
+    public String getPhotosImagePath() {
+        if (profile_photo == null || user_account_id == null) return null;
+
+        return "/user-photos/" + user_account_id + "/" + profile_photo;
+    }
+
     @Override
     public String toString() {
         return "JobSeekerProfile{" +
