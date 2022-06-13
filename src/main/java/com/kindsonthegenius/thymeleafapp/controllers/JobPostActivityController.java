@@ -62,7 +62,7 @@ public class JobPostActivityController {
 		JobPostActivity saved = jobPostActivityService.addNew(jobPostActivity);
 		String uploadDir = "company-photos/" + saved.getJob_company_id().getId();
 		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-		return "redirect:/recruiter-dashboard/";
+		return "redirect:/dashboard/";
 
 	}
 
