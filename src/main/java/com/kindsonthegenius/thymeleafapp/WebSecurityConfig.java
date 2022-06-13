@@ -52,13 +52,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .ignoring()
             .antMatchers("/resources/**","/webjars/**","/*.css","/*.js","/*.js.map","/js/**","/fonts/**");
 
-        web.ignoring().antMatchers("/resources/static/css/**","/resources/static/summernote/**");
+        web.ignoring().antMatchers(
+                "/resources/static/css/**",
+                "/resources/static/summernote/**",
+                "/resources/static/js/**",
+                "/resources/static/assets/**",
+                "/resources/static/fonts/**",
+                "/resources/static/css/bootstrap.min.css"
+                );
 
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/login","/register","/register/**","/webjars/**","/resources/**","/assets/**","/css/**","/summernote/**","/js/**","/*.css","/*.js","/*.js.map","/fonts**")
+                .antMatchers("/",
+                        "/login",
+                        "/register",
+                        "/register/**",
+                        "/webjars/**",
+                        "/resources/**",
+                        "/assets/**",
+                        "/css/**",
+                        "/summernote/**",
+                        "/js/**",
+                        "/*.css",
+                        "/*.js",
+                        "/*.js.map",
+                        "/fonts**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

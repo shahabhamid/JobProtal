@@ -2,7 +2,7 @@ package com.kindsonthegenius.thymeleafapp.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Blob;
+import java.util.List;
 
 @Entity
 
@@ -18,12 +18,36 @@ public class JobSeekerProfile implements Serializable {
     private String city;
     private String state;
     private String country;
-    private Blob resume;
-    private Blob profile_photo;
-    private Integer current_salary;
-    private String salary_type;
-    private String currency;
+    private String workAuthorization;
+    private String employmentType;
+    private String resume;
+    private String profile_photo;
 
+    public List<Skills> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skills> skills) {
+        this.skills = skills;
+    }
+
+    @OneToMany
+    private List<Skills> skills;
+    public String getWorkAuthorization() {
+        return workAuthorization;
+    }
+
+    public void setWorkAuthorization(String workAuthorization) {
+        this.workAuthorization = workAuthorization;
+    }
+
+    public String getEmploymentType() {
+        return employmentType;
+    }
+
+    public void setEmploymentType(String employmentType) {
+        this.employmentType = employmentType;
+    }
 
     public JobSeekerProfile() {
 
@@ -53,24 +77,12 @@ public class JobSeekerProfile implements Serializable {
         last_name = last_name;
     }
 
-    public Integer getcurrent_salary() {
-        return current_salary;
-    }
-
     public void setcurrent_salary(Integer current_salary) {
         current_salary = current_salary;
     }
 
-    public String getsalary_type() {
-        return salary_type;
-    }
-
     public void setsalary_type(String salary_type) {
         salary_type = salary_type;
-    }
-
-    public String getcurrency() {
-        return currency;
     }
 
     public void setcurrency(String currency) {
@@ -133,45 +145,22 @@ public class JobSeekerProfile implements Serializable {
         this.country = country;
     }
 
-    public Blob getResume() {
+    public String getResume() {
         return resume;
     }
 
-    public void setResume(Blob resume) {
+    public void setResume(String resume) {
         this.resume = resume;
     }
 
-    public Blob getProfile_photo() {
+    public String getProfile_photo() {
         return profile_photo;
     }
 
-    public void setProfile_photo(Blob profile_photo) {
+    public void setProfile_photo(String profile_photo) {
         this.profile_photo = profile_photo;
     }
 
-    public Integer getCurrent_salary() {
-        return current_salary;
-    }
-
-    public void setCurrent_salary(Integer current_salary) {
-        this.current_salary = current_salary;
-    }
-
-    public String getSalary_type() {
-        return salary_type;
-    }
-
-    public void setSalary_type(String salary_type) {
-        this.salary_type = salary_type;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
 
     @Transient
     public String getPhotosImagePath() {
@@ -187,9 +176,14 @@ public class JobSeekerProfile implements Serializable {
                 ", user_id=" + user_id +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
-                ", current_salary=" + current_salary +
-                ", salary_type='" + salary_type + '\'' +
-                ", currency='" + currency + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", workAuthorization='" + workAuthorization + '\'' +
+                ", employmentType='" + employmentType + '\'' +
+                ", resume='" + resume + '\'' +
+                ", profile_photo='" + profile_photo + '\'' +
+                ", skills=" + skills.toString() +
                 '}';
     }
 }

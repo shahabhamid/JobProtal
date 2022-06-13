@@ -1,6 +1,7 @@
 package com.kindsonthegenius.thymeleafapp.controllers;
 
 import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
+import com.kindsonthegenius.thymeleafapp.models.Skills;
 import com.kindsonthegenius.thymeleafapp.models.Users;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
 import com.kindsonthegenius.thymeleafapp.services.JobSeekerProfileService;
@@ -11,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -61,10 +63,53 @@ public class JobSeekerProfileController {
 		return profileRepo.getOne(Id);
 	}
 
-	@PostMapping("/save")
-	public String addNew(@Valid @RequestBody JobSeekerProfile profile)  {
-		profileRepo.addNew(profile);
+	@PostMapping("/addNew")
+	public String addNew(@Valid JobSeekerProfile profile, @RequestParam("image") MultipartFile multipartFile , Model model)  {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			String currentUserName = authentication.getName();
+			Users user = usersRepository.findByEmail(currentUserName);
+			profile.setUser_id(user);
+			profile.setUser_account_id(user.getUser_id());
+		}
+		model.addAttribute("profile",profile);
+
+		System.out.println(profile.getCity());
+		System.out.println(profile.getCountry());
+		System.out.println(profile.getEmploymentType());
+		for(Skills s :profile.getSkills()){
+			System.out.println(s.toString());
+		}
+		//String fileName = StringUtils.cleanPath((Objects.requireNonNull(multipartFile.getOriginalFilename())));
+
+
 		return "redirect:/job-seeker-profile/new";
 	}
+/*
+
+	@PostMapping("/addNew")
+	public String addNew(RecruiterProfile recruiterProfile, @RequestParam("image") MultipartFile multipartFile , Model model) throws IOException {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			String currentUserName = authentication.getName();
+			Users user = usersRepository.findByEmail(currentUserName);
+			recruiterProfile.setUser_id(user);
+			recruiterProfile.setUser_account_id(user.getUser_id());
+		}
+
+		model.addAttribute("profile",recruiterProfile);
+		String fileName = StringUtils.cleanPath((Objects.requireNonNull(multipartFile.getOriginalFilename())));
+		recruiterProfile.setProfile_photo(fileName);
+
+		RecruiterProfile savedUser = recruiterProfileService.addNew(recruiterProfile);
+
+		String uploadDir = "user-photos/" + savedUser.getUser_account_id();
+		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+
+		return "redirect:/recruiter-profile/";
+	}
+*/
 
 }
