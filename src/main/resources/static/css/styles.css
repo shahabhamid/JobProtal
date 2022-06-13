@@ -1,15 +1,21 @@
+html{
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
 * {
-box-sizing: border-box;
+box-sizing: inherit;
 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
 body{
     font-family: "Roboto", sans-serif;
     font-weight: normal;
     font-style: normal;
     padding: 0;
     margin: 0;
-
-
+    height: 100%;
+    width: 100%;
 }
 a:focus,
 .button:focus, button:focus {
@@ -28,7 +34,7 @@ a:hover,
 
 .background {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
     background-image: linear-gradient(to right, rgba(0,34,68,0.8), rgba(0,34,68,0.8)),url('../assets/pic1.jpg');
     background-position: center;
@@ -176,22 +182,19 @@ ul.navbar-nav li.nav-item.active a{
 }
 
 section.section{
-     display: -webkit-flex;
-     display: flex;
-     height:100vh
+      display:        flex;
+      flex-direction: row;
+      align-items:    stretch;
+      height: calc(100% - 80px);
 }
 
 .sidenav {
-    -webkit-flex: 1;
-    -ms-flex: 1;
-     flex: 1;
-     display: inline-block;
-     vertical-align: top;
-     height: 100%;
      overflow: auto;
-    background-color: #002244;
-    padding-top: 20px;
-    color: white;
+     background-color: #002244;
+     padding-top: 20px;
+     color: white;
+     width: 300px;
+     flex: 0 0 auto;
   }
   label.color-dull{
       color: #365A7E;
@@ -203,11 +206,10 @@ div.sidenav form .form-check{
  }
 
 article{
-   -webkit-flex: 6;
-   -ms-flex: 6;
-   flex: 6;
    padding: 10px;
-  background-color:#F5F5F5;
+   background-color:#F5F5F5;
+   flex: 1 1 auto;
+   overflow-y: auto;
 }
 div.box{
     border-radius:25px;

@@ -55,8 +55,6 @@ public class RecruiterProfileController {
             Optional<RecruiterProfile> recruiterProfiles = recruiterProfileService.getOne(user.getUser_id());
             if(recruiterProfiles.isPresent()) {
                 recruiterProfile = recruiterProfiles.get();
-                System.out.println(recruiterProfiles.get().toString());
-
             }
             model.addAttribute("profile",recruiterProfile);
 
@@ -82,15 +80,22 @@ public class RecruiterProfileController {
         }
 
         model.addAttribute("profile",recruiterProfile);
-        String fileName = StringUtils.cleanPath((Objects.requireNonNull(multipartFile.getOriginalFilename())));
-        recruiterProfile.setProfile_photo(fileName);
+        String fileName="";
+        if(!multipartFile.getOriginalFilename().equals("")){
+            fileName = StringUtils.cleanPath((Objects.requireNonNull(multipartFile.getOriginalFilename())));
+            recruiterProfile.setProfile_photo(fileName);
+        }
+
 
         RecruiterProfile savedUser = recruiterProfileService.addNew(recruiterProfile);
 
         String uploadDir = "user-photos/" + savedUser.getUser_account_id();
-        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        try{
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        }catch (Exception ex){ex.printStackTrace();}
 
-        return "redirect:/recruiter-profile/";
+
+        return "redirect:/dashboard/";
     }
     
 }
