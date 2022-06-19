@@ -12,9 +12,21 @@ public class Skills {
     private String experienceLevel;
     private String yearsOfExperience;
 
-    @ManyToOne
-    @JoinColumn(name = "job_seeker_profile_id")
+    @ManyToOne( cascade = {
+            CascadeType.ALL
+    })
+    @JoinColumn(name = "user_account_id")
     private JobSeekerProfile jobSeekerProfile;
+
+    public Skills() {
+    }
+
+    public Skills(Integer id, String name, String experienceLevel, String yearsOfExperience) {
+        Id = id;
+        this.name = name;
+        this.experienceLevel = experienceLevel;
+        this.yearsOfExperience = yearsOfExperience;
+    }
 
     public JobSeekerProfile getJobSeekerProfile() {
         return jobSeekerProfile;

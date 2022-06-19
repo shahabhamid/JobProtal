@@ -28,8 +28,8 @@ public class JobSeekerProfileService {
 	public Optional<JobSeekerProfile> getOne(Integer Id) {
 		return jobSeekerProfileRepository.findById(Id);
 	}
-	public void addNew(JobSeekerProfile jobSeekerProfile) {
-		jobSeekerProfileRepository.save(jobSeekerProfile);
+	public JobSeekerProfile addNew(JobSeekerProfile jobSeekerProfile) {
+		return jobSeekerProfileRepository.save(jobSeekerProfile);
 	}
 	public void update(JobSeekerProfile jobSeekerProfile) {
 		jobSeekerProfileRepository.save(jobSeekerProfile);

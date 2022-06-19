@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+
+
+    <link rel="stylesheet" href="../static/css/styles.css" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" />
 
 
     <link th:rel="stylesheet" type="text/css" media="all" th:href="@{/summernote/summernote-bs4.css}"/>
@@ -14,287 +19,88 @@
 
 <body>
 
-<!-- header-start -->
-<header>
-    <div class="header-area">
-        <div id="sticky-header" class="main-header-area">
-            <div class="container-fluid">
-                <div class="header_bottom_border">
-                    <div class="row align-items-center">
-                        <div class="col-xl-3 col-lg-2">
-                            <div class="logo_left">
-                                <label><a href="/">hotdevjobs</a><span class="logo_com"> .com</span></label>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-7">
-                            <div class="main-menu d-none d-lg-block">
-                                <nav>
-                                    <ul id="navigation">
-                                        <li><a href="/">home</a></li>
-                                        <li><a href="/add-jobs/">Post New job</a></li>
-                                        <li><a href="/add-post/">View Your Jobs</a></li>
-                                        <li><a href="/recruiter-profile/">Edit Account</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="Appointment">
-                                <div class="d-none d-lg-block">
-                                    <a class="boxed-btn3" href="#">Logout</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
-                        </div>
+<div style="display: flex">
+    <div class="col-5 girl_background">
+        <div class="logo_left mt-3 pt-4 ml-5 pl-5">
+            <h2 class="logo" style="color: white">
+                hotdevjobs <span class="logo_com">.com</span>
+            </h2>
+        </div>
+    </div>
+    <div class="col-7 container myForm">
+        <form id="job-main-form" th:action="@{/dashboard/addNew}" th:object="${jobPostActivity}" method="post" class="job-add-form">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-center pt-3">
+                        <h1 class="heading_font font-weight-bold">Post New Job</h1>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</header>
-<!-- header-end -->
-<!-- bradcam_area  -->
-<div class="bradcam_area bradcam_bg_1">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="bradcam_text">
-                    <h3>Post New Job</h3>
+            <label class="heading_font font_sub_heading_color">Job Details</label>
+            <div class="row" >
+                <div class="col-lg-12 form-group">
+                    <input id="title" type="text" th:field="*{job_title}" class="form-control" placeholder="Job Title">
                 </div>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <select id="type" th:field="*{job_type}" class="form-control">
+                        <option value="" >Employment Type</option>
+                        <option th:value="Full-time" >Full-time</option>
+                        <option th:value="Part-time" >Part-time</option>
+                        <option th:value="Freelance" >Freelance</option>
+                        <option th:value="Internship" >Internship</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <select id="remote" th:field="*{remote}" class="form-control">
+                        <option value="">Select a Remote</option>
+                        <option th:value="Remote-Only">Remote-Only</option>
+                        <option th:value="Office-Only">Office-Only</option>
+                        <option th:value="Partial-Remote"> Partial-Remote</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <input id="salary" th:field="*{salary}" type="text" class="form-control" placeholder="Salary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label class="mt-2 heading_font font_sub_heading_color">Description</label>
+                    <textarea type="text" rows="4" id="content" placeholder="Content" class="form-control"
+                              th:field="*{description_of_job}" autocomplete="off"></textarea>
+                </div>
+            </div>
+
+            <label class="mt-2 heading_font font_sub_heading_color">Location</label>
+            <div class="row" >
+                <div class="col-md-4 form-group">
+                    <input th:field="*{job_location_id.city}" id="city" type="text"  class="form-control" placeholder="City">
+                </div>
+                <div class="col-md-4 form-group">
+                    <input id="state" th:field="*{job_location_id.state}" type="text"  class="form-control" placeholder="State">
+                </div>
+                <div class="col-md-4 form-group">
+                    <input id="country" th:field="*{job_location_id.country}" type="text"  class="form-control" placeholder="Country">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 form-group">
+                    <label class="mt-2 heading_font font_sub_heading_color">Company</label>
+                    <input id="company_name" th:field="*{job_company_id.name}" type="text" class="form-control" placeholder="Company Name">
+                </div>
+            </div>
+
+            <div class="row mt-4" >
+                <div class="col d-flex justify-content-center">
+                    <button type="submit" name="submit" class="btn btn-primary base_button px-4 py-2 mb-5">Save</button>
+                </div>
+            </div>
+        </form>
+
     </div>
 </div>
-<!--/ bradcam_area  -->
-<section>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <form  enctype="multipart/form-data" id="job-main-form" th:action="@{/dashboard/addNew}" th:object="${jobPostActivity}" method="post" class="job-add-form">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h3>Job details</h3>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-lg-12 form-group">
-                            <label for="title">Job Title</label>
-                            <input id="title" type="text" th:field="*{job_title}" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            <label for="type">Employment Type</label>
-                            <select id="type" th:field="*{job_type}" class="form-control">
-                                <option th:value="Full-time" >Full-time</option>
-                                <option th:value="Part-time" >Part-time</option>
-                                <option th:value="Freelance" >Freelance</option>
-                                <option th:value="Internship" >Internship</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="remote">Remote</label>
-                            <select id="remote" th:field="*{remote}" class="form-control">
-                                <option th:value="Remote-Only">Remote-Only</option>
-                                <option th:value="Office-Only">Office-Only</option>
-                                <option th:value="Partial-Remote"> Partial-Remote</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="salary">Salary</label>
-                            <input id="salary" th:field="*{salary}" type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 form-group">
-                            <label for="content">Job Description:</label>
-                            <textarea type="text" rows="4" id="content" placeholder="Content" class="form-control"
-                                      th:field="*{description_of_job}" autocomplete="off"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <hr class="margin-bottom--big">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h4>Location</h4>
-                            <hr>
-                        </div>
-                    </div>
-
-                    <div class="row" >
-                        <div class="col-md-6 form-group">
-                            <label for="city">City</label>
-                            <input th:field="*{job_location_id.city}" id="city" type="text"  class="form-control">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label for="state">State</label>
-                            <input id="state" th:field="*{job_location_id.state}" type="text"  class="form-control">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label for="zip">ZIP</label>
-                            <input id="zip" th:field="*{job_location_id.zip}" type="text"  class="form-control">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label for="country">Country</label>
-                            <input id="country" th:field="*{job_location_id.country}" type="text"  class="form-control">
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <hr class="margin-bottom--big">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h4>Company details</h4>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12 form-group">
-                            <label for="company_name">Company name</label>
-                            <input id="company_name" th:field="*{job_company_id.name}" type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12 form-group">
-                            <label for="company_description">Company Description</label>
-                            <textarea id="company_description" th:field="*{job_company_id.description}" rows="3" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 form-group">
-                            <label for="company_website">Website</label>
-                            <input id="company_website"  th:field="*{job_company_id.website}" type="url" class="form-control">
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <label for="company_logo">Logo</label>
-                            <input id="company_logo" type="file" name="image" class="form-control" accept="image/png, image/jpeg" />
-                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <hr>
-                            <button type="submit" class="btn btn-outline-white-primary"> <i class="fa fa-magic"></i> Save and publish</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-<footer class="footer mt-5">
-    <div class="footer_top">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-3 col-md-6 col-lg-3">
-                    <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                        <div class="footer_logo">
-                            <a href="#">
-                                <img src="img/logo.png" alt="">
-                            </a>
-                        </div>
-                        <p>
-                            finloan@support.com <br>
-                            +10 873 672 6782 <br>
-                            600/D, Green road, NewYork
-                        </p>
-                        <div class="socail_links">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <i class="ti-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-xl-2 col-md-6 col-lg-2">
-                    <div class="footer_widget wow fadeInUp" data-wow-duration="1.1s" data-wow-delay=".4s">
-                        <h3 class="footer_title">
-                            Company
-                        </h3>
-                        <ul>
-                            <li><a href="#">About </a></li>
-                            <li><a href="#"> Pricing</a></li>
-                            <li><a href="#">Carrier Tips</a></li>
-                            <li><a href="#">FAQ</a></li>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 col-lg-3">
-                    <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
-                        <h3 class="footer_title">
-                            Category
-                        </h3>
-                        <ul>
-                            <li><a href="#">Design & Art</a></li>
-                            <li><a href="#">Engineering</a></li>
-                            <li><a href="#">Sales & Marketing</a></li>
-                            <li><a href="#">Finance</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 col-lg-4">
-                    <div class="footer_widget wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".6s">
-                        <h3 class="footer_title">
-                            Subscribe
-                        </h3>
-                        <form action="#" class="newsletter_form">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit">Subscribe</button>
-                        </form>
-                        <p class="newsletter_text">Esteem spirit temper too say adieus who direct esteem esteems
-                            luckily.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="copy-right_text wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".3s">
-        <div class="container">
-            <div class="footer_border"></div>
-            <div class="row">
-                <div class="col-xl-12">
-                    <p class="copy_right text-center">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
 
 <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
@@ -305,7 +111,7 @@
 <script>
 console.log($('#content'));
     $('#content').summernote({
-        height: 200
+        height: 100
     });
 </script>
 

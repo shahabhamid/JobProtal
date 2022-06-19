@@ -2,7 +2,6 @@ package com.kindsonthegenius.thymeleafapp.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 
@@ -23,16 +22,7 @@ public class JobSeekerProfile implements Serializable {
     private String resume;
     private String profile_photo;
 
-    public List<Skills> getSkills() {
-        return skills;
-    }
 
-    public void setSkills(List<Skills> skills) {
-        this.skills = skills;
-    }
-
-    @OneToMany
-    private List<Skills> skills;
     public String getWorkAuthorization() {
         return workAuthorization;
     }
@@ -183,7 +173,6 @@ public class JobSeekerProfile implements Serializable {
                 ", employmentType='" + employmentType + '\'' +
                 ", resume='" + resume + '\'' +
                 ", profile_photo='" + profile_photo + '\'' +
-                ", skills=" + skills.toString() +
                 '}';
     }
 }

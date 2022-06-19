@@ -5,22 +5,19 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head>
     <meta charset="UTF-8" />
-    <title>Candidate Dashboard</title>
+    <title>Dashboard</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-     <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/styles.css}" />
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/font-awesome.min.css}" />
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/6.1.0/css/all.css}" />
 
   </head>
 
   <body>
-  <section layout:fragment="navbar">
-
-  </section>
     <header class="navbar navbar-expand-lg navbar-dark">
       <label class="mt-2 ml-5 font-weight-bold h5"
         ><a href="/">hotdevjobs</a
@@ -44,30 +41,32 @@
         <ul class="navbar-nav m-auto mt-2 mt-lg-0">
 
           <li class="nav-item active">
-            <a sec:authorize="hasAuthority('Job Seeker')" class="nav-link" href="#"
-              >Search for Jobs</a
+            <a sec:authorize="hasAuthority('Job Seeker')" class="nav-link" th:href="@{/dashboard/}"
+              ><i class="fas fa-search"></i>Search for Jobs</a
             >
           </li>
           <li class="nav-item ">
-            <a sec:authorize="hasAuthority('Job Seeker')"  class="nav-link" href="#">View Saved Jobs</a>
+            <a sec:authorize="hasAuthority('Job Seeker')"  class="nav-link" href="#">
+              <i class="fa-solid fa-eye"></i>View Saved Jobs</a>
           </li>
           <li class="nav-item ">
-            <a sec:authorize="hasAuthority('Job Seeker')"  class="nav-link" href="#">Edit Profile</a>
+            <a sec:authorize="hasAuthority('Job Seeker')"  class="nav-link" th:href="@{/job-seeker-profile/}">
+              <i class="fa-solid fa-pencil"></i>Edit Profile</a>
           </li>
 
           <li class="nav-item ">
             <a sec:authorize="hasAuthority('Recruiter')" class="nav-link" th:href="@{/dashboard/add}"
-            >Post New Job</a
+            ><i class="fa-solid fa-file-circle-plus"></i>Post New Job</a
             >
           </li>
           <li class="nav-item active">
             <a sec:authorize="hasAuthority('Recruiter')" class="nav-link" th:href="@{/dashboard/}"
-            >View Your Jobs</a
+            > <i class="fa-solid fa-eye"></i>View Your Jobs</a
             >
           </li>
           <li class="nav-item ">
             <a sec:authorize="hasAuthority('Recruiter')" class="nav-link"  th:href="@{/recruiter-profile/}"
-            >Edit Account</a
+            > <i class="fa-solid fa-pencil"></i>Edit Account</a
             >
           </li>
 
@@ -88,16 +87,19 @@
           <div sec:authorize="hasAuthority('Job Seeker')" >
             <label class="text-uppercase color-dull font-weight-bold">Filter Results</label>
             <hr />
-            <form action="#">
+            <form id="myForm" th:action="@{/dashboard/search/}">
               <div class="row">
                 <div class="col-lg-12">
                   <label>Employment Type</label>
                   <div class="form-check">
+
                     <input
                             class="form-check-input"
                             type="checkbox"
-                            value=""
+                            th:checked="${partTime}"
                             id="part-time"
+                            name="partTime"
+                            th:value="Part-Time"
                     />
                     <label class="form-check-label" for="part-time">
                       Part-Time
@@ -107,8 +109,10 @@
                     <input
                             class="form-check-input"
                             type="checkbox"
-                            value=""
                             id="full-time"
+                            th:checked="${fullTime}"
+                            name="fullTime"
+                            th:value="Full-Time"
                     />
                     <label class="form-check-label" for="full-time">
                       Full-Time
@@ -120,6 +124,9 @@
                             type="checkbox"
                             value=""
                             id="freelance"
+                            th:value="Freelance"
+                            name="freelance"
+                            th:checked="${freelance}"
                     />
                     <label class="form-check-label" for="freelance">
                       Freelance
@@ -132,8 +139,10 @@
                     <input
                             class="form-check-input"
                             type="checkbox"
-                            value=""
                             id="remote-only"
+                            th:value="Remote-Only"
+                            name="remoteOnly"
+                            th:checked="${remoteOnly}"
                     />
                     <label class="form-check-label" for="remote-only">
                       Remote-Only
@@ -143,8 +152,10 @@
                     <input
                             class="form-check-input"
                             type="checkbox"
-                            value=""
                             id="Office-Only"
+                            th:value="Office-Only"
+                            name="officeOnly"
+                            th:checked="${officeOnly}"
                     />
                     <label class="form-check-label" for="Office-Only">
                       Office-Only
@@ -154,8 +165,10 @@
                     <input
                             class="form-check-input"
                             type="checkbox"
-                            value=""
                             id="partial-remote"
+                            th:value="Partial-Remote"
+                            name="partialRemote"
+                            th:checked="${partialRemote}"
                     />
                     <label class="form-check-label" for="partial-remote">
                       Partial-Remote
@@ -168,8 +181,9 @@
                     <input
                             class="form-check-input"
                             type="checkbox"
-                            value=""
                             id="today"
+                            name="today"
+                            th:checked="${today}"
                     />
                     <label class="form-check-label" for="today"> Today </label>
                   </div>
@@ -177,8 +191,9 @@
                     <input
                             class="form-check-input"
                             type="checkbox"
-                            value=""
                             id="7days"
+                            name="days7"
+                            th:checked="${days7}"
                     />
                     <label class="form-check-label" for="7days">
                       Last 7 Days
@@ -188,8 +203,9 @@
                     <input
                             class="form-check-input"
                             type="checkbox"
-                            value=""
                             id="30days"
+                            name="days30"
+                            th:checked="${days30}"
                     />
                     <label class="form-check-label" for="30days">
                       Last 30 Days
@@ -197,6 +213,8 @@
                   </div>
                 </div>
               </div>
+              <input id="hidJob" name="job" th:value="${job}" hidden>
+              <input id="hidLoc" name="location" th:value="${location}" hidden>
             </form>
           </div>
         </div>
@@ -205,9 +223,9 @@
         <div class="box" sec:authorize="hasAuthority('Job Seeker')">
           <h1 class="primary-title">Candidate Dashboard</h1>
           <div class="inner">
-            <input class="radius-left" type="text" placeholder="Search for a job"/>
-            <input class="" type="text" placeholder="Search for a job"/>
-            <button class="radius-right"><i class="fa fa-search"></i></button>
+            <input id="job" class="radius-left" type="text" placeholder="Search for a job" name="job"  th:value="${job}" />
+            <input id="loc" class="" type="text" placeholder="Job Location" name="location" th:value="${location}"/>
+            <button class="radius-right" type="submit" form="myForm"><i class="fa fa-search"></i></button>
           </div>
         </div>
 
@@ -260,9 +278,13 @@
     <script type="text/javascript" th:src="@{/js/main.js}"></script>
 
     <script>
-    $(".demo").click( function() {
-  window.location.href="link1.html";
- });
+
+      $('#job').change(function() {
+        $('#hidJob').val($(this).val());
+      });
+      $('#loc').change(function() {
+        $('#hidLoc').val($(this).val());
+      });
     </script>
   </body>
 </html>

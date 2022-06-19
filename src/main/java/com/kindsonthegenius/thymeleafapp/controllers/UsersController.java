@@ -52,7 +52,7 @@ public class UsersController {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		return "redirect:/job-post/";
+		return "redirect:/dashboard/";
 	}
 
 
