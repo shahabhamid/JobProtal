@@ -14,17 +14,16 @@ public class JobLocation {
     private String city;
     private String state;
     private String country;
-    private String zip;
     public JobLocation() {
 
     }
 
-    public JobLocation(Integer id, String city, String state, String country, String zip) {
+    public JobLocation(Integer id, String city, String state, String country) {
         Id = id;
         this.city = city;
         this.state = state;
         this.country = country;
-        this.zip = zip;
+
     }
 
     public Integer getId() {
@@ -59,13 +58,6 @@ public class JobLocation {
         this.country = country;
     }
 
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
 
     @Override
     public String toString() {
@@ -74,7 +66,6 @@ public class JobLocation {
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +
-                ", zip=" + zip +
                 '}';
     }
 }

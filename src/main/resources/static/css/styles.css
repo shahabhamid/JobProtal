@@ -408,6 +408,25 @@ a.color-text,a.color-text:hover{
 .btn-sec.btn-black{
    background: #191D34;
 }
-
-
-
+span.title-span{
+    font-size: 14px;
+    font-weight: 400;
+}
+div.centerCandidate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.candidatesApplied{
+    font-family: 'Montserrat';
+    font-style: normal;
+    padding: 15px;
+    background-color: #002244;
+    color: white;
+    border-radius: 10px;
+    line-height:0.75;
+}
+.candidatesApplied>label{
+    margin-bottom:20px;
+    font-weight: 700;
+}

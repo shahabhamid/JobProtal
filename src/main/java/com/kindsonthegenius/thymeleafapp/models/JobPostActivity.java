@@ -13,15 +13,7 @@ public class JobPostActivity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer job_post_id;
 
-    public Integer getJob_post_id() {
-        return job_post_id;
-    }
-
-    public void setJob_post_id(Integer job_post_id) {
-        this.job_post_id = job_post_id;
-    }
-
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "posted_by_id",referencedColumnName = "user_id")
     private Users posted_by_id;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -44,6 +36,12 @@ public class JobPostActivity implements Serializable {
 
     public JobPostActivity() {
 
+    }
+    public JobPostActivity(Integer id, String job_title,JobLocation job_location_id, JobCompany job_company_id) {
+        job_post_id = id;
+        this.job_title = job_title;
+        this.job_company_id = job_company_id;
+        this.job_location_id = job_location_id;
     }
 
     public JobPostActivity(Integer id, Users posted_by_id, JobLocation job_location_id, Boolean is_active, String description_of_job, String job_type, String salary, String remote, Date posted_date, String job_title) {
@@ -163,5 +161,11 @@ public class JobPostActivity implements Serializable {
         this.job_company_id = job_company_id;
     }
 
+    public Integer getJob_post_id() {
+        return job_post_id;
+    }
 
+    public void setJob_post_id(Integer job_post_id) {
+        this.job_post_id = job_post_id;
+    }
 }

@@ -79,7 +79,7 @@
         />
         <label th:text="${user.first_name+' '+user.last_name}" class="nav-item nav-link px-2 mr-3">Shahab Hamid</label>
 
-        <button class="myBtn-light mr-5">Logout</button>
+        <button class="myBtn-light mr-5" onclick="window.location.href='/logout'">Logout</button>
       </div>
     </header>
     <section class="section">
@@ -87,7 +87,7 @@
           <div sec:authorize="hasAuthority('Job Seeker')" >
             <label class="text-uppercase color-dull font-weight-bold">Filter Results</label>
             <hr />
-            <form id="myForm" th:action="@{/dashboard/search/}">
+            <form id="myForm" th:action="@{/dashboard/}">
               <div class="row">
                 <div class="col-lg-12">
                   <label>Employment Type</label>
@@ -241,8 +241,12 @@
           <div onclick="window.location=/job-details-apply/{id}(id=${jobPost.job_post_id})" class="job-row" >
               <div class="row ">
                 <div class="col-md-4">
-                  <label th:text="${jobPost.job_title}" class="job-title text-left">Job Title</label>
-                </div >
+                  <label class="job-title text-left">
+                    [[${jobPost.job_title}]]
+                    <span class="title-span" sec:authorize="hasAuthority('Recruiter')" th:text="'('+ @{${jobPost.totalCandidates}}+' Candidates Applied)'">(xx candidates applied)</span>
+
+                  </label>
+                   </div >
                 <div class="col-md-4 text-center">
                   <label th:text="${jobPost.job_location_id.city+', '+ jobPost.job_location_id.state}"> City  State</label>
                 </div>

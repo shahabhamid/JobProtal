@@ -1,6 +1,7 @@
 
 package com.kindsonthegenius.thymeleafapp.services;
 
+import com.kindsonthegenius.thymeleafapp.models.JobPostActivity;
 import com.kindsonthegenius.thymeleafapp.models.JobSeekerApply;
 import com.kindsonthegenius.thymeleafapp.repositories.JobSeekerApplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class JobSeekerApplyService {
 	private JobSeekerApplyRepository jobSeekerApplyRepository;
 	public List<JobSeekerApply> getAll() {
 		return (List<JobSeekerApply>) jobSeekerApplyRepository.findAll();
+	}
+	public List<JobSeekerApply> getJobCandidates(JobPostActivity job) {
+		return (List<JobSeekerApply>) jobSeekerApplyRepository.findByJob(job);
 	}
 	public Optional<JobSeekerApply> getOne(Integer Id) {
 		return jobSeekerApplyRepository.findById(Id);

@@ -1,6 +1,7 @@
 package com.kindsonthegenius.thymeleafapp.repositories;
 
 import com.kindsonthegenius.thymeleafapp.models.JobPostActivity;
+import com.kindsonthegenius.thymeleafapp.models.RecruiterJobs;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -23,4 +24,15 @@ public interface JobPostActivityRepository extends CrudRepository<JobPostActivit
                                         @Param("remote") List<String> remote,
                                         @Param("type") List<String> type,
                                         @Param("date") LocalDate date);
+
+    @Query(value = " SELECT COUNT(s.user_account_id) as totalCandidates,j.job_post_id,j.job_title,l.id as locationId,l.city,l.state,l.country,c.id as companyId,c.name FROM job_post_activity j " +
+            " inner join job_location l " +
+            " on j.job_location_id = l.id " +
+            " INNER join job_company c  " +
+            " on j.job_company_id = c.id " +
+            " left join job_seeker_apply s " +
+            " on s.job = j.job_post_id " +
+            " where j.posted_by_id = :recruiter " +
+            " GROUP By j.job_post_id" ,nativeQuery = true)
+    public List<RecruiterJobs> getRecruiterJobs(@Param("recruiter") int recruiter);
 }

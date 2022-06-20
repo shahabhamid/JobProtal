@@ -1,9 +1,14 @@
 package com.kindsonthegenius.thymeleafapp.controllers;
 
-import com.kindsonthegenius.thymeleafapp.models.*;
-import com.kindsonthegenius.thymeleafapp.repositories.JobSeekerApplyRepository;
+import com.kindsonthegenius.thymeleafapp.models.JobPostActivity;
+import com.kindsonthegenius.thymeleafapp.models.JobSeekerApply;
+import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
+import com.kindsonthegenius.thymeleafapp.models.Users;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
-import com.kindsonthegenius.thymeleafapp.services.*;
+import com.kindsonthegenius.thymeleafapp.services.JobPostActivityService;
+import com.kindsonthegenius.thymeleafapp.services.JobSeekerApplyService;
+import com.kindsonthegenius.thymeleafapp.services.JobSeekerProfileService;
+import com.kindsonthegenius.thymeleafapp.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,14 +18,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 
 @Controller
 public class JobSeekerApplyController {
 
-    @Autowired
-    JobSeekerApplyRepository jobSeekerApplyRepository;
     @Autowired
     JobSeekerApplyService jobSeekerApplyService ;
     @Autowired
@@ -35,7 +39,11 @@ public class JobSeekerApplyController {
     @RequestMapping("job-details-apply/{id}")
     public String Display(@PathVariable(value = "id") int id,Model model) {
         Optional<JobPostActivity> jobDetails = jobPostActivityService.getOne(id);
+        List<JobSeekerApply> jobSeekerApplyList = jobSeekerApplyService.getJobCandidates(jobDetails.get());
+
+
         JobSeekerApply jobSeekerApply = new JobSeekerApply();
+        model.addAttribute("applyList",jobSeekerApplyList);
         model.addAttribute("jobDetails", jobDetails.get());
         model.addAttribute("applyJob", jobSeekerApply);
         model.addAttribute("user",usersService.getCurrentUserProfile());
@@ -59,7 +67,7 @@ public class JobSeekerApplyController {
             Optional<JobPostActivity> jobPostActivity = jobPostActivityService.getOne(id);
             if(one.isPresent() && jobPostActivity.isPresent()){
                 jobSeekerApply.setUser_id(one.get());
-                jobSeekerApply.setJob_post_id(jobPostActivity.get());
+                jobSeekerApply.setJob(jobPostActivity.get());
                 jobSeekerApply.setApply_date(new Date());
             }else {
                throw new Exception("User Not Present");

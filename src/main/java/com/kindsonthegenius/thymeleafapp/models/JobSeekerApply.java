@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(uniqueConstraints={
-        @UniqueConstraint(columnNames = {"user_account_id", "job_post_id"})
+        @UniqueConstraint(columnNames = {"user_account_id", "job"})
 })
 public class JobSeekerApply implements Serializable {
     @Id
@@ -19,8 +19,8 @@ public class JobSeekerApply implements Serializable {
     @JoinColumn(name = "user_account_id",referencedColumnName = "user_account_id")
     private JobSeekerProfile user_id;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "job_post_id",referencedColumnName = "job_post_id")
-    private JobPostActivity job_post_id;
+    @JoinColumn(name = "job",referencedColumnName = "job_post_id")
+    private JobPostActivity job;
     @DateTimeFormat(pattern="dd-MM-yyyy")
     private Date apply_date;
     private String cover_letter;
@@ -32,7 +32,7 @@ public class JobSeekerApply implements Serializable {
     public JobSeekerApply(Integer user_account, JobSeekerProfile user_id, JobPostActivity job_post_id, Date apply_date, String cover_letter) {
         this.id = user_account;
         this.user_id = user_id;
-        this.job_post_id = job_post_id;
+        this.job = job_post_id;
         this.apply_date = apply_date;
         this.cover_letter = cover_letter;
     }
@@ -47,12 +47,12 @@ public class JobSeekerApply implements Serializable {
         this.user_id = user_id;
     }
 
-    public JobPostActivity getJob_post_id() {
-        return job_post_id;
+    public JobPostActivity getJob() {
+        return job;
     }
 
-    public void setJob_post_id(JobPostActivity job_post_id) {
-        this.job_post_id = job_post_id;
+    public void setJob(JobPostActivity job) {
+        this.job = job;
     }
 
     public Date getApply_date() {
@@ -84,7 +84,7 @@ public class JobSeekerApply implements Serializable {
         return "JobSeekerApply{" +
                 "user_account=" + id +
                 ", user_id=" + user_id +
-                ", job_post_id=" + job_post_id +
+                ", job_post_id=" + job +
                 ", apply_date=" + apply_date +
                 ", apply_response='" + cover_letter + '\'' +
                 '}';
