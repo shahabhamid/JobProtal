@@ -21,8 +21,6 @@ public class JobLocationService {
 		return jobLocationRepository.findById(Id);
 	}
 	public void addNew(JobLocation jobLocation) {
-		System.out.println(("Add New Job Location : "));
-		System.out.println(jobLocation.toString());
 		jobLocationRepository.save(jobLocation);
 	}
 	public void update(JobLocation jobLocation) {

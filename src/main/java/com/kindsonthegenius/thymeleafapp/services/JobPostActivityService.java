@@ -30,7 +30,6 @@ public class JobPostActivityService {
 		for(RecruiterJobs rec:recruiterJobs){
 			JobLocation loc = new JobLocation(rec.getLocationId(),rec.getCity(),rec.getState(),rec.getCountry());
 			JobCompany comp = new JobCompany(rec.getCompanyId(),rec.getName(),"");
-			JobPostActivity job = new JobPostActivity();
 
 			recruiterJobsClasses.add(new RecruiterJobsClass(rec.getTotalCandidates(),rec.getJob_post_id(),rec.getJob_title(),loc,comp));
 		}

@@ -23,6 +23,8 @@ public class JobPostActivity implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_company_id",referencedColumnName = "Id")
     private JobCompany job_company_id;
+
+    @Transient
     private Boolean is_active;
 
     @Length(max = 10000)

@@ -1,5 +1,6 @@
 package com.kindsonthegenius.thymeleafapp.controllers;
 
+import com.kindsonthegenius.thymeleafapp.Utilities.FileUploadUtil;
 import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
 import com.kindsonthegenius.thymeleafapp.models.Skills;
 import com.kindsonthegenius.thymeleafapp.models.Users;
@@ -11,12 +12,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -35,36 +39,25 @@ public class JobSeekerProfileController {
 
 		JobSeekerProfile profile = new JobSeekerProfile();
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		List<Skills> skills = new ArrayList<>();
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
-			String currentUserName = authentication.getName();
-			System.out.println(currentUserName);
-			Users user = usersRepository.findByEmail(currentUserName);
+			Users user = usersRepository.findByEmail(authentication.getName());
 
 			Optional<JobSeekerProfile> recruiterProfiles = profileRepo.getOne(user.getUser_id());
 			if (recruiterProfiles.isPresent()) {
 				profile = recruiterProfiles.get();
-		//		if(profile.getSkills().isEmpty()){
-		//			List<Skills> skills = new ArrayList<>();
-		//			skills.add(new Skills());
-		//			profile.setSkills(skills);
-		//		}
-				System.out.println(recruiterProfiles.get());
+				if(profile.getSkillsList().isEmpty()){
+					skills.add(new Skills());
+					profile.setSkillsList(skills);
+				}
 			}
-			List<Skills> skillsList = new ArrayList<>();
-			model.addAttribute("skills",skillsList);
+			model.addAttribute("skillsList",skills);
 			model.addAttribute("profile", profile);
 		}
 
 		return "job-seeker-profile";
 	}
 
-	@GetMapping("/new")
-	public String add(Model model){
-
-
-		model.addAttribute("profile",new JobSeekerProfile());
-		return "job-seeker-profile";
-	}
 
 	@RequestMapping("/getOne")
 	@ResponseBody
@@ -73,7 +66,7 @@ public class JobSeekerProfileController {
 	}
 
 	@PostMapping("/addNew")
-	public String addNew(@Valid JobSeekerProfile profile, @RequestParam("image") MultipartFile multipartFile , Model model)  {
+	public String addNew(@Valid JobSeekerProfile profile, @RequestParam("image") MultipartFile image, @RequestParam("pdf") MultipartFile pdf , Model model)  {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -84,19 +77,34 @@ public class JobSeekerProfileController {
 		}
 		List<Skills> skillsList = new ArrayList<>();
 		model.addAttribute("profile",profile);
-		model.addAttribute("skills",skillsList);
+		model.addAttribute("skillsList",skillsList);
 
-		System.out.println(profile.getCity());
-		System.out.println(profile.getCountry());
-		System.out.println(profile.getEmploymentType());
-		for(Skills s :skillsList){
-			System.out.println(s.toString());
+		for(Skills skills:profile.getSkillsList()){
+			skills.setJobSeekerProfile(profile);
 		}
-	//	profileRepo.addNew(profile);
-		//String fileName = StringUtils.cleanPath((Objects.requireNonNull(multipartFile.getOriginalFilename())));
 
+		String imageName="";
+		String resumeName = "";
+		if(!Objects.equals(image.getOriginalFilename(), "")){
+			imageName = StringUtils.cleanPath((Objects.requireNonNull(image.getOriginalFilename())));
+			profile.setProfile_photo(imageName);
+		}
+		if(!Objects.equals(image.getOriginalFilename(), "")){
+			resumeName = StringUtils.cleanPath((Objects.requireNonNull(pdf.getOriginalFilename())));
+			profile.setResume(resumeName);
+		}
 
-		return "redirect:/job-seeker-profile/new";
+		JobSeekerProfile jobSeekerProfile = profileRepo.addNew(profile);
+
+		try {
+			String uploadDir = "user-photos/" + jobSeekerProfile.getUser_account_id();
+			if(!Objects.equals(image.getOriginalFilename(), "")) FileUploadUtil.saveFile(uploadDir, imageName, image);
+			if(!Objects.equals(image.getOriginalFilename(), "")) FileUploadUtil.saveFile(uploadDir, resumeName, pdf);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
+		return "redirect:/dashboard/";
 	}
 /*
 

@@ -15,8 +15,8 @@ public class Skills {
     @ManyToOne( cascade = {
             CascadeType.ALL
     })
-    @JoinColumn(name = "user_account_id")
-    private JobSeekerProfile jobSeekerProfile;
+    @JoinColumn(name = "job_seeker_profile")
+    private JobSeekerProfile job_seeker_profile;
 
     public Skills() {
     }
@@ -29,11 +29,11 @@ public class Skills {
     }
 
     public JobSeekerProfile getJobSeekerProfile() {
-        return jobSeekerProfile;
+        return job_seeker_profile;
     }
 
     public void setJobSeekerProfile(JobSeekerProfile jobSeekerProfile) {
-        this.jobSeekerProfile = jobSeekerProfile;
+        this.job_seeker_profile = jobSeekerProfile;
     }
 
     public Integer getId() {
@@ -75,7 +75,7 @@ public class Skills {
                 ", name='" + name + '\'' +
                 ", experienceLevel='" + experienceLevel + '\'' +
                 ", yearsOfExperience='" + yearsOfExperience + '\'' +
-                ", jobSeekerProfile=" + jobSeekerProfile +
+                ", jobSeekerProfile=" + job_seeker_profile +
                 '}';
     }
 }

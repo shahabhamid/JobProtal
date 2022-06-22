@@ -1,10 +1,7 @@
 package com.kindsonthegenius.thymeleafapp.controllers;
 
 import com.kindsonthegenius.thymeleafapp.models.*;
-import com.kindsonthegenius.thymeleafapp.services.JobPostActivityService;
-import com.kindsonthegenius.thymeleafapp.services.JobSeekerProfileService;
-import com.kindsonthegenius.thymeleafapp.services.RecruiterProfileService;
-import com.kindsonthegenius.thymeleafapp.services.UsersService;
+import com.kindsonthegenius.thymeleafapp.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -24,11 +21,13 @@ import java.util.*;
 public class JobPostActivityController {
 
 	@Autowired
-	private JobPostActivityService jobPostActivityService;
+	JobPostActivityService jobPostActivityService;
 	@Autowired
 	JobSeekerProfileService jobSeekerProfileService;
 	@Autowired
 	RecruiterProfileService recruiterProfileService;
+	@Autowired
+	JobSeekerApplyService jobSeekerApplyService;
 	@Autowired
 	UsersService usersService;
 
@@ -100,6 +99,7 @@ public class JobPostActivityController {
 					Arrays.asList(partTime,fullTime,freelance),
 					Arrays.asList(remoteOnly,officeOnly,partialRemote),
 					Date);
+
 		}
 
 		Object currentUserProfile = usersService.getCurrentUserProfile();
@@ -109,7 +109,24 @@ public class JobPostActivityController {
 				List<RecruiterJobsClass> recruiterJobs = jobPostActivityService.getRecruiterJobs(((RecruiterProfile) currentUserProfile).getUser_account_id());
 				model.addAttribute("jobPost",recruiterJobs);
 			}
-			else model.addAttribute("jobPost",jobPost);
+			else {
+				List<JobSeekerApply> jobSeekerApplyList = jobSeekerApplyService.getCandidatesJobs((JobSeekerProfile) currentUserProfile);
+
+				boolean exist;
+				for(JobPostActivity jobActivity: jobPost){
+					exist =false;
+					System.out.println(jobActivity.toString());
+					for(JobSeekerApply jobSeekerApply: jobSeekerApplyList){
+						if ((Objects.equals(jobActivity.getJob_post_id(), jobSeekerApply.getJob().getJob_post_id()))) {
+							jobActivity.setIs_active(true);
+							exist = true;
+							break;
+						}
+					}
+					if(!exist) jobActivity.setIs_active(false);
+				}
+				model.addAttribute("jobPost",jobPost);
+			}
 
 		}
 		model.addAttribute("user",currentUserProfile);

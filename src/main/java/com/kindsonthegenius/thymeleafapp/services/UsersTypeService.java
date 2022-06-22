@@ -20,8 +20,6 @@ public class UsersTypeService {
 		return usersTypeRepository.findById(Id);
 	}
 	public void addNew(UsersType usersType) {
-		System.out.println(("Add New User Type: "));
-		System.out.println(usersType.toString());
 		usersTypeRepository.save(usersType);
 	}
 	public void update(UsersType usersType) {

@@ -3,6 +3,7 @@ package com.kindsonthegenius.thymeleafapp.services;
 
 import com.kindsonthegenius.thymeleafapp.models.JobPostActivity;
 import com.kindsonthegenius.thymeleafapp.models.JobSeekerApply;
+import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
 import com.kindsonthegenius.thymeleafapp.repositories.JobSeekerApplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class JobSeekerApplyService {
 	}
 	public List<JobSeekerApply> getJobCandidates(JobPostActivity job) {
 		return (List<JobSeekerApply>) jobSeekerApplyRepository.findByJob(job);
+	}
+	public List<JobSeekerApply> getCandidatesJobs(JobSeekerProfile user_account_id){
+		return (List<JobSeekerApply>) jobSeekerApplyRepository.findByUserId(user_account_id);
 	}
 	public Optional<JobSeekerApply> getOne(Integer Id) {
 		return jobSeekerApplyRepository.findById(Id);

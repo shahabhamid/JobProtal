@@ -2,6 +2,7 @@ package com.kindsonthegenius.thymeleafapp.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 
@@ -21,6 +22,20 @@ public class JobSeekerProfile implements Serializable {
     private String employmentType;
     private String resume;
     private String profile_photo;
+
+  
+    public List<Skills> getSkillsList() {
+        return skillsList;
+    }
+
+    public void setSkillsList(List<Skills> skillsList) {
+        this.skillsList = skillsList;
+    }
+
+    @OneToMany(targetEntity = Skills.class,mappedBy = "job_seeker_profile", cascade = {
+            CascadeType.ALL
+    })
+    private List<Skills> skillsList;
 
 
     public String getWorkAuthorization() {

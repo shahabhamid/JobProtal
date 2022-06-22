@@ -60,6 +60,14 @@
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <input
+
+                              id="user_account_id"
+                              th:field="*{user_account_id}"
+                              name="user_account_id"
+                              type="text"
+                              hidden
+                      />
+                      <input
                               placeholder="First Name"
                               id="firstName"
                               th:field="*{first_name}"
@@ -144,15 +152,20 @@
                   <label class="mt-2 heading_font font_sub_heading_color"
                   >Skills</label
                   >
-                  <div class="parent" th:each="skillsList, iterStat : *{skills}">
+                  <div class="parent" th:each="skillsList, iterStat : *{skillsList}">
                     <div id="skill-repeat">
                       <div class="row">
                         <div class="col-md-4 pr-1">
                           <input
+                                  type="text"
+                                  th:field="*{skillsList[__${iterStat.index}__].Id}"
+                                  hidden
+                          />
+                          <input
                                   placeholder="Skill Name"
                                   type="text"
                                   class="form-control"
-                                  th:field="*{skills[__${iterStat.index}__].name}"
+                                  th:field="*{skillsList[__${iterStat.index}__].name}"
                           />
                         </div>
                         <div class="col-md-4 px-1">
@@ -160,14 +173,14 @@
                                   placeholder="Years of Experience"
                                   type="text"
                                   class="form-control"
-                                  th:field="*{skills[__${iterStat.index}__].yearsOfExperience}"
+                                  th:field="*{skillsList[__${iterStat.index}__].yearsOfExperience}"
                           />
                         </div>
                         <div class="form-group col-md-4 pl-1">
                           <select
                                   required
                                   class="form-control"
-                                  th:field="*{skills[__${iterStat.index}__].experienceLevel}"
+                                  th:field="*{skillsList[__${iterStat.index}__].experienceLevel}"
                           >
                             <option value="Experience Level" selected>Experience Level</option>
                             <option value="Beginner">Beginner</option>
@@ -204,17 +217,21 @@
                               class="form-control"
                               accept="image/png, image/jpeg"
                       />
+                      <input type="text" name="profile_photo" th:field="*{profile_photo}" class="form-control" hidden />
+
                     </div>
                     <div class="col-md-5 mr-5">
                       <label class="heading_font font_sub_heading_color">
                         Resume</label
                       >
-                      <!--<input
+                      <input
                         type="file"
                         name="pdf"
                         class="form-control"
                         accept="application/pdf"
-                      />-->
+                      />
+                      <input type="text" name="resume" th:field="*{resume}" class="form-control" hidden />
+
                     </div>
                   </div>
 
@@ -257,11 +274,16 @@
       counter++;
        var newRow = jQuery("<div id='skill-repeat'><div class='row'>"+
                   "    <div class='col-md-4 pr-1'>"+
+                  "     <input"+
+                  "        hidden type='text'"+
+                  "        class='form-control' "+
+                  "        name='skillsList["+counter+"].Id'"+
+                  "      />"+
                   "      <input"+
                   "        placeholder='Skill Name'"+
                   "        type='text'"+
                   "        class='form-control'"+
-                  "        name='skills["+counter+"].name'"+
+                  "        name='skillsList["+counter+"].name'"+
                   "      />"+
                   "    </div>"+
                   "    <div class='col-md-4 px-1'>"+
@@ -269,14 +291,14 @@
                   "        placeholder='Years of Experience'"+
                   "        type='text'"+
                   "        class='form-control'"+
-                  "        name='skills["+counter+"].yearsOfExperience'"+
+                  "        name='skillsList["+counter+"].yearsOfExperience'"+
                   "      />"+
                   "    </div>"+
                   "    <div class='form-group col-md-4 pl-1'>"+
                   "      <select"+
                   "        required"+
                   "        class='form-control'"+
-                  "        name='skills["+counter+"].experienceLevel'"+
+                  "        name='skillsList["+counter+"].experienceLevel'"+
                   "      >"+
                   "        <option selected>Experience Level</option>"+
                   "        <option value='Beginner'>Beginner</option>"+

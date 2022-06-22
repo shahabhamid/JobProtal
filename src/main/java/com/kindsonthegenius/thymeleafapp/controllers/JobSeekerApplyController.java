@@ -1,17 +1,12 @@
 package com.kindsonthegenius.thymeleafapp.controllers;
 
-import com.kindsonthegenius.thymeleafapp.models.JobPostActivity;
-import com.kindsonthegenius.thymeleafapp.models.JobSeekerApply;
-import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
-import com.kindsonthegenius.thymeleafapp.models.Users;
+import com.kindsonthegenius.thymeleafapp.models.*;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
-import com.kindsonthegenius.thymeleafapp.services.JobPostActivityService;
-import com.kindsonthegenius.thymeleafapp.services.JobSeekerApplyService;
-import com.kindsonthegenius.thymeleafapp.services.JobSeekerProfileService;
-import com.kindsonthegenius.thymeleafapp.services.UsersService;
+import com.kindsonthegenius.thymeleafapp.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,15 +30,41 @@ public class JobSeekerApplyController {
     JobSeekerProfileService jobSeekerProfileService;
     @Autowired
     UsersService usersService;
+    @Autowired
+    private RecruiterProfileService recruiterProfile;
+    @Autowired
+    private JobSeekerProfileService seekerProfileService;
 
     @RequestMapping("job-details-apply/{id}")
     public String Display(@PathVariable(value = "id") int id,Model model) {
         Optional<JobPostActivity> jobDetails = jobPostActivityService.getOne(id);
         List<JobSeekerApply> jobSeekerApplyList = jobSeekerApplyService.getJobCandidates(jobDetails.get());
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken) ) {
+            if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))){
+                RecruiterProfile user = recruiterProfile.getCurrentRecruiterProfile();
+                if(user!=null){
+                    model.addAttribute("applyList",jobSeekerApplyList);
+                }
+            }else{
+                JobSeekerProfile user = seekerProfileService.getCurrentSeekerProfile();
+                if(user!=null){
+                    boolean exists = false;
+                    for(JobSeekerApply jobSeekerApply: jobSeekerApplyList){
+                        if(jobSeekerApply.getUser_id().getUser_account_id().equals(user.getUser_account_id())){
+                            exists = true;
+                            break;
+                        }
+                    }
+                    model.addAttribute("alreadyApplied",exists);
+                }
+            }
+        }
+
 
         JobSeekerApply jobSeekerApply = new JobSeekerApply();
-        model.addAttribute("applyList",jobSeekerApplyList);
+
         model.addAttribute("jobDetails", jobDetails.get());
         model.addAttribute("applyJob", jobSeekerApply);
         model.addAttribute("user",usersService.getCurrentUserProfile());

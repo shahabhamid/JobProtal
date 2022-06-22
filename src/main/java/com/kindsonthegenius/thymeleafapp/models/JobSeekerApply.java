@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(uniqueConstraints={
-        @UniqueConstraint(columnNames = {"user_account_id", "job"})
+        @UniqueConstraint(columnNames = {"userId", "job"})
 })
 public class JobSeekerApply implements Serializable {
     @Id
@@ -16,8 +16,8 @@ public class JobSeekerApply implements Serializable {
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_account_id",referencedColumnName = "user_account_id")
-    private JobSeekerProfile user_id;
+    @JoinColumn(name = "userId",referencedColumnName = "user_account_id")
+    private JobSeekerProfile userId;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job",referencedColumnName = "job_post_id")
     private JobPostActivity job;
@@ -31,7 +31,7 @@ public class JobSeekerApply implements Serializable {
 
     public JobSeekerApply(Integer user_account, JobSeekerProfile user_id, JobPostActivity job_post_id, Date apply_date, String cover_letter) {
         this.id = user_account;
-        this.user_id = user_id;
+        this.userId = user_id;
         this.job = job_post_id;
         this.apply_date = apply_date;
         this.cover_letter = cover_letter;
@@ -40,11 +40,11 @@ public class JobSeekerApply implements Serializable {
 
 
     public JobSeekerProfile getUser_id() {
-        return user_id;
+        return userId;
     }
 
     public void setUser_id(JobSeekerProfile user_id) {
-        this.user_id = user_id;
+        this.userId = user_id;
     }
 
     public JobPostActivity getJob() {
@@ -83,7 +83,7 @@ public class JobSeekerApply implements Serializable {
     public String toString() {
         return "JobSeekerApply{" +
                 "user_account=" + id +
-                ", user_id=" + user_id +
+                ", user_id=" + userId +
                 ", job_post_id=" + job +
                 ", apply_date=" + apply_date +
                 ", apply_response='" + cover_letter + '\'' +

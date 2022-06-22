@@ -244,6 +244,7 @@
                   <label class="job-title text-left">
                     [[${jobPost.job_title}]]
                     <span class="title-span" sec:authorize="hasAuthority('Recruiter')" th:text="'('+ @{${jobPost.totalCandidates}}+' Candidates Applied)'">(xx candidates applied)</span>
+                    <span class="title-span" sec:authorize="hasAuthority('Job Seeker')"  th:if="${jobPost.is_active == true}">(Applied)</span>
 
                   </label>
                    </div >
