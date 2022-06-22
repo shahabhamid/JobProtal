@@ -30,6 +30,8 @@ public class JobPostActivityController {
 	JobSeekerApplyService jobSeekerApplyService;
 	@Autowired
 	UsersService usersService;
+	@Autowired
+	JobSeekerSaveService jobSeekerSaveService;
 
 
 	@RequestMapping("dashboard/")
@@ -111,11 +113,13 @@ public class JobPostActivityController {
 			}
 			else {
 				List<JobSeekerApply> jobSeekerApplyList = jobSeekerApplyService.getCandidatesJobs((JobSeekerProfile) currentUserProfile);
+				List<JobSeekerSave> jobSeekerSaveList = jobSeekerSaveService.getCandidatesJobs((JobSeekerProfile) currentUserProfile);;
 
 				boolean exist;
+				boolean saved;
 				for(JobPostActivity jobActivity: jobPost){
 					exist =false;
-					System.out.println(jobActivity.toString());
+					saved =false;
 					for(JobSeekerApply jobSeekerApply: jobSeekerApplyList){
 						if ((Objects.equals(jobActivity.getJob_post_id(), jobSeekerApply.getJob().getJob_post_id()))) {
 							jobActivity.setIs_active(true);
@@ -123,7 +127,16 @@ public class JobPostActivityController {
 							break;
 						}
 					}
+					for(JobSeekerSave jobSeekerSave: jobSeekerSaveList){
+						if ((Objects.equals(jobActivity.getJob_post_id(), jobSeekerSave.getJob().getJob_post_id()))) {
+							jobActivity.setIs_saved(true);
+							saved = true;
+							break;
+						}
+					}
 					if(!exist) jobActivity.setIs_active(false);
+					if(!saved) jobActivity.setIs_saved(false);
+
 				}
 				model.addAttribute("jobPost",jobPost);
 			}

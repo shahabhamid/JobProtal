@@ -26,6 +26,8 @@ public class JobPostActivity implements Serializable {
 
     @Transient
     private Boolean is_active;
+    @Transient
+    private Boolean is_saved;
 
     @Length(max = 10000)
     private String description_of_job;
@@ -63,16 +65,16 @@ public class JobPostActivity implements Serializable {
     public String toString() {
         return "JobPostActivity{" +
                 "Id=" + job_post_id +
-                ", posted_by_id=" + posted_by_id +
-                ", job_location_id=" + job_location_id.toString() +
-                ", job_company_id=" + job_company_id.toString() +
-                ", is_active=" + is_active +
-                ", description_of_job='" + description_of_job + '\'' +
-                ", job_type='" + job_type + '\'' +
-                ", salary='" + salary + '\'' +
-                ", remote='" + remote + '\'' +
-                ", posted_date=" + posted_date +
-                ", job_title='" + job_title + '\'' +
+                ",\n posted_by_id=" + posted_by_id +
+                ",\n job_location_id=" + job_location_id.toString() +
+                ",\n job_company_id=" + job_company_id.toString() +
+                ",\n is_active=" + is_active +
+                ",\n description_of_job='" + description_of_job + '\'' +
+                ",\n job_type='" + job_type + '\'' +
+                ",\n salary='" + salary + '\'' +
+                ",\n remote='" + remote + '\'' +
+                ",\n posted_date=" + posted_date +
+                ",\n job_title='" + job_title + '\'' +
                 '}';
     }
 
@@ -169,5 +171,13 @@ public class JobPostActivity implements Serializable {
 
     public void setJob_post_id(Integer job_post_id) {
         this.job_post_id = job_post_id;
+    }
+
+    public Boolean getIs_saved() {
+        return is_saved;
+    }
+
+    public void setIs_saved(Boolean is_saved) {
+        this.is_saved = is_saved;
     }
 }

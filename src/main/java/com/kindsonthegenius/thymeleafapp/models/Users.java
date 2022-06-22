@@ -4,7 +4,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -26,7 +25,6 @@ public class Users {
 	@Column(unique = true)
 	private String email;
 	@NotEmpty
-	@Size(min = 8)
 	private String password;
 	private Boolean is_active;
 	@DateTimeFormat(pattern="dd-MM-yyyy")

@@ -23,6 +23,8 @@ public class JobSeekerApplyController {
     @Autowired
     JobSeekerApplyService jobSeekerApplyService ;
     @Autowired
+    JobSeekerSaveService jobSeekerSaveService ;
+    @Autowired
     JobPostActivityService jobPostActivityService ;
     @Autowired
     UsersRepository usersRepository;
@@ -39,6 +41,7 @@ public class JobSeekerApplyController {
     public String Display(@PathVariable(value = "id") int id,Model model) {
         Optional<JobPostActivity> jobDetails = jobPostActivityService.getOne(id);
         List<JobSeekerApply> jobSeekerApplyList = jobSeekerApplyService.getJobCandidates(jobDetails.get());
+        List<JobSeekerSave> jobSeekerSaveList = jobSeekerSaveService.getJobCandidates(jobDetails.get());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken) ) {
@@ -51,13 +54,21 @@ public class JobSeekerApplyController {
                 JobSeekerProfile user = seekerProfileService.getCurrentSeekerProfile();
                 if(user!=null){
                     boolean exists = false;
+                    boolean saved = false;
                     for(JobSeekerApply jobSeekerApply: jobSeekerApplyList){
                         if(jobSeekerApply.getUser_id().getUser_account_id().equals(user.getUser_account_id())){
                             exists = true;
                             break;
                         }
                     }
+                    for(JobSeekerSave jobSeekerSave: jobSeekerSaveList){
+                        if(jobSeekerSave.getUser_id().getUser_account_id().equals(user.getUser_account_id())){
+                            saved = true;
+                            break;
+                        }
+                    }
                     model.addAttribute("alreadyApplied",exists);
+                    model.addAttribute("alreadySaved",saved);
                 }
             }
         }
@@ -96,20 +107,20 @@ public class JobSeekerApplyController {
             jobSeekerApplyService.addNew(jobSeekerApply);
         }
 
-        return "redirect:/jobSeekerApply/";
+        return "redirect:/dashboard/";
 
     }
 
     @RequestMapping(value="/update", method = {RequestMethod.PUT, RequestMethod.GET})
     public String update(JobSeekerApply jobSeekerApply) {
         jobSeekerApplyService.update(jobSeekerApply);
-        return "redirect:/jobSeekerApply/";
+        return "redirect:/dashboard/";
     }
 
     @RequestMapping(value="/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(Integer Id) {
         jobSeekerApplyService.delete(Id);
-        return "redirect:/jobSeekerApply/";
+        return "redirect:/dashboard/";
     }
 
 }

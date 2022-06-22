@@ -106,30 +106,4 @@ public class JobSeekerProfileController {
 
 		return "redirect:/dashboard/";
 	}
-/*
-
-	@PostMapping("/addNew")
-	public String addNew(RecruiterProfile recruiterProfile, @RequestParam("image") MultipartFile multipartFile , Model model) throws IOException {
-
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (!(authentication instanceof AnonymousAuthenticationToken)) {
-			String currentUserName = authentication.getName();
-			Users user = usersRepository.findByEmail(currentUserName);
-			recruiterProfile.setUser_id(user);
-			recruiterProfile.setUser_account_id(user.getUser_id());
-		}
-
-		model.addAttribute("profile",recruiterProfile);
-		String fileName = StringUtils.cleanPath((Objects.requireNonNull(multipartFile.getOriginalFilename())));
-		recruiterProfile.setProfile_photo(fileName);
-
-		RecruiterProfile savedUser = recruiterProfileService.addNew(recruiterProfile);
-
-		String uploadDir = "user-photos/" + savedUser.getUser_account_id();
-		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-
-		return "redirect:/recruiter-profile/";
-	}
-*/
-
 }

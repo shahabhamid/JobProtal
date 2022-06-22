@@ -46,7 +46,7 @@
             >
           </li>
           <li class="nav-item ">
-            <a sec:authorize="hasAuthority('Job Seeker')"  class="nav-link" href="#">
+            <a sec:authorize="hasAuthority('Job Seeker')"  class="nav-link" th:href="@{/saved-jobs/}">
               <i class="fa-solid fa-eye"></i>View Saved Jobs</a>
           </li>
           <li class="nav-item ">
@@ -245,6 +245,7 @@
                     [[${jobPost.job_title}]]
                     <span class="title-span" sec:authorize="hasAuthority('Recruiter')" th:text="'('+ @{${jobPost.totalCandidates}}+' Candidates Applied)'">(xx candidates applied)</span>
                     <span class="title-span" sec:authorize="hasAuthority('Job Seeker')"  th:if="${jobPost.is_active == true}">(Applied)</span>
+                    <span class="title-span" sec:authorize="hasAuthority('Job Seeker')"  th:if="${jobPost.is_saved == true}">(Saved)</span>
 
                   </label>
                    </div >
