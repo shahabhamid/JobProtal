@@ -39,14 +39,17 @@
             </label>
         </div>
     </nav>
-
+    <form th:action="@{/global-search/}">
     <div class="searchBox">
         <div class="inner">
-            <input type="text" name="jobSearch" placeholder="Search for a job">
-            <input type="text" name="locSearch" placeholder="Enter a location">
-            <button><i class="fa fa-search"></i></button>
+
+                <input type="text"  placeholder="Search for a job"  name="job"  th:value="${job}" />
+                <input type="text"  placeholder="Enter a location"  name="location" th:value="${location}"/>
+                <button type="submit"><i class="fa fa-search"></i></button>
+
         </div>
     </div>
+    </form>
 <footer>
     <label class="copy-right">Copyright © 2022 hotdevjobs.com</label>
 </footer>

@@ -146,6 +146,81 @@ public class JobPostActivityController {
 		return "dashboard";
 	}
 
+	@RequestMapping("global-search/")
+	public String GlobalSearch(Model model,
+							   @Param("job") String job,
+							   @Param("location") String location,
+							   @Param("partTime") String partTime,
+							   @Param("fullTime") String fullTime,
+							   @Param("freelance") String freelance,
+							   @Param("remoteOnly") String remoteOnly,
+							   @Param("officeOnly") String officeOnly,
+							   @Param("partialRemote") String partialRemote,
+							   @Param("today") boolean today,
+							   @Param("days7") boolean days7,
+							   @Param("days30") boolean days30)
+	{
+
+		model.addAttribute("partTime", Objects.equals(partTime,"Part-Time"));
+		model.addAttribute("fullTime",Objects.equals(fullTime,"Full-Time"));
+		model.addAttribute("freelance", Objects.equals(freelance, "Freelance"));
+
+		model.addAttribute("remoteOnly", Objects.equals(remoteOnly,"Remote-Only"));
+		model.addAttribute("officeOnly",Objects.equals(officeOnly,"Office-Only"));
+		model.addAttribute("partialRemote", Objects.equals(partialRemote, "Partial-Remote"));
+
+		model.addAttribute("today", today);
+		model.addAttribute("days7",days7);
+		model.addAttribute("days30", days30);
+
+		model.addAttribute("job",job);
+		model.addAttribute("location", location);
+
+		LocalDate Date = null;
+		List<JobPostActivity> jobPost = null;
+		boolean dateSearch = true;
+		boolean remote = true;
+		boolean type = true;
+
+		if(days30) Date = LocalDate.now().minusDays(30);
+		else if(days7) Date = LocalDate.now().minusDays(7);
+		else if(today) Date = LocalDate.now();
+		else {
+			Date = LocalDate.MIN;
+			dateSearch=false;
+		}
+
+		if(partTime == null && fullTime == null && freelance == null){
+			partTime = "Part-Time";
+			fullTime = "Full-Time";
+			freelance = "Freelance";
+			remote = false;
+		}
+		if(remoteOnly == null && officeOnly == null && partialRemote == null){
+			remoteOnly = "Remote-Only";
+			officeOnly = "Office-Only";
+			partialRemote = "Partial-Remote";
+			type = false;
+		}
+
+		if(!dateSearch && !remote && !type && job==null && location ==null){
+			jobPost = jobPostActivityService.getAll();
+
+		}else{
+			jobPost = jobPostActivityService.search(
+					job,
+					location,
+					Arrays.asList(partTime,fullTime,freelance),
+					Arrays.asList(remoteOnly,officeOnly,partialRemote),
+					Date);
+
+		}
+
+
+		model.addAttribute("jobPost",jobPost);
+		return "global-search";
+	}
+
 	@RequestMapping("dashboard/add")
 	public String addJobs(Model model) {
 		model.addAttribute("jobPostActivity", new JobPostActivity());
