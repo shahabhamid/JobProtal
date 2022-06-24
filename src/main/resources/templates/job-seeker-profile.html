@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
   <head>
     <link
       th:rel="stylesheet"
@@ -212,6 +212,7 @@
                         Profile Photo</label
                       >
                       <input
+                              sec:authorize="hasAuthority('Job Seeker')"
                               type="file"
                               name="image"
                               class="form-control"
@@ -225,13 +226,14 @@
                         Resume</label
                       >
                       <input
+                              sec:authorize="hasAuthority('Job Seeker')"
                         type="file"
                         name="pdf"
                         class="form-control"
                         accept="application/pdf"
                       />
                       <input type="text" name="resume" th:field="*{resume}" class="form-control" hidden />
-
+                      <a sec:authorize="hasAuthority('Recruiter')" th:href="@{|/job-seeker-profile/downloadResume?fileName=${profile.resume}&&userID=${profile.user_account_id}|}">Download Resume</a>
                     </div>
                   </div>
 
@@ -253,6 +255,9 @@
         </div>
       </div>
     </div>
+  <div sec:authorize="hasAuthority('Recruiter')">
+
+  </div>
   </body>
   <script
     type="text/javascript"
@@ -267,7 +272,15 @@
     th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"
   ></script>
   <script type="text/javascript" th:src="@{/js/main.js}"></script>
+  <script sec:authorize="hasAuthority('Recruiter')">
+     console.log("Disable inputs");
+   $("input").prop( "disabled", true );
+    $("select").prop( "disabled", true );
+        $("button").prop( "disabled", true );
+  </script>
   <script>
+
+
    var counter = 0;
     $(document).on("click", "#addSkill", function (e) {
       e.preventDefault();

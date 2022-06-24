@@ -25,7 +25,7 @@ public interface JobPostActivityRepository extends CrudRepository<JobPostActivit
                                         @Param("type") List<String> type,
                                         @Param("date") LocalDate date);
 
-    @Query(value = " SELECT COUNT(s.user_account_id) as totalCandidates,j.job_post_id,j.job_title,l.id as locationId,l.city,l.state,l.country,c.id as companyId,c.name FROM job_post_activity j " +
+    @Query(value = " SELECT COUNT(s.user_id) as totalCandidates,j.job_post_id,j.job_title,l.id as locationId,l.city,l.state,l.country,c.id as companyId,c.name FROM job_post_activity j " +
             " inner join job_location l " +
             " on j.job_location_id = l.id " +
             " INNER join job_company c  " +

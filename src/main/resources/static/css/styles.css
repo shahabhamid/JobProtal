@@ -25,11 +25,24 @@ a:focus,
 a:focus {
     text-decoration: none;
   }
-  a:focus,
-a:hover,
-.portfolio-cat a:hover,
-.footer -menu li a:hover {
-  text-decoration: none;
+
+a:focus,
+a:hover {
+  text-decoration: none !important;
+}
+a{
+text-decoration: none !important;
+}
+a.white{
+    color:white !important;
+}
+
+a.black{
+color:black !important;
+}
+
+a.primary{
+color:#002244 !important;
 }
 
 .background {

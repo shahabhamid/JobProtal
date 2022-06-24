@@ -1,5 +1,6 @@
 package com.kindsonthegenius.thymeleafapp.controllers;
 
+import com.kindsonthegenius.thymeleafapp.Utilities.FileDownloadUtil;
 import com.kindsonthegenius.thymeleafapp.Utilities.FileUploadUtil;
 import com.kindsonthegenius.thymeleafapp.models.JobSeekerProfile;
 import com.kindsonthegenius.thymeleafapp.models.Skills;
@@ -7,6 +8,12 @@ import com.kindsonthegenius.thymeleafapp.models.Users;
 import com.kindsonthegenius.thymeleafapp.repositories.UsersRepository;
 import com.kindsonthegenius.thymeleafapp.services.JobSeekerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,6 +40,8 @@ public class JobSeekerProfileController {
 
 	@Autowired
 	private UsersRepository usersRepository;
+	@Autowired
+	private JobSeekerProfileService jobSeekerProfileService;
 
 	@RequestMapping("/")
 	public String JobSeekerProfile(Model model) {
@@ -105,5 +114,37 @@ public class JobSeekerProfileController {
 		}
 
 		return "redirect:/dashboard/";
+	}
+	@RequestMapping("/{id}")
+	public String candidateProfile(@PathVariable(value = "id") int id,Model model) {
+
+		Optional<JobSeekerProfile> jobSeekerProfile = jobSeekerProfileService.getOne(id);
+
+		model.addAttribute("profile", jobSeekerProfile.get());
+		return "job-seeker-profile";
+	}
+
+	@GetMapping("/downloadResume")
+	public ResponseEntity<?> downloadFile(@Param(value="fileName") String fileName,@Param(value="userID") String userID) {
+		FileDownloadUtil downloadUtil = new FileDownloadUtil();
+System.out.println(fileName+" "+userID);
+		Resource resource = null;
+		try {
+			resource = downloadUtil.getFileAsResource("user-photos/"+userID,fileName);
+		} catch (IOException e) {
+			return   ResponseEntity.badRequest().build();
+		}
+
+		if (resource == null) {
+			return new ResponseEntity<>("File not found", HttpStatus.NOT_FOUND);
+		}
+
+		String contentType = "application/octet-stream";
+		String headerValue = "attachment; filename=\"" + resource.getFilename() + "\"";
+
+		return ResponseEntity.ok()
+				.contentType(MediaType.parseMediaType(contentType))
+				.header(HttpHeaders.CONTENT_DISPOSITION, headerValue)
+				.body(resource);
 	}
 }
