@@ -378,6 +378,10 @@ border: none;
     height:100%;
 
 }
+.myBtn:hover{
+     filter: contrast(30) opacity(0.9);
+      cursor: pointer;
+}
 .myBtn-light{
     box-sizing: border-box;
     background-color: #FB4F14;
@@ -387,6 +391,10 @@ border: none;
     padding: 5px 10px;
     display: inline;
     font-weight: bold;
+}
+.myBtn-light:hover{
+     filter: contrast(30) opacity(0.9);
+     cursor: pointer;
 }
 a.color-text,a.color-text:hover{
     color: #FB4F14;
