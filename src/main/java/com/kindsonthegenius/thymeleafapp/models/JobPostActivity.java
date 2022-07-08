@@ -29,7 +29,8 @@ public class JobPostActivity implements Serializable {
     @Transient
     private Boolean is_saved;
 
-    @Length(max = 10000)
+
+    @Length(max = 90000)
     private String description_of_job;
     private String job_type;
     private String salary;

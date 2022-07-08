@@ -125,7 +125,7 @@ public class RecruiterProfile implements Serializable {
 
     @Transient
     public String getPhotosImagePath() {
-        if (profile_photo == null || user_account_id == null) return null;
+        if (profile_photo == null || user_account_id == null|| profile_photo.equals("")) return "/src/main/resources/static/assets/profile.png";
 
         return "/user-photos/" + user_account_id + "/" + profile_photo;
     }
